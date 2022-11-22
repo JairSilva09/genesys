@@ -8,6 +8,8 @@ import { MenuComponent } from './menu/menu.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GenesisQueuesComponent } from './genesis-queues/genesis-queues.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { GenesisQueuesComponent } from './genesis-queues/genesis-queues.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
