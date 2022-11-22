@@ -7,13 +7,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenuComponent } from './menu/menu.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GenesisQueuesComponent } from './genesis-queues/genesis-queues.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     MenuComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    GenesisQueuesComponent
   ],
   imports: [
     BrowserModule,
