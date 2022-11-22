@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class GenesisQueuesComponent {
 
+  OPTIONS_QUEUE = ["Call Types", "Language", "Provider", "Queue Name"]
+
   LEVEL: any[] =[
     "Agent","Manager","Department","Predefined Groups"
   ]
