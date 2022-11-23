@@ -6,7 +6,13 @@
         padding: 10px;
     } 
     
-    .cont-select{
-       
+    .btn-light{
+        --bs-btn-hover-bg: none;       
+    }
+    .btn-check:checked+.btn,
+     .btn.active, .btn.show,
+      .btn:first-child:active,
+       :not(.btn-check)+.btn:active {
+        background-color: white;        
     }
 }
