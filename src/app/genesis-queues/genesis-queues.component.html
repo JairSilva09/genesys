@@ -1,8 +1,14 @@
 <div class="cont-genesis-queues">
     <div class="row cont-chekbox">
         <section class="example-section" style="display: flex;justify-content: end">
-            <mat-checkbox class="example-margin" >Temporary Update</mat-checkbox>
-            <mat-checkbox class="example-margin" >Modify Existing Queues/Skills</mat-checkbox>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1">Temporary Update</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                <label class="form-check-label" for="inlineCheckbox2">Modify Existing Queues/Skills</label>
+            </div>            
         </section>
     </div>
     <div class="row">
@@ -23,8 +29,8 @@
                     <li *ngFor="let item of NAME">
                         <a class="dropdown-item" href="#">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{item}}" (change)="nameItemSelected($event)" id="Checkme1" />
-                                <label class="form-check-label" for="Checkme1">{{item}}</label>
+                                <input class="form-check-input" type="checkbox" value="{{item}}" [checked]="chequedBoxName(item)" (change)="nameItemSelected($event)" id="Checkme1" />
+                                <label class="form-check-label" for="Checkme1">{{item}}</label>                                
                             </div>
                         </a>
                     </li>
@@ -32,7 +38,8 @@
             </div>
             <div *ngIf="this.SET_NAME_SELECTED.length > 0" style="margin-top: 35px" >
                 <ul class="list-group">
-                    <li *ngFor="let item of SET_NAME_SELECTED" class="list-group-item">{{item}}</li>
+                    <li *ngFor="let item of SET_NAME_SELECTED" class="list-group-item d-flex justify-content-between" >{{item}}<span (click)="remove_name_selected(item)" style="cursor: pointer">X</span></li>
+                    
                 </ul>
             </div>
         </div>
@@ -43,20 +50,24 @@
                 <option *ngFor="let item of QUEUE" value="{{item}}">{{item}}</option>         
             </select>
             <div *ngIf="queueSelectList" class="cont-queue-list">
-                <span class="close_queue_list" (click)="close_queue_list()">Close</span>
-                <mat-selection-list #queues>
+                <span class="close_queue_list d-flex justify-content-end" (click)="close_queue_list()">Close</span>
+                <div class="list-group">
+                    <label *ngFor="let item of QUEUES_LIST" class="list-group-item" style="border: none">
+                      <input class="form-check-input me-1" value="{{item}}" [checked]="chequedBoxQueue(item)" (change)="selectedQueue($event,item)" type="checkbox" value="">
+                      {{item}}
+                    </label>
+                  </div>
+                <!-- <mat-selection-list #queues>
                     <mat-list-option *ngFor="let item of QUEUES_LIST" (click)="selectedQueue($event,item)">
                       {{item}}
                     </mat-list-option>
-                </mat-selection-list>                            
+                </mat-selection-list>   -->
             </div>
-            <div *ngIf="SET_QUEUE_SELECTED.length > 0">
-                <p *ngFor="let item of SET_QUEUE_SELECTED">{{item}}<span (click)="removeQueue(item)" class="remove_queue_list">
-                    X
-                    </span>
-                </p>
+            <div *ngIf="SET_QUEUE_SELECTED.length > 0" style="margin-top: 35px" >               
+                <ul class="list-group">
+                    <li *ngFor="let item of SET_QUEUE_SELECTED" class="list-group-item d-flex justify-content-between" >{{item}}<span (click)="removeQueue(item)" style="cursor: pointer">X</span></li>
+                </ul>
             </div>
-           
            
         </div>
         <div class="col">

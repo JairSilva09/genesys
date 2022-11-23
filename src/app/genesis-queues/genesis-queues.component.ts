@@ -9,6 +9,7 @@ import {MatListModule} from '@angular/material/list';
 export class GenesisQueuesComponent {
 
   @ViewChild('queues') queues!: MatListModule;
+  @ViewChild('checkboxName') checkboxName!: MatListModule;
 
   LEVEL: any[] =[
     "Agent","Manager","Department","Predefined Groups"
@@ -74,6 +75,7 @@ export class GenesisQueuesComponent {
   }
 
   nameItemSelected(event: any){
+    console.log(event)
 
     if (this.SET_NAME_SELECTED.indexOf(event.target.value) === -1) {
       this.SET_NAME_SELECTED.push(event.target.value);
@@ -84,8 +86,19 @@ export class GenesisQueuesComponent {
  
   }
 
-  selectedQueue(event: any,item: any){
-    console.log(this.queues)
+  remove_name_selected(item: any){
+    this.SET_NAME_SELECTED.splice(this.SET_NAME_SELECTED.indexOf(item), 1);
+  }
+
+  chequedBoxName(item: any){
+    if(this.SET_NAME_SELECTED.indexOf(item) === -1){
+      return false      
+    }else{
+      return true
+    }   
+  }
+
+  selectedQueue(event: any,item: any){    
 
     if (this.SET_QUEUE_SELECTED.indexOf(item) === -1) {
       this.SET_QUEUE_SELECTED.push(item);
@@ -96,10 +109,18 @@ export class GenesisQueuesComponent {
     
     console.log(this.SET_QUEUE_SELECTED)
 
-  }
+  }  
 
   removeQueue(item: any){
     this.SET_QUEUE_SELECTED.splice(this.SET_QUEUE_SELECTED.indexOf(item), 1);
+  }
+
+  chequedBoxQueue(item: any){
+    if(this.SET_QUEUE_SELECTED.indexOf(item) === -1){
+      return false      
+    }else{
+      return true
+    }
   }
 
   close_queue_list(){
