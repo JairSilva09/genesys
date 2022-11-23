@@ -20,7 +20,7 @@
                     Select menu
                 </button>
                 <ul class="dropdown-menu">
-                    <li *ngFor="let item of name">
+                    <li *ngFor="let item of NAME">
                         <a class="dropdown-item" href="#">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="{{item}}" (change)="nameItemSelected($event)" id="Checkme1" />
@@ -30,9 +30,9 @@
                     </li>
                 </ul>
             </div>
-            <div *ngIf="this.setNameSelected.length > 0" style="margin-top: 35px" >
+            <div *ngIf="this.SET_NAME_SELECTED.length > 0" style="margin-top: 35px" >
                 <ul class="list-group">
-                    <li *ngFor="let item of setNameSelected" class="list-group-item">{{item}}</li>
+                    <li *ngFor="let item of SET_NAME_SELECTED" class="list-group-item">{{item}}</li>
                 </ul>
             </div>
         </div>
@@ -40,7 +40,7 @@
             <label>Queue</label>
             <select class="form-select" aria-label="Default select example">
                 <option selected>select menu</option>
-                <option *ngFor="let item of queue" value="{{item}}">{{item}}</option>         
+                <option *ngFor="let item of QUEUE" value="{{item}}">{{item}}</option>         
             </select>
         </div>
         <div class="col">
