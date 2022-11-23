@@ -7,22 +7,20 @@ import { Component } from '@angular/core';
 })
 export class GenesisQueuesComponent {
 
-  OPTIONS_QUEUE = ["Call Types", "Language", "Provider", "Queue Name"]
-
   LEVEL: any[] =[
     "Agent","Manager","Department","Predefined Groups"
   ]
 
-  name: any[] =[];
-  manager: any[] =[
+  NAME: any[] =[];
+  MANAGER: any[] =[
     "Manager 1","Manager 2","Manager 3","Manager 4","Manager 5","Manager 6"
   ];
 
-  department: any[] =[
+  DEPARTMENT: any[] =[
     "AT&T","CenturyLink","Cable","Dish","Frontier","HughesNet"
   ];
 
-  predefinedGroup: any[] =[
+  PREDEFINEDGROUP: any[] =[
     "ATT P1 Cooper Overflow","ATT P1 Fiber Overflow","Hughes Backup","Example Y","Example Z"
   ];
 
@@ -30,44 +28,43 @@ export class GenesisQueuesComponent {
     "Agent 1","Agent 2","Agent 3","Agent 4","Agent 5","Agent 6"
   ]
 
-  queue: any[] = [
+  QUEUE: any[] = [
     "Call Types", "Language", "Provider", "Queue Name"
   ]
 
   chosenLevel: string = "select menu";
 
-  setNameSelected: any[] = [];
+  SET_NAME_SELECTED: any[] = [];
   nameItem: any;
   levelSelect:boolean = false;
 
   selectLevel(event: any){
     if(event == "Agent"){
-      this.name = this.AGENT;
+      this.NAME = this.AGENT;
     }
 
     if(event == "Manager"){
-      this.name = this.manager;
+      this.NAME = this.MANAGER;
     }
 
     if(event == "Predefined Groups"){      
-      this.name = this.predefinedGroup;
+      this.NAME = this.PREDEFINEDGROUP;
     }
 
     if(event == "Department"){      
-      this.name = this.department;
+      this.NAME = this.DEPARTMENT;
     }
 
     this.levelSelect = true;
-    
   }
 
   nameItemSelected(event: any){
 
-    if (this.setNameSelected.indexOf(event.target.value) === -1) {
-      this.setNameSelected.push(event.target.value);
+    if (this.SET_NAME_SELECTED.indexOf(event.target.value) === -1) {
+      this.SET_NAME_SELECTED.push(event.target.value);
     }
     else {
-      this.setNameSelected.splice(this.setNameSelected.indexOf(event.target.value), 1);
+      this.SET_NAME_SELECTED.splice(this.SET_NAME_SELECTED.indexOf(event.target.value), 1);
     } 
  
   }
