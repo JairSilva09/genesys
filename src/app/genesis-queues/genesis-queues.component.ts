@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class GenesisQueuesComponent {
 
+  OPTIONS_QUEUE = ["Call Types", "Language", "Provider", "Queue Name"]
+
   LEVEL: any[] =[
     "Agent","Manager","Department","Predefined Groups"
   ]
@@ -34,6 +36,10 @@ export class GenesisQueuesComponent {
 
   chosenLevel: string = "select menu";
 
+  setNameSelected: any[] = [];
+  nameItem: any;
+  levelSelect:boolean = false;
+
   selectLevel(event: any){
     if(event == "Agent"){
       this.name = this.AGENT;
@@ -50,9 +56,19 @@ export class GenesisQueuesComponent {
     if(event == "Department"){      
       this.name = this.department;
     }
+
+    this.levelSelect = true;
+    
   }
 
-  
-  
+  nameItemSelected(event: any){
 
+    if (this.setNameSelected.indexOf(event.target.value) === -1) {
+      this.setNameSelected.push(event.target.value);
+    }
+    else {
+      this.setNameSelected.splice(this.setNameSelected.indexOf(event.target.value), 1);
+    } 
+ 
+  }
 }
