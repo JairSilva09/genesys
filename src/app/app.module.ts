@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GenesisQueuesComponent } from './genesis-queues/genesis-queues.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatSelectModule} from '@angular/material/select';
     BrowserAnimationsModule,
     MatCheckboxModule,
     MatSelectModule,
-    FormsModule,    
+    FormsModule,
+    MatListModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]

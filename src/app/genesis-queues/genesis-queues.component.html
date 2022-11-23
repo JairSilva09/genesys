@@ -38,10 +38,26 @@
         </div>
         <div class="col">
             <label>Queue</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" (ngModelChange)="selectQueue($event)" [(ngModel)]="chosenQueue" aria-label="Default select example">
                 <option selected>select menu</option>
                 <option *ngFor="let item of QUEUE" value="{{item}}">{{item}}</option>         
             </select>
+            <div *ngIf="queueSelectList" class="cont-queue-list">
+                <span class="close_queue_list" (click)="close_queue_list()">Close</span>
+                <mat-selection-list #queues>
+                    <mat-list-option *ngFor="let item of QUEUES_LIST" (click)="selectedQueue($event,item)">
+                      {{item}}
+                    </mat-list-option>
+                </mat-selection-list>                            
+            </div>
+            <div *ngIf="SET_QUEUE_SELECTED.length > 0">
+                <p *ngFor="let item of SET_QUEUE_SELECTED">{{item}}<span (click)="removeQueue(item)" class="remove_queue_list">
+                    X
+                    </span>
+                </p>
+            </div>
+           
+           
         </div>
         <div class="col">
             <label>Start rating</label>
