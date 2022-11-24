@@ -12,6 +12,7 @@ import { GenesisQueuesComponent } from './genesis-queues/genesis-queues.componen
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatListModule} from '@angular/material/list';
     MatCheckboxModule,
     MatSelectModule,
     FormsModule,
-    MatListModule,    
+    MatListModule,
+    MatIconModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]

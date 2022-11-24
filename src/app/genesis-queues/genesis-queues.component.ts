@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-genesis-queues',
@@ -50,6 +51,23 @@ export class GenesisQueuesComponent {
   levelSelect:boolean = false;
   queueSelectList: boolean = false;
 
+  //-------------observable-----------//
+  private SELECTED_OBJECTS: any[] = [];
+  private selectedObjects$: Subject<any[]> = new Subject<any[]>
+
+  addItem(item: any){
+    this.SELECTED_OBJECTS.push(item);
+    this.selectedObjects$.next(this.SELECTED_OBJECTS);
+  }
+
+  getItems$(): Observable<any[]>{
+    return this.selectedObjects$.asObservable();    
+  }
+
+   //-------------end observable-----------//
+
+
+
   selectLevel(event: any){
     if(event == "Agent"){
       this.NAME = this.AGENT;
@@ -68,14 +86,15 @@ export class GenesisQueuesComponent {
     }
 
     this.levelSelect = true;
+
+    this.addItem(this.NAME)
   }
 
   selectQueue(event: any){    
     this.queueSelectList = true;
   }
 
-  nameItemSelected(event: any){
-    console.log(event)
+  nameItemSelected(event: any){  
 
     if (this.SET_NAME_SELECTED.indexOf(event.target.value) === -1) {
       this.SET_NAME_SELECTED.push(event.target.value);
@@ -106,8 +125,6 @@ export class GenesisQueuesComponent {
     else {
       this.SET_QUEUE_SELECTED.splice(this.SET_QUEUE_SELECTED.indexOf(item), 1);
     }
-    
-    console.log(this.SET_QUEUE_SELECTED)
 
   }  
 

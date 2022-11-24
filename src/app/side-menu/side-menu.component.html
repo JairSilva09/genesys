@@ -1,1 +1,36 @@
-<div class="cont-side-bar">side-menu works!</div>
+<div class="cont-side-bar">
+    <!-- <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+            data-mdb-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+    </nav>
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-light shadow-3 p-4">
+          <button class="btn btn-link btn-block border-bottom m-0">Link 1</button>
+          <button class="btn btn-link btn-block border-bottom m-0">Link 2</button>
+          <button class="btn btn-link btn-block m-0">Link 3</button>
+        </div>
+    </div> -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler collapsed" type="button" (click)="collapseMenu()" data-bs-toggle="collapse" data-bs-target="#sideMenuGenesys" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon top-bar"></span>
+              <span class="navbar-toggler-icon middle-bar"></span>             
+              <span class="navbar-toggler-icon bottom-bar"></span>
+       
+            </button>
+          </div>
+    </nav>
+    <div class="collapse" id="sideMenuGenesys" style="margin-top: 75px">
+        <div class="p-2">           
+            <mat-icon>home</mat-icon>
+        </div>
+        <div class="p-2">          
+            <mat-icon>settings</mat-icon>
+        </div>
+    </div>
+</div>
