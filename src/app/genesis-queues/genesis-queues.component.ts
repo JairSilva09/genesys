@@ -1,16 +1,53 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { GenesysService } from '../genesys.service';
+import { SetItems } from '../genesys.service';  
+
 
 @Component({
   selector: 'app-genesis-queues',
   templateUrl: './genesis-queues.component.html',
   styleUrls: ['./genesis-queues.component.scss']
 })
-export class GenesisQueuesComponent {
+export class GenesisQueuesComponent implements OnInit{
 
   @ViewChild('queues') queues!: MatListModule;
   @ViewChild('checkboxName') checkboxName!: MatListModule;
+
+  constructor(private genesisService: GenesysService) { }
+
+  setItems: any;
+
+  ngOnInit(): void {
+    
+    this.genesisService.getItems$().subscribe(setSelectedItems => {
+      //this.setItems = setSelectedItems;
+      let text = "";
+
+
+        
+        for (const key in setSelectedItems) {
+          if (Object.prototype.hasOwnProperty.call(setSelectedItems, key)) {
+            text += setSelectedItems[key]+" ";
+          }
+        }
+
+        text += "\n"
+
+    
+
+      this.setItems = text; 
+      console.log(this.setItems)
+    })
+    
+  }
+
+  SELECTED_OBJECTS: SetItems = {
+    level: "",
+    name :  [],
+    nameQueue: "",
+    queue : []
+  }
 
   LEVEL: any[] =[
     "Agent","Manager","Department","Predefined Groups"
@@ -51,23 +88,6 @@ export class GenesisQueuesComponent {
   levelSelect:boolean = false;
   queueSelectList: boolean = false;
 
-  //-------------observable-----------//
-  private SELECTED_OBJECTS: any[] = [];
-  private selectedObjects$: Subject<any[]> = new Subject<any[]>
-
-  addItem(item: any){
-    this.SELECTED_OBJECTS.push(item);
-    this.selectedObjects$.next(this.SELECTED_OBJECTS);
-  }
-
-  getItems$(): Observable<any[]>{
-    return this.selectedObjects$.asObservable();    
-  }
-
-   //-------------end observable-----------//
-
-
-
   selectLevel(event: any){
     if(event == "Agent"){
       this.NAME = this.AGENT;
@@ -86,27 +106,34 @@ export class GenesisQueuesComponent {
     }
 
     this.levelSelect = true;
-
-    this.addItem(this.NAME)
+    this.SELECTED_OBJECTS.level = event
+    this.genesisService.addItem(this.SELECTED_OBJECTS)    
   }
 
   selectQueue(event: any){    
     this.queueSelectList = true;
+    this.SELECTED_OBJECTS.nameQueue = event;
+    this.genesisService.addItem(this.SELECTED_OBJECTS)
   }
 
   nameItemSelected(event: any){  
 
     if (this.SET_NAME_SELECTED.indexOf(event.target.value) === -1) {
       this.SET_NAME_SELECTED.push(event.target.value);
+      this.SELECTED_OBJECTS.name.push(event.target.value);
     }
     else {
       this.SET_NAME_SELECTED.splice(this.SET_NAME_SELECTED.indexOf(event.target.value), 1);
-    } 
- 
+      this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(event.target.value), 1);
+    }
+  
+    this.genesisService.addItem(this.SELECTED_OBJECTS)
   }
 
   remove_name_selected(item: any){
     this.SET_NAME_SELECTED.splice(this.SET_NAME_SELECTED.indexOf(item), 1);
+    this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(item), 1);
+    this.genesisService.addItem(this.SELECTED_OBJECTS)
   }
 
   chequedBoxName(item: any){
@@ -121,15 +148,21 @@ export class GenesisQueuesComponent {
 
     if (this.SET_QUEUE_SELECTED.indexOf(item) === -1) {
       this.SET_QUEUE_SELECTED.push(item);
+      this.SELECTED_OBJECTS.queue.push(item);
     }
     else {
       this.SET_QUEUE_SELECTED.splice(this.SET_QUEUE_SELECTED.indexOf(item), 1);
-    }
+      this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
+    } 
+    
+    this.genesisService.addItem(this.SELECTED_OBJECTS)
 
   }  
 
   removeQueue(item: any){
     this.SET_QUEUE_SELECTED.splice(this.SET_QUEUE_SELECTED.indexOf(item), 1);
+    this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
+    this.genesisService.addItem(this.SELECTED_OBJECTS)
   }
 
   chequedBoxQueue(item: any){
