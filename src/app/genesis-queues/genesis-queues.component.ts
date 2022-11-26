@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
-import { GenesysService } from '../genesys.service';
-import { SetItems } from '../genesys.service';  
+import { GenesysService } from '../services/genesys.service';
+import { SetItems } from '../services/genesys.service';  
 
 
 @Component({
@@ -17,14 +17,13 @@ export class GenesisQueuesComponent implements OnInit{
   constructor(private genesisService: GenesysService) { }
 
   setItems: any;
+  setSelectedItems: any;
 
   ngOnInit(): void {
     
     this.genesisService.getItems$().subscribe(setSelectedItems => {
-      //this.setItems = setSelectedItems;
+      this.setSelectedItems = setSelectedItems;
       let text = "";
-
-
         
         for (const key in setSelectedItems) {
           if (Object.prototype.hasOwnProperty.call(setSelectedItems, key)) {
@@ -34,10 +33,8 @@ export class GenesisQueuesComponent implements OnInit{
 
         text += "\n"
 
-    
-
       this.setItems = text; 
-      console.log(this.setItems)
+      console.log(this.setSelectedItems)
     })
     
   }
@@ -81,9 +78,6 @@ export class GenesisQueuesComponent implements OnInit{
   chosenLevel: string = "select menu";
   chosenQueue: string = "select menu";  
 
-  SET_NAME_SELECTED: any[] = [];
-  SET_QUEUE_SELECTED: any[] = [];
-
   nameItem: any;
   levelSelect:boolean = false;
   queueSelectList: boolean = false;
@@ -118,12 +112,10 @@ export class GenesisQueuesComponent implements OnInit{
 
   nameItemSelected(event: any){  
 
-    if (this.SET_NAME_SELECTED.indexOf(event.target.value) === -1) {
-      this.SET_NAME_SELECTED.push(event.target.value);
+    if (this.SELECTED_OBJECTS.name.indexOf(event.target.value) === -1) {
       this.SELECTED_OBJECTS.name.push(event.target.value);
     }
     else {
-      this.SET_NAME_SELECTED.splice(this.SET_NAME_SELECTED.indexOf(event.target.value), 1);
       this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(event.target.value), 1);
     }
   
@@ -131,13 +123,12 @@ export class GenesisQueuesComponent implements OnInit{
   }
 
   remove_name_selected(item: any){
-    this.SET_NAME_SELECTED.splice(this.SET_NAME_SELECTED.indexOf(item), 1);
     this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(item), 1);
     this.genesisService.addItem(this.SELECTED_OBJECTS)
   }
 
   chequedBoxName(item: any){
-    if(this.SET_NAME_SELECTED.indexOf(item) === -1){
+    if(this.SELECTED_OBJECTS.name.indexOf(item) === -1){
       return false      
     }else{
       return true
@@ -146,12 +137,10 @@ export class GenesisQueuesComponent implements OnInit{
 
   selectedQueue(event: any,item: any){    
 
-    if (this.SET_QUEUE_SELECTED.indexOf(item) === -1) {
-      this.SET_QUEUE_SELECTED.push(item);
+    if (this.SELECTED_OBJECTS.queue.indexOf(item) === -1) {
       this.SELECTED_OBJECTS.queue.push(item);
     }
     else {
-      this.SET_QUEUE_SELECTED.splice(this.SET_QUEUE_SELECTED.indexOf(item), 1);
       this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
     } 
     
@@ -160,13 +149,12 @@ export class GenesisQueuesComponent implements OnInit{
   }  
 
   removeQueue(item: any){
-    this.SET_QUEUE_SELECTED.splice(this.SET_QUEUE_SELECTED.indexOf(item), 1);
     this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
     this.genesisService.addItem(this.SELECTED_OBJECTS)
   }
 
   chequedBoxQueue(item: any){
-    if(this.SET_QUEUE_SELECTED.indexOf(item) === -1){
+    if(this.SELECTED_OBJECTS.queue.indexOf(item) === -1){
       return false      
     }else{
       return true

@@ -27,14 +27,9 @@ export class GenesysService {
    private selectedObjects$: Subject<SetItems> = new Subject()
  
    addItem(item: SetItems){
-     
-
     
       this.SELECTED_OBJECTS = item
-    
-
-    
-     this.selectedObjects$.next(this.SELECTED_OBJECTS);
+      this.selectedObjects$.next(this.SELECTED_OBJECTS);
    }
  
    getItems$(): Observable<any>{

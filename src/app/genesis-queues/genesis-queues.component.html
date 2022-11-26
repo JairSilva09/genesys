@@ -36,9 +36,9 @@
                     </li>
                 </ul>
             </div>
-            <div *ngIf="this.SET_NAME_SELECTED.length > 0" style="margin-top: 35px" >
+            <div *ngIf="this.SELECTED_OBJECTS.name.length > 0" style="margin-top: 35px" >
                 <ul class="list-group">
-                    <li *ngFor="let item of SET_NAME_SELECTED" class="list-group-item d-flex justify-content-between" >{{item}}<span (click)="remove_name_selected(item)" style="cursor: pointer">X</span></li>
+                    <li *ngFor="let item of setSelectedItems.name" class="list-group-item d-flex justify-content-between" >{{item}}<span (click)="remove_name_selected(item)" style="cursor: pointer">X</span></li>
                     
                 </ul>
             </div>
@@ -63,9 +63,9 @@
                     </mat-list-option>
                 </mat-selection-list>   -->
             </div>
-            <div *ngIf="SET_QUEUE_SELECTED.length > 0" style="margin-top: 35px" >               
+            <div *ngIf="this.SELECTED_OBJECTS.queue.length > 0" style="margin-top: 35px" >               
                 <ul class="list-group">
-                    <li *ngFor="let item of SET_QUEUE_SELECTED" class="list-group-item d-flex justify-content-between" >{{item}}<span (click)="removeQueue(item)" style="cursor: pointer">X</span></li>
+                    <li *ngFor="let item of setSelectedItems.queue" class="list-group-item d-flex justify-content-between" >{{item}}<span (click)="removeQueue(item)" style="cursor: pointer">X</span></li>
                 </ul>
             </div>
            
