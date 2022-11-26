@@ -30,6 +30,7 @@ export class GenesysService {
     
       this.SELECTED_OBJECTS = item
       this.selectedObjects$.next(this.SELECTED_OBJECTS);
+      //this.selectedObjects$.
    }
  
    getItems$(): Observable<any>{

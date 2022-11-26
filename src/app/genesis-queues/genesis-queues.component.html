@@ -36,10 +36,9 @@
                     </li>
                 </ul>
             </div>
-            <div *ngIf="this.SELECTED_OBJECTS.name.length > 0" style="margin-top: 35px" >
+            <div *ngIf="SELECTED_OBJECTS.name.length > 0" style="margin-top: 35px" >
                 <ul class="list-group">
-                    <li *ngFor="let item of setSelectedItems.name" class="list-group-item d-flex justify-content-between" >{{item}}<span (click)="remove_name_selected(item)" style="cursor: pointer">X</span></li>
-                    
+                    <li *ngFor="let item of SELECTED_OBJECTS.name" class="list-group-item d-flex justify-content-between" >{{item}}<span (click)="remove_name_selected(item)" style="cursor: pointer">X</span></li>
                 </ul>
             </div>
         </div>
@@ -63,9 +62,9 @@
                     </mat-list-option>
                 </mat-selection-list>   -->
             </div>
-            <div *ngIf="this.SELECTED_OBJECTS.queue.length > 0" style="margin-top: 35px" >               
+            <div *ngIf="SELECTED_OBJECTS.queue.length > 0" style="margin-top: 35px" >               
                 <ul class="list-group">
-                    <li *ngFor="let item of setSelectedItems.queue" class="list-group-item d-flex justify-content-between" >{{item}}<span (click)="removeQueue(item)" style="cursor: pointer">X</span></li>
+                    <li *ngFor="let item of SELECTED_OBJECTS.queue" class="list-group-item d-flex justify-content-between" >{{item}}<span (click)="removeQueue(item)" style="cursor: pointer">X</span></li>
                 </ul>
             </div>
            
@@ -84,10 +83,8 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Items</h5>
-                  <p>
-                    {{setItems}}
-                  </p>
+                  <h5 class="card-title">Setting</h5>                  
+                    {{settingItems}}                  
                 </div>
             </div>
         </div>

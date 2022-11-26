@@ -16,28 +16,38 @@ export class GenesisQueuesComponent implements OnInit{
 
   constructor(private genesisService: GenesysService) { }
 
-  setItems: any;
-  setSelectedItems: any;
-
   ngOnInit(): void {
-    
-    this.genesisService.getItems$().subscribe(setSelectedItems => {
-      this.setSelectedItems = setSelectedItems;
-      let text = "";
-        
-        for (const key in setSelectedItems) {
-          if (Object.prototype.hasOwnProperty.call(setSelectedItems, key)) {
-            text += setSelectedItems[key]+" ";
-          }
-        }
 
-        text += "\n"
+    this.setSelectedItems = localStorage.getItem('queueData')
 
-      this.setItems = text; 
-      console.log(this.setSelectedItems)
+    if(this.setSelectedItems != null){
+      this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
+      if(this.SELECTED_OBJECTS.level != ""){
+        this.chosenLevel = this.SELECTED_OBJECTS.level;
+        this.setNameLevel(this.SELECTED_OBJECTS.level)
+        this.levelSelect = true;
+      }
+
+      if(this.SELECTED_OBJECTS.nameQueue != ""){
+        this.chosenQueue = this.SELECTED_OBJECTS.nameQueue;
+      }
+      
+      this.getTextSetting(this.SELECTED_OBJECTS);
+
+    }  
+   
+    this.genesisService.getItems$().subscribe(setSelectedItems => {    
+      localStorage.setItem('queueData',JSON.stringify(setSelectedItems))
+      this.setSelectedItems = localStorage.getItem('queueData')
+      this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
+      this.getTextSetting(this.SELECTED_OBJECTS);
+      
     })
-    
+   
   }
+
+  settingItems: any;
+  setSelectedItems: any;
 
   SELECTED_OBJECTS: SetItems = {
     level: "",
@@ -82,26 +92,42 @@ export class GenesisQueuesComponent implements OnInit{
   levelSelect:boolean = false;
   queueSelectList: boolean = false;
 
-  selectLevel(event: any){
-    if(event == "Agent"){
+  getTextSetting(obj: any){
+    let text = "";
+      for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            text += obj[key]+" ";
+        }
+      }
+      text += "\n"
+      this.settingItems = text;
+  }
+
+  setNameLevel(level: string): void{
+    if(level == "Agent"){
       this.NAME = this.AGENT;
     }
 
-    if(event == "Manager"){
+    if(level == "Manager"){
       this.NAME = this.MANAGER;
     }
 
-    if(event == "Predefined Groups"){      
+    if(level == "Predefined Groups"){      
       this.NAME = this.PREDEFINEDGROUP;
     }
 
-    if(event == "Department"){      
+    if(level == "Department"){      
       this.NAME = this.DEPARTMENT;
     }
+  }
+
+  selectLevel(event: string){
+
+    this.setNameLevel(event)
 
     this.levelSelect = true;
     this.SELECTED_OBJECTS.level = event
-    this.genesisService.addItem(this.SELECTED_OBJECTS)    
+    this.genesisService.addItem(this.SELECTED_OBJECTS); 
   }
 
   selectQueue(event: any){    
