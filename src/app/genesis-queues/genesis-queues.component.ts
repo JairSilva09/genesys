@@ -17,44 +17,45 @@ export class GenesisQueuesComponent implements OnInit{
   constructor(private genesisService: GenesysService) { }
 
   ngOnInit(): void {
+    this.getDirectory();    
 
-    this.setSelectedItems = localStorage.getItem('queueData')
+    //this.setSelectedItems = localStorage.getItem('queueData')
 
-    if(this.setSelectedItems != null){
-      this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
-      if(this.SELECTED_OBJECTS.level != ""){
-        this.chosenLevel = this.SELECTED_OBJECTS.level;
-        this.setNameLevel(this.SELECTED_OBJECTS.level)
-        this.levelSelect = true;
-      }
+    // if(this.setSelectedItems != null){
+    //   this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
+    //   if(this.SELECTED_OBJECTS.level != ""){
+    //     this.chosenLevel = this.SELECTED_OBJECTS.level;
+    //     this.setNameLevel(this.SELECTED_OBJECTS.level)
+    //     this.levelSelect = true;
+    //   }
 
-      if(this.SELECTED_OBJECTS.nameQueue != ""){
-        this.chosenQueue = this.SELECTED_OBJECTS.nameQueue;
-      }
+    //   if(this.SELECTED_OBJECTS.nameQueue != ""){
+    //     this.chosenQueue = this.SELECTED_OBJECTS.nameQueue;
+    //   }
       
-      this.getTextSetting(this.SELECTED_OBJECTS);
+    //   this.getTextSetting(this.SELECTED_OBJECTS);
 
-    }  
+    // }  
    
-    this.genesisService.getItems$().subscribe(setSelectedItems => {    
-      localStorage.setItem('queueData',JSON.stringify(setSelectedItems))
-      this.setSelectedItems = localStorage.getItem('queueData')
-      this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
-      this.getTextSetting(this.SELECTED_OBJECTS);
+    // this.genesisService.getItems$().subscribe(setSelectedItems => {    
+    //   localStorage.setItem('queueData',JSON.stringify(setSelectedItems))
+    //   this.setSelectedItems = localStorage.getItem('queueData')
+    //   this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
+    //   this.getTextSetting(this.SELECTED_OBJECTS);
       
-    })
+    // })
    
   }
 
   settingItems: any;
   setSelectedItems: any;
 
-  SELECTED_OBJECTS: SetItems = {
-    level: "",
-    name :  [],
-    nameQueue: "",
-    queue : []
-  }
+  // SELECTED_OBJECTS: SetItems = {
+  //   level: "",
+  //   name :  [],
+  //   nameQueue: "",
+  //   queue : []
+  // }
 
   LEVEL: any[] =[
     "Agent","Manager","Department","Predefined Groups"
@@ -92,6 +93,19 @@ export class GenesisQueuesComponent implements OnInit{
   levelSelect:boolean = false;
   queueSelectList: boolean = false;
 
+  data: any= [];
+  dataSource: any[] = [];
+  observableSubs: any;
+
+  getDirectory(): void{
+    this.observableSubs = this.genesisService.getDirectory().subscribe(    
+      data => this.data = data,
+      error => console.log(error),
+    )  
+    this.dataSource = this.data
+    console.log(this.dataSource)
+  }
+
   getTextSetting(obj: any){
     let text = "";
       for (const key in obj) {
@@ -121,71 +135,71 @@ export class GenesisQueuesComponent implements OnInit{
     }
   }
 
-  selectLevel(event: string){
+  // selectLevel(event: string){
 
-    this.setNameLevel(event)
-    this.levelSelect = true;
-    this.SELECTED_OBJECTS.level = event
-    this.genesisService.addItem(this.SELECTED_OBJECTS); 
+  //   this.setNameLevel(event)
+  //   this.levelSelect = true;
+  //   this.SELECTED_OBJECTS.level = event
+  //   this.genesisService.addItem(this.SELECTED_OBJECTS); 
     
-  }
+  // }
 
-  selectQueue(event: any){    
-    this.queueSelectList = true;
-    this.SELECTED_OBJECTS.nameQueue = event;
-    this.genesisService.addItem(this.SELECTED_OBJECTS)
-  }
+  // selectQueue(event: any){    
+  //   this.queueSelectList = true;
+  //   this.SELECTED_OBJECTS.nameQueue = event;
+  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
+  // }
 
-  nameItemSelected(event: any){  
+  // nameItemSelected(event: any){  
 
-    if (this.SELECTED_OBJECTS.name.indexOf(event.target.value) === -1) {
-      this.SELECTED_OBJECTS.name.push(event.target.value);
-    }
-    else {
-      this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(event.target.value), 1);
-    }
+  //   if (this.SELECTED_OBJECTS.name.indexOf(event.target.value) === -1) {
+  //     this.SELECTED_OBJECTS.name.push(event.target.value);
+  //   }
+  //   else {
+  //     this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(event.target.value), 1);
+  //   }
   
-    this.genesisService.addItem(this.SELECTED_OBJECTS)
-  }
+  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
+  // }
 
-  remove_name_selected(item: any){
-    this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(item), 1);
-    this.genesisService.addItem(this.SELECTED_OBJECTS)
-  }
+  // remove_name_selected(item: any){
+  //   this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(item), 1);
+  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
+  // }
 
-  chequedBoxName(item: any){
-    if(this.SELECTED_OBJECTS.name.indexOf(item) === -1){
-      return false      
-    }else{
-      return true
-    }   
-  }
+  // chequedBoxName(item: any){
+  //   if(this.SELECTED_OBJECTS.name.indexOf(item) === -1){
+  //     return false      
+  //   }else{
+  //     return true
+  //   }   
+  // }
 
-  selectedQueue(event: any,item: any){    
+  // selectedQueue(event: any,item: any){    
 
-    if (this.SELECTED_OBJECTS.queue.indexOf(item) === -1) {
-      this.SELECTED_OBJECTS.queue.push(item);
-    }
-    else {
-      this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
-    } 
+  //   if (this.SELECTED_OBJECTS.queue.indexOf(item) === -1) {
+  //     this.SELECTED_OBJECTS.queue.push(item);
+  //   }
+  //   else {
+  //     this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
+  //   } 
     
-    this.genesisService.addItem(this.SELECTED_OBJECTS)
+  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
 
-  }  
+  // }  
 
-  removeQueue(item: any){
-    this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
-    this.genesisService.addItem(this.SELECTED_OBJECTS)
-  }
+  // removeQueue(item: any){
+  //   this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
+  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
+  // }
 
-  chequedBoxQueue(item: any){
-    if(this.SELECTED_OBJECTS.queue.indexOf(item) === -1){
-      return false      
-    }else{
-      return true
-    }
-  }
+  // chequedBoxQueue(item: any){
+  //   if(this.SELECTED_OBJECTS.queue.indexOf(item) === -1){
+  //     return false      
+  //   }else{
+  //     return true
+  //   }
+  // }
 
   close_queue_list(){
     this.queueSelectList = false;

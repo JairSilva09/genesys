@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject, of } from 'rxjs';
+import { DATA } from './mock-data';
 
-export interface SetItems {
-  level: string;
-  name: string[];
-  nameQueue: string;
-  queue: string[];
+export interface SetItems { 
+  name: string,
+  active: boolean,
+  email: string,
+  queues: string,
+  skill:  string,
+  license: string
 }
+
+// export interface SetItems {
+//   level: string;
+//   name: string[];
+//   nameQueue: string;
+//   queue: string[];
+// }
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +25,12 @@ export class GenesysService {
 
   constructor() {
     this.SELECTED_OBJECTS = {
-      level: "",
-      name: [],
-      nameQueue: "",
-      queue: []
+      name: "",
+      active: true,
+      email: "",
+      queues: "",
+      skill:  "",
+      license: ""
     }
   }
 
@@ -32,10 +44,15 @@ export class GenesysService {
       this.selectedObjects$.next(this.SELECTED_OBJECTS);
       //this.selectedObjects$.
    }
+
+  getDirectory(): Observable<any[]>{
+    const directory =  of(DATA)
+    return directory;
+  }
  
-   getItems$(): Observable<any>{
+  getItems$(): Observable<any>{
      return this.selectedObjects$.asObservable();    
-   }
+  }
  
     //-------------end observable-----------//
 }

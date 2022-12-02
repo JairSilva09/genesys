@@ -1,229 +1,365 @@
-export const DATA: any[] = [
-    {
-		"client" : "3M PHARMACEUTICALS",
-		"name": "ALDARA",
-		"category": "Dermatology"
-	},
-	{
-		"client" : "3M PHARMACEUTICALS",
-		"name": "PROVENTIL HFA",
-		"category": "Medical Device"
-	},
-	{
-		"client" : "4SC",
-		"name": "resminostat",
-		"category": "Oncology"
-	},
-	{
-		"client" : "4SC",
-		"name": "vidofludimus",
-		"category": "Immunology"
-	},
-	{
-		"client" : "AADI BIOSCIENCE",
-		"name": "AADI BIOSCIENCE",
-		"category": "Corporate Identity"
-	},
-	{
-		"client" : "AADI BIOSCIENCE",
-		"name": "FYARRO",
-		"category": "Oncology"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "BIODIVYSIO OC OTW",
-		"category": "Medical Device"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "CHOLIB",
-		"category": "Cardiovascular"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "DUO-CARB ADVANTAGE",
-		"category": "Nutritional Agent"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "enavatuzumab",
-		"category": "Oncology"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "ENSURE ENLIVE",
-		"category": "Nutritional Agent"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "ESTRATEST",
-		"category": "Women's Health"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "GRALISE",
-		"category": "Pain & Inflammation"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "ID NOW COVID-19",
-		"category": "Medical Device"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "NUTRIPALS",
-		"category": "Nutritional Agent"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "PEDIASURE SIDEKICKS",
-		"category": "Nutritional Agent"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "PEDIASURE SIDEKICKS",
-		"category": "Nutritional Agent"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "SIMBADOL",
-		"category": "Animal Health"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "SIMILAC EXPERT CARE",
-		"category": "Nutritional Agent"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "SIMILAC SENSITIVE FOR SPIT-UP",
-		"category": "Nutritional Agent"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "SIMILAC SIMPLYSMART",
-		"category": "Nutritional Agent"
-	},
-	{
-		"client" : "ABBOTT LABORATORIES",
-		"name": "SIMILAC TOTAL COMFORT",
-		"category": "Nutritional Agent"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "abicipar pegol",
-		"category": "Ophthalmology"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "acorafloxacin",
-		"category": "Antibiotic"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "ACUVAIL *",
-		"category": "Ophthalmology"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "ADVICOR *",
-		"category": "Cardiovascular"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "aganepag",
-		"category": "Ophthalmology"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "alicapistat",
-		"category": "Neurology"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "ALOCRIL",
-		"category": "Ophthalmology"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "ALPHAGAN",
-		"category": "Ophthalmology"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "ALTOCOR",
-		"category": "Cardiovascular"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "AMADEUS",
-		"category": "Medical Device"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "ANDRODERM",
-		"category": "Men's Health"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "ANDROGEL",
-		"category": "Men's Health"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "ANDROGEL 1.62",
-		"category": "Men's Health"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "apimostinel",
-		"category": "Neurology"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "ASACOL HD *",
-		"category": "Gastrointestinal"
-	}
-	,
-	{
-		"client" : "ABBVIE",
-		"name": "ATELVIA",
-		"category": "Women's Health"
-	}
-	,
-	{
-		"client" : "ABBVIE",
-		"name": "atogepant",
-		"category": "Pain & Inflammation"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "AVYCAZ",
-		"category": "Antibiotic"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "azintuxizumab",
-		"category": "Oncology"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "azintuxizumab vedotin",
-		"category": "Oncology"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "BELKYRA *",
-		"category": "Dermatology"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "benzodrocortisone",
-		"category": "Ophthalmology"
-	},
-	{
-		"client" : "ABBVIE",
-		"name": "BIAXIN XL",
-		"category": "Antibiotic"
-	}	
-] 
+export const DATA: any[] = [{
+    "name": "Kylie Chamberlen",
+    "active": true,
+    "email": "kchamberlen0@ca.gov",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Collaborate"
+  }, {
+    "name": "Gray Tomaszczyk",
+    "active": false,
+    "email": "gtomaszczyk1@delicious.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Collaborate"
+  }, {
+    "name": "Brandais Daveren",
+    "active": false,
+    "email": "bdaveren2@geocities.com",
+    "queues":  "Queue 2",
+    "skill": "",
+    "license": "Collaborate"
+  }, {
+    "name": "Maure Crispin",
+    "active": false,
+    "email": "mcrispin3@patch.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Collaborate"
+  }, {
+    "name": "Marve Mingardo",
+    "active": false,
+    "email": "mmingardo4@issuu.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Lillis Bursnell",
+    "active": false,
+    "email": "lbursnell5@woothemes.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Loutitia Fritche",
+    "active": false,
+    "email": "lfritche6@ehow.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Collaborate"
+  }, {
+    "name": "Reena Nettleship",
+    "active": false,
+    "email": "rnettleship7@shop-pro.jp",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Rance Exley",
+    "active": true,
+    "email": "rexley8@vk.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Rachel Guilloux",
+    "active": true,
+    "email": "rguilloux9@who.int",
+    "queues":  "Queue 1",
+    "skill": "Genderqueer",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Quinn Sowter",
+    "active": false,
+    "email": "qsowtera@mediafire.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Collaborate"
+  }, {
+    "name": "Lani Abthorpe",
+    "active": false,
+    "email": "labthorpeb@g.co",
+    "queues":  "Queue 1",
+    "skill": "Non-binary",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Barbara Doggett",
+    "active": true,
+    "email": "bdoggettc@is.gd",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Mordecai Bradder",
+    "active": true,
+    "email": "mbradderd@spotify.com",
+    "queues":  "Queue 2",
+    "skill": "Polygender",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Clovis McGurgan",
+    "active": false,
+    "email": "cmcgurgane@cocolog-nifty.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Kati Demoge",
+    "active": false,
+    "email": "kdemogef@comsenz.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Kimmi Spadeck",
+    "active": true,
+    "email": "kspadeckg@ovh.net",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Cristobal Trenbey",
+    "active": true,
+    "email": "ctrenbeyh@cocolog-nifty.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Morissa Agass",
+    "active": false,
+    "email": "magassi@ftc.gov",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Hiram Grindell",
+    "active": false,
+    "email": "hgrindellj@drupal.org",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  },
+  {
+    "name": "Nicolas-Dickinson",
+    "active": false,
+    "email": "eroddan0@stanford.edu",
+    "queues":  "Queue 2",
+    "skill": "",
+    "license": "Cloud CX 3"
+  }, {
+    "name": "Emard Inc",
+    "active": true,
+    "email": "tghest1@fastcompany.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Collaborate"
+  }, {
+    "name": "Hilpert, Fahey and Toy",
+    "active": true,
+    "email": "cmolloy2@rakuten.co.jp",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3"
+  }, {
+    "name": "Lueilwitz-Bosco",
+    "active": true,
+    "email": "hradbond3@google.co.uk",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3"
+  }, {
+    "name": "Kuhn-Dickens",
+    "active": false,
+    "email": "mbarratt4@rediff.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3"
+  }, {
+    "name": "Zulauf, O'Hara and McCullough",
+    "active": false,
+    "email": "bdeluna5@exblog.jp",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "O'Hara-Romaguera",
+    "active": false,
+    "email": "jshambrook6@youtube.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Haley Inc",
+    "active": false,
+    "email": "cbarcke7@buzzfeed.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "O'Conner Inc",
+    "active": true,
+    "email": "fbullan8@theguardian.com",
+    "queues":  "Queue 3",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Mills, Gusikowski and Rau",
+    "active": true,
+    "email": "cengall9@europa.eu",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Padberg LLC",
+    "active": false,
+    "email": "vmckiernana@homestead.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Haley LLC",
+    "active": false,
+    "email": "lfrohockb@live.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Kirlin-Jones",
+    "active": false,
+    "email": "wklaaassenc@irs.gov",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Durgan Group",
+    "active": true,
+    "email": "graesided@msu.edu",
+    "queues":  "Queue 1",
+    "skill": "Non-binary",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Schumm-Bernhard",
+    "active": true,
+    "email": "jdahlborge@paginegialle.it",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Ferry-Walker",
+    "active": false,
+    "email": "rharmsonf@ihg.com",
+    "queues":  "Queue 3",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Mohr-Harvey",
+    "active": false,
+    "email": "ctagueg@infoseek.co.jp",
+    "queues":  "Queue 4",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Gutkowski-Paucek",
+    "active": true,
+    "email": "ctookillh@state.gov",
+    "queues":  "Queue 4",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  }, {
+    "name": "Hills-Sauer",
+    "active": true,
+    "email": "crowlesi@bloomberg.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3"
+  }, {
+    "name": "Wolff and Sons",
+    "active": false,
+    "email": "fbolsoverj@hostgator.com",
+    "queues":  "Queue 4",
+    "skill": "",
+    "license": "Cloud CX 3"
+  },
+  {
+    "name": "AT&T",
+    "active": false,
+    "email": "attj@hostgator.com",
+    "queues":  "Queue 3",
+    "skill": "",
+    "license": "Cloud CX 3"
+  },
+  {
+    "name": "CenturyLink",
+    "active": false,
+    "email": "cl@hostgator.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3"
+  },
+  {
+    "name": "Cable",
+    "active": false,
+    "email": "cable@hostgator.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,SuccessKPI,*"
+  },
+  {
+    "name": "Dish",
+    "active": false,
+    "email": "dish@hostgator.com",
+    "queues":  "Queue 4",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  },
+  {
+    "name": "HughesNet",
+    "active": false,
+    "email": "hnet@hostgator.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  },
+  {
+    "name": "Frontier",
+    "active": false,
+    "email": "frontier@hostgator.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  },
+  {
+    "name": "ATT P1 Cooper Overflow",
+    "active": false,
+    "email": "frontier@hostgator.com",
+    "queues":  "Queue 3",
+    "skill": "",
+    "license": "Cloud CX 3,SuccessKPI,*"
+  },  
+  {
+    "name": "Hughes Backup",
+    "active": false,
+    "email": "frontier@hostgator.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  },
+  {
+    "name": "Example Y",
+    "active": false,
+    "email": "frontier@hostgator.com",
+    "queues":  "Queue 1",
+    "skill": "",
+    "license": "Cloud CX 3,*"
+  },
+  {
+    "name": "Example Z",
+    "active": false,
+    "email": "frontier@hostgator.com",
+    "queues":  "Queue 3",
+    "skill": "",
+    "license": "Cloud CX 3"
+  }
+
+]
+  

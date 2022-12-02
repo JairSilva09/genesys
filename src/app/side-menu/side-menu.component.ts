@@ -42,7 +42,7 @@ export class SideMenuComponent  {
     "Queue 1", "Queue 2", "Queue 3", "Queue 4","Queue 5","Queue 6"
   ]
 
-  SELECTED_OBJECTS: SetItems = {
+  SELECTED_OBJECTS = {
     level: "",
     name :  [],
     nameQueue: "",
@@ -85,58 +85,46 @@ export class SideMenuComponent  {
     this.setNameLevel(event)
     this.levelSelect = true;
     this.SELECTED_OBJECTS.level = event
-    this.genesisService.addItem(this.SELECTED_OBJECTS); 
+    //this.genesisService.addItem(this.SELECTED_OBJECTS); 
     
   }
 
-  chequedBoxName(item: any){
-    if(this.SELECTED_OBJECTS.name.indexOf(item) === -1){
-      return false      
-    }else{
-      return true
-    }   
-  }
+  // chequedBoxName(item: any){
+  //   if(this.SELECTED_OBJECTS.name.indexOf(item) === -1){
+  //     return false      
+  //   }else{
+  //     return true
+  //   }   
+  // }
 
-  nameItemSelected(event: any){  
+  // nameItemSelected(event: any){  
 
-    if (this.SELECTED_OBJECTS.name.indexOf(event.target.value) === -1) {
-      this.SELECTED_OBJECTS.name.push(event.target.value);
-    }
-    else {
-      this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(event.target.value), 1);
-    }
+  //   if (this.SELECTED_OBJECTS.name.indexOf(event.target.value) === -1) {
+  //     this.SELECTED_OBJECTS.name.push(event.target.value);
+  //   }
+  //   else {
+  //     this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(event.target.value), 1);
+  //   }
   
-    this.genesisService.addItem(this.SELECTED_OBJECTS)
-  }
+  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
+  // }
 
-  selectQueue(event: any){    
-    this.queueSelectList = true;
-    this.SELECTED_OBJECTS.nameQueue = event;
-    this.genesisService.addItem(this.SELECTED_OBJECTS)
-  }
+  // selectQueue(event: any){    
+  //   this.queueSelectList = true;
+  //   this.SELECTED_OBJECTS.nameQueue = event;
+  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
+  // }
 
   close_queue_list(){
     this.queueSelectList = false;
   }
 
-  chequedBoxQueue(item: any){
-    if(this.SELECTED_OBJECTS.queue.indexOf(item) === -1){
-      return false      
-    }else{
-      return true
-    }
-  }
+  // chequedBoxQueue(item: any){
+  //   if(this.SELECTED_OBJECTS.queue.indexOf(item) === -1){
+  //     return false      
+  //   }else{
+  //     return true
+  //   }
+  // }
 
-  selectedQueue(event: any,item: any){    
-
-    if (this.SELECTED_OBJECTS.queue.indexOf(item) === -1) {
-      this.SELECTED_OBJECTS.queue.push(item);
-    }
-    else {
-      this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
-    } 
-    
-    this.genesisService.addItem(this.SELECTED_OBJECTS)
-
-  }  
 }
