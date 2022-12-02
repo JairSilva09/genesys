@@ -124,10 +124,10 @@ export class GenesisQueuesComponent implements OnInit{
   selectLevel(event: string){
 
     this.setNameLevel(event)
-
     this.levelSelect = true;
     this.SELECTED_OBJECTS.level = event
     this.genesisService.addItem(this.SELECTED_OBJECTS); 
+    
   }
 
   selectQueue(event: any){    
