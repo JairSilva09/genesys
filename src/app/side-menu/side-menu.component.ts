@@ -12,7 +12,7 @@ export class SideMenuComponent  {
   constructor(private genesisService: GenesysService) { }
 
   collapse: boolean = false;
-  levelSelect:boolean = false;
+  //levelSelect:boolean = false;
   NAME: any[] =[];
 
   AGENT: any[] =[
@@ -83,7 +83,7 @@ export class SideMenuComponent  {
   selectLevel(event: string){
 
     this.setNameLevel(event)
-    this.levelSelect = true;
+    //this.levelSelect = true;
     this.SELECTED_OBJECTS.level = event
     //this.genesisService.addItem(this.SELECTED_OBJECTS); 
     
@@ -126,5 +126,10 @@ export class SideMenuComponent  {
   //     return true
   //   }
   // }
+
+  levelSelect(event: any){
+    console.log(event)
+
+  }
 
 }

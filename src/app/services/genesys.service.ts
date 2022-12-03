@@ -41,36 +41,52 @@ export class GenesysService {
    private shortlist$: Subject<any[]> = new Subject()
  
  
-   addItem(item: SetItems){
+  addItem(item: SetItems){
     
       this.SELECTED_OBJECTS = item
       this.selectedObjects$.next(this.SELECTED_OBJECTS);
 
-   }
+  }
 
-   search$(term: string){
-      let list:any[] = [];   
+  search$(term: string){
+    let list:any[] = [];   
       
+    DATA.forEach((item: any) => {
+
+      if(item.name.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.email.toLowerCase().indexOf(term.toLowerCase()) >= 0
+        || item.queues.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.license.toLowerCase().indexOf(term.toLowerCase()) >= 0
+        || item.skill.toLowerCase().indexOf(term.toLowerCase()) >= 0){
+          list.push(item)
+      }
+       
+    })
+
+    this.shortlist$.next(list)
+    
+  }
+
+  searchBySkill$(terms: string[]){
+    let list:any[] = [];
+    terms.forEach((a: any) => {
       DATA.forEach((item: any) => {
 
-        if(item.name.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.email.toLowerCase().indexOf(term.toLowerCase()) >= 0
-          || item.queues.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.license.toLowerCase().indexOf(term.toLowerCase()) >= 0
-          || item.skill.toLowerCase().indexOf(term.toLowerCase()) >= 0){
+        if(item.skill.toLowerCase().indexOf(a.toLowerCase()) >= 0){
           list.push(item)
         }
        
       })
-      this.shortlist$.next(list)
+    })
+
+    this.shortlist$.next(list)
     
-   }
+  }
 
   getAllDirectory$(): Observable<any[]>{
     const directory =  of(DATA)
     return directory;
   }
 
-  getDirectory$(): Observable<any[]>{ 
-   
+  getDirectory$(): Observable<any[]>{    
     return this.shortlist$.asObservable();  
   }
  

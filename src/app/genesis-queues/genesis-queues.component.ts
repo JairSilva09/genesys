@@ -21,9 +21,7 @@ export class GenesisQueuesComponent implements OnInit{
 
   constructor(private genesisService: GenesysService) { }
 
-  LEVEL: any[] =[
-    "Agent","Manager","Department","Predefined Groups"
-  ]
+  SKILL_SELECT: any[] =[]
 
   NAME: any[] =[];
   MANAGER: any[] =[
@@ -52,15 +50,9 @@ export class GenesisQueuesComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.genesisService.getAllDirectory$().subscribe(
-        (data: any)=>{
-          this.dataSource = data 
-      }    
-  
-    )
-    
+
+    this.getAll();
     this.getDirectory();
-      
 
     //this.setSelectedItems = localStorage.getItem('queueData')
 
@@ -100,7 +92,7 @@ export class GenesisQueuesComponent implements OnInit{
         tap((text: any) => {
           let term = this.searchBar.nativeElement.value;
           this.genesisService.search$(term)
-          this.getDirectory()
+          //this.getDirectory()
           
           // this.genesisService.search$(term).subscribe((data: any)=>{
           //   this.dataSource = data
@@ -144,7 +136,16 @@ export class GenesisQueuesComponent implements OnInit{
       }    
      
     )  
-    
+  }
+
+  getAll(): void{
+
+    this.genesisService.getAllDirectory$().subscribe(
+      (data: any)=>{
+        this.dataSource = data 
+      }    
+  
+    )
   }
 
   getTextSetting(obj: any){
@@ -244,5 +245,22 @@ export class GenesisQueuesComponent implements OnInit{
 
   close_queue_list(){
     this.queueSelectList = false;
+  }
+
+  skillSelect(event: any){
+
+    if (this.SKILL_SELECT.indexOf(event.target.value) === -1) {
+      this.SKILL_SELECT.push(event.target.value);
+    }
+    else {
+        this.SKILL_SELECT.splice(this.SKILL_SELECT.indexOf(event.target.value), 1);
+    } 
+    console.log(this.SKILL_SELECT)
+
+    if(this.SKILL_SELECT.length > 0){
+      this.genesisService.searchBySkill$(this.SKILL_SELECT)
+    }else{
+      this.getAll();      
+    }
   }
 }

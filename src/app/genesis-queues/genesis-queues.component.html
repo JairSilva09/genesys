@@ -18,6 +18,26 @@
                 <span class="input-group-text" id="basic-addon2">Search</span>
             </div> 
         </div>
+        <div class="col-md-3">
+            <div class="dropdown">
+                <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                  Actions
+                </button>
+                <form class="dropdown-menu p-4">
+                    <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3">Skills</label>
+                    <div class="form-check" *ngFor="let item of QUEUE">
+                        <input type="checkbox" class="form-check-input" [value]="item" (click)="skillSelect($event)">
+                        <label class="form-check-label">{{item}}</label>
+                    </div>
+                    <hr class="dropdown-divider"> 
+                    <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3">Start rating</label>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input">
+                        <label class="form-check-label">1</label>
+                    </div>                  
+                </form>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-12">

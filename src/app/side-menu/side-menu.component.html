@@ -9,13 +9,18 @@
     </div>
   </nav>
   <div class="collapse" id="sideMenuGenesys" style="margin-top: 75px">
-    <div class="p-2">         
+    <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Add to:</label>
+    <div class="p-2" style="background-color: white; border-style: solid;">
+      <div class="form-check" *ngFor="let item of LEVEL">
+        <input type="checkbox" class="form-check-input" (click)="levelSelect($event)" [value]="item">
+        <label class="form-check-label">{{item}}</label>
+      </div>         
           
-      <label>Add to</label>
+      <!-- <label>Add to</label>
       <select class="form-select" (ngModelChange)="selectLevel($event)" [(ngModel)]="chosenLevel" aria-label="Default select example">
         <option selected>select menu</option>             
         <option *ngFor="let item of LEVEL" value="{{item}}">{{item}}</option>          
-      </select>
+      </select> -->
     </div>
     <div class="p-2">          
       <label>Name</label>
@@ -35,29 +40,7 @@
           </li>
         </ul>
       </div>
-    </div>
-    <div class="p-2">
-      <label>Queue</label>
-      <!-- <select class="form-select" (ngModelChange)="selectQueue($event)" [(ngModel)]="chosenQueue" aria-label="Default select example">
-        <option selected>select menu</option>
-        <option *ngFor="let item of QUEUE" value="{{item}}">{{item}}</option>         
-      </select> -->
-      <select class="form-select" aria-label="Default select example">
-        <option selected>select menu</option>
-        <option *ngFor="let item of QUEUE" value="{{item}}">{{item}}</option>         
-      </select>
-      <div *ngIf="queueSelectList" class="cont-queue-list">
-        <span class="close_queue_list d-flex justify-content-end" (click)="close_queue_list()">Close</span>
-        <div class="list-group">
-          <label *ngFor="let item of QUEUES_LIST" class="list-group-item" style="border: none">
-            <!-- <input class="form-check-input me-1" value="{{item}}" [checked]="chequedBoxQueue(item)" (change)="selectedQueue($event,item)" type="checkbox" value=""> -->
-            <input class="form-check-input me-1" value="{{item}}" type="checkbox" value="">
-                    {{item}}
-          </label>
-        </div>
-              
-      </div>
-    </div>
+    </div>    
     <div class="p-2">
       <label>Start rating</label>
       <select class="form-select" aria-label="Default select example">
