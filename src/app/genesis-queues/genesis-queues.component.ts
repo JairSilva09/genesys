@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
+import { debounceTime, distinctUntilChanged, filter, fromEvent, tap } from 'rxjs';
 import { GenesysService } from '../services/genesys.service';
 import { SetItems } from '../services/genesys.service';  
 
@@ -13,49 +14,12 @@ export class GenesisQueuesComponent implements OnInit{
 
   @ViewChild('queues') queues!: MatListModule;
   @ViewChild('checkboxName') checkboxName!: MatListModule;
-
-  constructor(private genesisService: GenesysService) { }
-
-  ngOnInit(): void {
-    this.getDirectory();    
-
-    //this.setSelectedItems = localStorage.getItem('queueData')
-
-    // if(this.setSelectedItems != null){
-    //   this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
-    //   if(this.SELECTED_OBJECTS.level != ""){
-    //     this.chosenLevel = this.SELECTED_OBJECTS.level;
-    //     this.setNameLevel(this.SELECTED_OBJECTS.level)
-    //     this.levelSelect = true;
-    //   }
-
-    //   if(this.SELECTED_OBJECTS.nameQueue != ""){
-    //     this.chosenQueue = this.SELECTED_OBJECTS.nameQueue;
-    //   }
-      
-    //   this.getTextSetting(this.SELECTED_OBJECTS);
-
-    // }  
-   
-    // this.genesisService.getItems$().subscribe(setSelectedItems => {    
-    //   localStorage.setItem('queueData',JSON.stringify(setSelectedItems))
-    //   this.setSelectedItems = localStorage.getItem('queueData')
-    //   this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
-    //   this.getTextSetting(this.SELECTED_OBJECTS);
-      
-    // })
-   
-  }
+  @ViewChild('searchBar') searchBar!: ElementRef;
 
   settingItems: any;
   setSelectedItems: any;
 
-  // SELECTED_OBJECTS: SetItems = {
-  //   level: "",
-  //   name :  [],
-  //   nameQueue: "",
-  //   queue : []
-  // }
+  constructor(private genesisService: GenesysService) { }
 
   LEVEL: any[] =[
     "Agent","Manager","Department","Predefined Groups"
@@ -86,6 +50,82 @@ export class GenesisQueuesComponent implements OnInit{
     "Queue 1", "Queue 2", "Queue 3", "Queue 4","Queue 5","Queue 6"
   ]
 
+
+  ngOnInit(): void {
+    this.genesisService.getAllDirectory$().subscribe(
+        (data: any)=>{
+          this.dataSource = data 
+      }    
+  
+    )
+    
+    this.getDirectory();
+      
+
+    //this.setSelectedItems = localStorage.getItem('queueData')
+
+    // if(this.setSelectedItems != null){
+    //   this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
+    //   if(this.SELECTED_OBJECTS.level != ""){
+    //     this.chosenLevel = this.SELECTED_OBJECTS.level;
+    //     this.setNameLevel(this.SELECTED_OBJECTS.level)
+    //     this.levelSelect = true;
+    //   }
+
+    //   if(this.SELECTED_OBJECTS.nameQueue != ""){
+    //     this.chosenQueue = this.SELECTED_OBJECTS.nameQueue;
+    //   }
+      
+    //   this.getTextSetting(this.SELECTED_OBJECTS);
+
+    // }  
+   
+    // this.genesisService.getItems$().subscribe(setSelectedItems => {    
+    //   localStorage.setItem('queueData',JSON.stringify(setSelectedItems))
+    //   this.setSelectedItems = localStorage.getItem('queueData')
+    //   this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
+    //   this.getTextSetting(this.SELECTED_OBJECTS);
+      
+    // })
+   
+  }
+
+  ngAfterViewInit(){
+    
+    fromEvent(this.searchBar.nativeElement, 'keyup')
+      .pipe(
+        filter(Boolean),
+        debounceTime(800),
+        distinctUntilChanged(),
+        tap((text: any) => {
+          let term = this.searchBar.nativeElement.value;
+          this.genesisService.search$(term)
+          this.getDirectory()
+          
+          // this.genesisService.search$(term).subscribe((data: any)=>{
+          //   this.dataSource = data
+          //   console.log(this.dataSource)
+          // })
+          
+        })
+      )
+      .subscribe();
+  }
+  
+  // filterList(): void {
+  //   this.searchTerm$.subscribe(term => {
+  //     this.dataSource
+  //       .filter(item => item.toLowerCase().indexOf(term.toLowerCase()) >= 0);
+  //   });
+  // }
+
+  // SELECTED_OBJECTS: SetItems = {
+  //   level: "",
+  //   name :  [],
+  //   nameQueue: "",
+  //   queue : []
+  // 
+
   chosenLevel: string = "select menu";
   chosenQueue: string = "select menu";  
 
@@ -98,12 +138,13 @@ export class GenesisQueuesComponent implements OnInit{
   observableSubs: any;
 
   getDirectory(): void{
-    this.observableSubs = this.genesisService.getDirectory().subscribe(    
-      data => this.data = data,
-      error => console.log(error),
+    this.genesisService.getDirectory$().subscribe(
+      (data: any) => {
+        this.dataSource = data;        
+      }    
+     
     )  
-    this.dataSource = this.data
-    console.log(this.dataSource)
+    
   }
 
   getTextSetting(obj: any){
