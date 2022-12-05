@@ -81,9 +81,40 @@ export class GenesysService {
     
   }
 
+  searchByLevelName$(terms: string[],column: string){     
+    let list:any[] = [];
+
+    terms.forEach((a: any) => {
+      DATA.forEach((item: any) => {
+
+        if(item[column.toLowerCase()].toLowerCase().indexOf(a.toLowerCase()) >= 0){
+          list.push(item)
+        }
+       
+      })
+    })
+
+  
+    // DATA.forEach((item: any) => {
+
+    //   if(item.department.toLowerCase().indexOf(terms.toLowerCase()) >= 0){
+    //       list.push(item)
+    //   }
+       
+    // })
+    console.log(list)
+    this.shortlist$.next(list)    
+  }
+
+
   getAllDirectory$(): Observable<any[]>{
     const directory =  of(DATA)
     return directory;
+  }
+
+  getAllDirectory(): void{
+    //const directory =  of(DATA)
+    this.shortlist$.next(DATA) 
   }
 
   getDirectory$(): Observable<any[]>{    

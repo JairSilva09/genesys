@@ -6,14 +6,16 @@ import { GenesysService, SetItems } from '../services/genesys.service';
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.scss']
 })
-export class SideMenuComponent  {
 
+export class SideMenuComponent  {
 
   constructor(private genesisService: GenesysService) { }
 
   collapse: boolean = false;
   //levelSelect:boolean = false;
   NAME: any[] =[];
+
+  NAME_ITEM: any[] =[];
 
   AGENT: any[] =[
     "Agent 1","Agent 2","Agent 3","Agent 4","Agent 5","Agent 6"
@@ -31,8 +33,22 @@ export class SideMenuComponent  {
   ];
 
   LEVEL: any[] =[
-    "Agent","Manager","Department","Predefined Groups"
+    [
+      "Agent",["Agent 1","Agent 2","Agent 3","Agent 4","Agent 5","Agent 6"]
+    ],
+    [
+      "Manager",["Manager 1","Manager 2","Manager 3","Manager 4","Manager 5","Manager 6"]
+    ],
+    [
+      "Department",["AT&T","CenturyLink","Cable","Dish","Frontier","HughesNet"]
+    ],
+    [
+      "Predefined Group",["ATT P1 Cooper Overflow","ATT P1 Fiber Overflow","Hughes Backup","Example Y","Example Z"]
+    ]
+    
   ];
+
+  NAME_LEVEL_SELECT:string[] = [];
 
   QUEUE: any[] = [
     "Call Types", "Language", "Provider", "Queue Name"
@@ -62,31 +78,19 @@ export class SideMenuComponent  {
 
   }
 
-  setNameLevel(level: string): void{
-    if(level == "Agent"){
-      this.NAME = this.AGENT;
-    }
+  setNameLevel(level: any): void{
 
-    if(level == "Manager"){
-      this.NAME = this.MANAGER;
+    if (this.NAME.indexOf(level) === -1) {
+      this.NAME.push(level);
     }
-
-    if(level == "Predefined Groups"){      
-      this.NAME = this.PREDEFINEDGROUP;
-    }
-
-    if(level == "Department"){      
-      this.NAME = this.DEPARTMENT;
-    }
+    else {
+      this.NAME.splice(this.NAME.indexOf(level), 1);
+    } 
+  
   }
 
-  selectLevel(event: string){
-
-    this.setNameLevel(event)
-    //this.levelSelect = true;
-    this.SELECTED_OBJECTS.level = event
-    //this.genesisService.addItem(this.SELECTED_OBJECTS); 
-    
+  selectLevel(event: any){  
+    this.setNameLevel(event)   
   }
 
   // chequedBoxName(item: any){
@@ -97,17 +101,23 @@ export class SideMenuComponent  {
   //   }   
   // }
 
-  // nameItemSelected(event: any){  
+  nameItemSelected(event: any, column: string){
+    console.log(event.target.value)
+    console.log(column)    
+    
+    if (this.NAME_LEVEL_SELECT.indexOf(event.target.value) === -1) {
+      this.NAME_LEVEL_SELECT.push(event.target.value);
+    }
+    else {
+      this.NAME_LEVEL_SELECT.splice(this.NAME_LEVEL_SELECT.indexOf(event.target.value), 1);
+    }
 
-  //   if (this.SELECTED_OBJECTS.name.indexOf(event.target.value) === -1) {
-  //     this.SELECTED_OBJECTS.name.push(event.target.value);
-  //   }
-  //   else {
-  //     this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(event.target.value), 1);
-  //   }
-  
-  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
-  // }
+    if(this.NAME_LEVEL_SELECT.length > 0){
+      this.genesisService.searchByLevelName$(this.NAME_LEVEL_SELECT,column)
+    }else{
+      this.genesisService.getAllDirectory();     
+    }
+  }
 
   // selectQueue(event: any){    
   //   this.queueSelectList = true;

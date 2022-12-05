@@ -4,281 +4,440 @@ export const DATA: any[] = [{
     "email": "kchamberlen0@ca.gov",
     "queues":  "Queue 1",
     "skill": "Language",
-    "license": "Collaborate"
+    "license": "Collaborate",
+    "department": "AT&T",
+    "agent": "Agent 1",
+    "manager": "Manager 1",
+    "predefined group": "ATT P1 Cooper Overflow"
   }, {
     "name": "Gray Tomaszczyk",
     "active": false,
     "email": "gtomaszczyk1@delicious.com",
     "queues":  "Queue 1",
     "skill": "Call Types",
-    "license": "Collaborate"
+    "license": "Collaborate",
+    "department": "CenturyLink",
+    "agent": "Agent 6",
+    "manager": "Manager 5",
+    "predefined group": "Example Y"
   }, {
     "name": "Brandais Daveren",
     "active": false,
     "email": "bdaveren2@geocities.com",
     "queues":  "Queue 2",
     "skill": "Language",
-    "license": "Collaborate"
+    "license": "Collaborate",
+    "department": "Dish",
+    "agent": "Agent 4",
+    "manager": "Manager 5",
+    "predefined group": "ATT P1 Cooper Overflow"
   }, {
     "name": "Maure Crispin",
     "active": false,
     "email": "mcrispin3@patch.com",
     "queues":  "Queue 1",
     "skill": "Provider",
-    "license": "Collaborate"
+    "license": "Collaborate",
+    "department": "AT&T",
+    "agent": "Agent 1",
+    "manager": "Manager 1",
+    "predefined group": "ATT P1 Cooper Overflow"
   }, {
     "name": "Marve Mingardo",
     "active": false,
     "email": "mmingardo4@issuu.com",
     "queues":  "Queue 1",
     "skill": "Provider",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Dish",
+    "agent": "Agent 6",
+    "manager": "Manager 4",
+    "predefined group": "Example Y"
   }, {
     "name": "Lillis Bursnell",
     "active": false,
     "email": "lbursnell5@woothemes.com",
     "queues":  "Queue 1",
     "skill": "Provider",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "AT&T",
+    "agent": "Agent 5",
+    "manager": "Manager 5",
+    "predefined group": "Example Y"
   }, {
     "name": "Loutitia Fritche",
     "active": false,
     "email": "lfritche6@ehow.com",
     "queues":  "Queue 1",
     "skill": "Provider",
-    "license": "Collaborate"
+    "license": "Collaborate",
+    "department": "CenturyLink",
+    "agent": "Agent 1",
+    "manager": "Manager 4",
+    "predefined group": "ATT P1 Cooper Overflow"
   }, {
     "name": "Reena Nettleship",
     "active": false,
     "email": "rnettleship7@shop-pro.jp",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "CenturyLink",
+    "agent": "Agent 5",
+    "manager": "Manager 5",
+    "predefined group": "Example Y"
   }, {
     "name": "Rance Exley",
     "active": true,
     "email": "rexley8@vk.com",
     "queues":  "Queue 1",
     "skill": "Call Types",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "AT&T",
+    "agent": "Agent 1",
+    "manager": "Manager 5",
+    "predefined group": "Example Y"
   }, {
     "name": "Rachel Guilloux",
     "active": true,
     "email": "rguilloux9@who.int",
     "queues":  "Queue 1",
     "skill": "Call Types",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "CenturyLink",
+    "agent": "Agent 2",
+    "manager": "Manager 5",
+    "predefined group": "Example Z"
   }, {
     "name": "Quinn Sowter",
     "active": false,
     "email": "qsowtera@mediafire.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Collaborate"
+    "license": "Collaborate",
+    "department": "CenturyLink",
+    "agent": "Agent 5",
+    "manager": "Manager 1",
+    "predefined group": "Hughes Backup"
   }, {
     "name": "Lani Abthorpe",
     "active": false,
     "email": "labthorpeb@g.co",
     "queues":  "Queue 1",
     "skill": "Call Types",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "AT&T",
+    "agent": "Agent 5",
+    "manager": "Manager 6",
+    "predefined group": "Example Y"
   }, {
     "name": "Barbara Doggett",
     "active": true,
     "email": "bdoggettc@is.gd",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "CenturyLink",
+    "agent": "Agent 2",
+    "manager": "Manager 5",
+    "predefined group": "Example Z"
   }, {
     "name": "Mordecai Bradder",
     "active": true,
     "email": "mbradderd@spotify.com",
     "queues":  "Queue 2",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Dish",
+    "agent": "Agent 6",
+    "manager": "Manager 4",
+    "predefined group": "Example Z"
   }, {
     "name": "Clovis McGurgan",
     "active": false,
     "email": "cmcgurgane@cocolog-nifty.com",
     "queues":  "Queue 1",
     "skill": "Language",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Dish",
+    "agent": "Agent 6",
+    "manager": "Manager 4",
+    "predefined group": "Example Z"    
   }, {
     "name": "Kati Demoge",
     "active": false,
     "email": "kdemogef@comsenz.com",
     "queues":  "Queue 1",
     "skill": "Language",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "AT&T",
+    "agent": "Agent 5",
+    "manager": "Manager 4",
+    "predefined group": "Example Y"
   }, {
     "name": "Kimmi Spadeck",
     "active": true,
     "email": "kspadeckg@ovh.net",
     "queues":  "Queue 1",
     "skill": "Call Types",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "CenturyLink",
+    "agent": "Agent 2",
+    "manager": "Manager 1",
+    "predefined group": "ATT P1 Cooper Overflow"
   }, {
     "name": "Cristobal Trenbey",
     "active": true,
     "email": "ctrenbeyh@cocolog-nifty.com",
     "queues":  "Queue 1",
     "skill": "Language",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Dish",
+    "agent": "Agent 1",
+    "manager": "Manager 4",
+    "predefined group": "Example Y"
   }, {
     "name": "Morissa Agass",
     "active": false,
     "email": "magassi@ftc.gov",
     "queues":  "Queue 1",
     "skill": "Language",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "CenturyLink",
+    "agent": "Agent 5",
+    "manager": "Manager 4",
+    "predefined group": "Example Z"
   }, {
     "name": "Hiram Grindell",
     "active": false,
     "email": "hgrindellj@drupal.org",
     "queues":  "Queue 1",
     "skill": "Language",
-    "license": "Cloud CX 3,*"
-  },
-  {
+    "license": "Cloud CX 3,*",
+    "department": "AT&T",
+    "agent": "Agent 6",
+    "manager": "Manager 4",
+    "predefined group": "Example Z"
+  },{
     "name": "Nicolas-Dickinson",
     "active": false,
     "email": "eroddan0@stanford.edu",
     "queues":  "Queue 2",
     "skill": "Queue Name",
-    "license": "Cloud CX 3"
+    "license": "Cloud CX 3",
+    "department": "Dish",
+    "agent": "Agent 6",
+    "manager": "Manager 4",
+    "predefined group": "Example Y"
   }, {
     "name": "Emard Inc",
     "active": true,
     "email": "tghest1@fastcompany.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Collaborate"
+    "license": "Collaborate",
+    "department": "CenturyLink",
+    "agent": "Agent 5",
+    "manager": "Manager 3",
+    "predefined group": "ATT P1 Cooper Overflow"
   }, {
     "name": "Hilpert, Fahey and Toy",
     "active": true,
     "email": "cmolloy2@rakuten.co.jp",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3"
+    "license": "Cloud CX 3",
+    "department": "AT&T",
+    "agent": "Agent 1",
+    "manager": "Manager 3",
+    "predefined group": "Hughes Backup"
   }, {
     "name": "Lueilwitz-Bosco",
     "active": true,
     "email": "hradbond3@google.co.uk",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3"
+    "license": "Cloud CX 3",
+    "department": "CenturyLink",
+    "agent": "Agent 2",
+    "manager": "Manager 2",
+    "predefined group": "Example Z"
   }, {
     "name": "Kuhn-Dickens",
     "active": false,
     "email": "mbarratt4@rediff.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3"
+    "license": "Cloud CX 3",
+    "department": "Dish",
+    "agent": "Agent 4",
+    "manager": "Manager 3",
+    "predefined group": "Hughes Backup"
   }, {
     "name": "Zulauf, O'Hara and McCullough",
     "active": false,
     "email": "bdeluna5@exblog.jp",
     "queues":  "Queue 1",
     "skill": "Language",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "HughesNet",
+    "agent": "Agent 5",
+    "manager": "Manager 3",
+    "predefined group": "Example Z"
   }, {
     "name": "O'Hara-Romaguera",
     "active": false,
     "email": "jshambrook6@youtube.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "AT&T",
+    "agent": "Agent 5",
+    "manager": "Manager 3",
+    "predefined group": "Example Y"
   }, {
     "name": "Haley Inc",
     "active": false,
     "email": "cbarcke7@buzzfeed.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "CenturyLink",
+    "agent": "Agent 4",
+    "manager": "Manager 5",
+    "predefined group": "Hughes Backup"
   }, {
     "name": "O'Conner Inc",
     "active": true,
     "email": "fbullan8@theguardian.com",
     "queues":  "Queue 3",
     "skill": "Language",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Cable",
+    "agent": "Agent 5",
+    "manager": "Manager 1",
+    "predefined group": "ATT P1 Cooper Overflow"
   }, {
     "name": "Mills, Gusikowski and Rau",
     "active": true,
     "email": "cengall9@europa.eu",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Frontier",
+    "agent": "Agent 1",
+    "manager": "Manager 2",
+    "predefined group": "Example Y"
   }, {
     "name": "Padberg LLC",
     "active": false,
     "email": "vmckiernana@homestead.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Cable",
+    "agent": "Agent 4",
+    "manager": "Manager 3",
+    "predefined group": "Hughes Backup"
   }, {
     "name": "Haley LLC",
     "active": false,
     "email": "lfrohockb@live.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Cable",
+    "agent": "Agent 1",
+    "manager": "Manager 3",
+    "predefined group": "Hughes Backup"
   }, {
     "name": "Kirlin-Jones",
     "active": false,
     "email": "wklaaassenc@irs.gov",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "AT&T",
+    "agent": "Agent 4",
+    "manager": "Manager 2",
+    "predefined group": "ATT P1 Fiber Overflow"
   }, {
     "name": "Durgan Group",
     "active": true,
     "email": "graesided@msu.edu",
     "queues":  "Queue 1",
     "skill": "Call Types",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Cable",
+    "agent": "Agent 2",
+    "manager": "Manager 1",
+    "predefined group": "ATT P1 Fiber Overflow"
   }, {
     "name": "Schumm-Bernhard",
     "active": true,
     "email": "jdahlborge@paginegialle.it",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "AT&T",
+    "agent": "Agent 4",
+    "manager": "Manager 2",
+    "predefined group": "Hughes Backup"
   }, {
     "name": "Ferry-Walker",
     "active": false,
     "email": "rharmsonf@ihg.com",
     "queues":  "Queue 3",
     "skill": "Language",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "HughesNet",
+    "agent": "Agent 6",
+    "manager": "Manager 1",
+    "predefined group": "ATT P1 Fiber Overflow"
   }, {
     "name": "Mohr-Harvey",
     "active": false,
     "email": "ctagueg@infoseek.co.jp",
     "queues":  "Queue 4",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "CenturyLink",
+    "agent": "Agent 4",
+    "manager": "Manager 5",
+    "predefined group": "ATT P1 Fiber Overflow"
   }, {
     "name": "Gutkowski-Paucek",
     "active": true,
     "email": "ctookillh@state.gov",
     "queues":  "Queue 4",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Cable",
+    "agent": "Agent 6",
+    "manager": "Manager 1",
+    "predefined group": "ATT P1 Cooper Overflow"
   }, {
     "name": "Hills-Sauer",
     "active": true,
     "email": "crowlesi@bloomberg.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3"
+    "license": "Cloud CX 3",
+    "department": "Frontier",
+    "agent": "Agent 4",
+    "manager": "Manager 2",
+    "predefined group": "Hughes Backup"
   }, {
     "name": "Wolff and Sons",
     "active": false,
     "email": "fbolsoverj@hostgator.com",
     "queues":  "Queue 4",
     "skill": "Queue Name",
-    "license": "Cloud CX 3"
+    "license": "Cloud CX 3",
+    "department": "HughesNet",
+    "agent": "Agent 4",
+    "manager": "Manager 3",
+    "predefined group": "ATT P1 Fiber Overflow"
   },
   {
     "name": "AT&T",
@@ -286,7 +445,11 @@ export const DATA: any[] = [{
     "email": "attj@hostgator.com",
     "queues":  "Queue 3",
     "skill": "Queue Name",
-    "license": "Cloud CX 3"
+    "license": "Cloud CX 3",
+    "department": "Frontier",
+    "agent": "Agent 4",
+    "manager": "Manager 2",
+    "predefined group": "Hughes Backup"
   },
   {
     "name": "CenturyLink",
@@ -294,7 +457,11 @@ export const DATA: any[] = [{
     "email": "cl@hostgator.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3"
+    "license": "Cloud CX 3",
+    "department": "Cable",
+    "agent": "Agent 2",
+    "manager": "Manager 1",
+    "predefined group": "ATT P1 Cooper Overflow"
   },
   {
     "name": "Cable",
@@ -302,7 +469,11 @@ export const DATA: any[] = [{
     "email": "cable@hostgator.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,SuccessKPI,*"
+    "license": "Cloud CX 3,SuccessKPI,*",
+    "department": "HughesNet",
+    "agent": "Agent 3",
+    "manager": "Manager 2",
+    "predefined group": "ATT P1 Cooper Overflow"
   },
   {
     "name": "Dish",
@@ -310,7 +481,11 @@ export const DATA: any[] = [{
     "email": "dish@hostgator.com",
     "queues":  "Queue 4",
     "skill": "Language",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "HughesNet",
+    "agent": "Agent 4",
+    "manager": "Manager 2",
+    "predefined group": "ATT P1 Fiber Overflow"    
   },
   {
     "name": "HughesNet",
@@ -318,7 +493,11 @@ export const DATA: any[] = [{
     "email": "hnet@hostgator.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Frontier",
+    "agent": "Agent 4",
+    "manager": "Manager 3",
+    "predefined group": "Hughes Backup"
   },
   {
     "name": "Frontier",
@@ -326,7 +505,11 @@ export const DATA: any[] = [{
     "email": "frontier@hostgator.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Frontier",
+    "agent": "Agent 3",
+    "manager": "Manager 1",
+    "predefined group": "ATT P1 Fiber Overflow"
   },
   {
     "name": "ATT P1 Cooper Overflow",
@@ -334,7 +517,11 @@ export const DATA: any[] = [{
     "email": "frontier@hostgator.com",
     "queues":  "Queue 3",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,SuccessKPI,*"
+    "license": "Cloud CX 3,SuccessKPI,*",
+    "department": "HughesNet",
+    "agent": "Agent 6",
+    "manager": "Manager 4",
+    "predefined group": "ATT P1 Cooper Overflow"
   },  
   {
     "name": "Hughes Backup",
@@ -342,7 +529,11 @@ export const DATA: any[] = [{
     "email": "frontier@hostgator.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "HughesNet",
+    "agent": "Agent 3",
+    "manager": "Manager 1",
+    "predefined group": "ATT P1 Fiber Overflow"
   },
   {
     "name": "Example Y",
@@ -350,7 +541,11 @@ export const DATA: any[] = [{
     "email": "frontier@hostgator.com",
     "queues":  "Queue 1",
     "skill": "Queue Name",
-    "license": "Cloud CX 3,*"
+    "license": "Cloud CX 3,*",
+    "department": "Frontier",
+    "agent": "Agent 6",
+    "manager": "Manager 3",
+    "predefined group": "Example Z"
   },
   {
     "name": "Example Z",
@@ -358,7 +553,11 @@ export const DATA: any[] = [{
     "email": "frontier@hostgator.com",
     "queues":  "Queue 3",
     "skill": "Queue Name",
-    "license": "Cloud CX 3"
+    "license": "Cloud CX 3",
+    "department": "Frontier",
+    "agent": "Agent 3",
+    "manager": "Manager 1",
+    "predefined group": "ATT P1 Fiber Overflow"
   }
 
 ]

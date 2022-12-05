@@ -53,6 +53,7 @@ export class GenesisQueuesComponent implements OnInit{
 
     this.getAll();
     this.getDirectory();
+   
 
     //this.setSelectedItems = localStorage.getItem('queueData')
 
@@ -134,8 +135,7 @@ export class GenesisQueuesComponent implements OnInit{
       (data: any) => {
         this.dataSource = data;        
       }    
-     
-    )  
+    ) 
   }
 
   getAll(): void{
@@ -254,8 +254,7 @@ export class GenesisQueuesComponent implements OnInit{
     }
     else {
         this.SKILL_SELECT.splice(this.SKILL_SELECT.indexOf(event.target.value), 1);
-    } 
-    console.log(this.SKILL_SELECT)
+    }
 
     if(this.SKILL_SELECT.length > 0){
       this.genesisService.searchBySkill$(this.SKILL_SELECT)
