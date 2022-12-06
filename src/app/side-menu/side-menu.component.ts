@@ -69,6 +69,8 @@ export class SideMenuComponent  {
   chosenQueue: string = "select menu";
   queueSelectList: boolean = false;  
 
+  current_page: string = "1"
+
   @Output() collapseExpandMenu = new EventEmitter();
 
   collapseMenu(){
@@ -91,20 +93,10 @@ export class SideMenuComponent  {
 
   selectLevel(event: any){  
     this.setNameLevel(event)   
-  }
-
-  // chequedBoxName(item: any){
-  //   if(this.SELECTED_OBJECTS.name.indexOf(item) === -1){
-  //     return false      
-  //   }else{
-  //     return true
-  //   }   
-  // }
+  } 
 
   nameItemSelected(event: any, column: string){
-    console.log(event.target.value)
-    console.log(column)    
-    
+ 
     if (this.NAME_LEVEL_SELECT.indexOf(event.target.value) === -1) {
       this.NAME_LEVEL_SELECT.push(event.target.value);
     }
@@ -113,9 +105,9 @@ export class SideMenuComponent  {
     }
 
     if(this.NAME_LEVEL_SELECT.length > 0){
-      this.genesisService.searchByLevelName$(this.NAME_LEVEL_SELECT,column)
+      this.genesisService.searchByLevelName$(this.NAME_LEVEL_SELECT,column,this.current_page)
     }else{
-      this.genesisService.getAllDirectory();     
+      this.genesisService.getAllDirectory()     
     }
   }
 

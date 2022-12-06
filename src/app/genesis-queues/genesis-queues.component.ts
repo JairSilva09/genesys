@@ -19,6 +19,9 @@ export class GenesisQueuesComponent implements OnInit{
   settingItems: any;
   setSelectedItems: any;
 
+  num_pages: string = "";
+  current_page: string = "1"
+
   constructor(private genesisService: GenesysService) { }
 
   SKILL_SELECT: any[] =[]
@@ -54,7 +57,6 @@ export class GenesisQueuesComponent implements OnInit{
     this.getAll();
     this.getDirectory();
    
-
     //this.setSelectedItems = localStorage.getItem('queueData')
 
     // if(this.setSelectedItems != null){
@@ -92,13 +94,7 @@ export class GenesisQueuesComponent implements OnInit{
         distinctUntilChanged(),
         tap((text: any) => {
           let term = this.searchBar.nativeElement.value;
-          this.genesisService.search$(term)
-          //this.getDirectory()
-          
-          // this.genesisService.search$(term).subscribe((data: any)=>{
-          //   this.dataSource = data
-          //   console.log(this.dataSource)
-          // })
+          this.genesisService.search$(term)         
           
         })
       )
@@ -127,22 +123,50 @@ export class GenesisQueuesComponent implements OnInit{
   queueSelectList: boolean = false;
 
   data: any= [];
+  DATA_ALL: any[] = [];
   dataSource: any[] = [];
   observableSubs: any;
 
   getDirectory(): void{
     this.genesisService.getDirectory$().subscribe(
       (data: any) => {
-        this.dataSource = data;        
+        // this.dataSource = data.slice(1)
+        // this.current_page = data[0].current_page 
+        // this.num_pages = data[0].num_pages
+        this.DATA_ALL = data        
+        this.DATA_ALL.unshift(
+          {
+            "total_records": this.DATA_ALL.length,
+            "num_pages" : Math.ceil(data.length/10).toString(),
+            "current_page": "1"
+          }
+        )
+
+        this.current_page = this.DATA_ALL[0].current_page;
+        this.num_pages = this.DATA_ALL[0].num_pages;
+        this.dataSource = data.slice(1,11)
       }    
     ) 
   }
 
   getAll(): void{
 
-    this.genesisService.getAllDirectory$().subscribe(
+    this.genesisService.getAllDirectory$(this.current_page).subscribe(
       (data: any)=>{
-        this.dataSource = data 
+        this.DATA_ALL = data
+
+        this.DATA_ALL.unshift(
+          {
+            "total_records": this.DATA_ALL.length,
+            "num_pages" : Math.ceil(data.length/10).toString(),
+            "current_page": "1"
+          }
+        )
+        this.current_page = this.DATA_ALL[0].current_page;
+        this.num_pages = this.DATA_ALL[0].num_pages;
+        this.dataSource = this.DATA_ALL.slice(1,11)
+        console.log(this.dataSource)
+
       }    
   
     )
@@ -259,7 +283,15 @@ export class GenesisQueuesComponent implements OnInit{
     if(this.SKILL_SELECT.length > 0){
       this.genesisService.searchBySkill$(this.SKILL_SELECT)
     }else{
-      this.getAll();      
+      this.genesisService.getAllDirectory();      
     }
   }
+
+  newPage(event: any){ 
+    console.log(event)
+    this.dataSource = event.slice(1);
+    this.current_page = event[0].current_page;
+   
+  }
+  
 }

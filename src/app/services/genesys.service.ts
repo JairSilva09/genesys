@@ -49,9 +49,11 @@ export class GenesysService {
   }
 
   search$(term: string){
-    let list:any[] = [];   
+    
+    let list:any[] = [];
+    let paginatedList:any[] = DATA.slice(1); 
       
-    DATA.forEach((item: any) => {
+    paginatedList.forEach((item: any) => {
 
       if(item.name.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.email.toLowerCase().indexOf(term.toLowerCase()) >= 0
         || item.queues.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.license.toLowerCase().indexOf(term.toLowerCase()) >= 0
@@ -67,8 +69,9 @@ export class GenesysService {
 
   searchBySkill$(terms: string[]){
     let list:any[] = [];
+    let paginatedList:any[] = DATA.slice(1);
     terms.forEach((a: any) => {
-      DATA.forEach((item: any) => {
+      paginatedList.forEach((item: any) => {
 
         if(item.skill.toLowerCase().indexOf(a.toLowerCase()) >= 0){
           list.push(item)
@@ -76,54 +79,52 @@ export class GenesysService {
        
       })
     })
-
+    
+    console.log(list)
     this.shortlist$.next(list)
     
   }
 
-  searchByLevelName$(terms: string[],column: string){     
-    let list:any[] = [];
+  searchByLevelName$(terms: string[],column: string,page: string){  
+      
+    let list:any[] = [];   
+    let paginatedList:any[] = DATA.slice(1);
 
     terms.forEach((a: any) => {
-      DATA.forEach((item: any) => {
+
+      paginatedList.forEach((item: any) => {   
 
         if(item[column.toLowerCase()].toLowerCase().indexOf(a.toLowerCase()) >= 0){
           list.push(item)
         }
-       
+
       })
+
     })
 
-  
-    // DATA.forEach((item: any) => {
-
-    //   if(item.department.toLowerCase().indexOf(terms.toLowerCase()) >= 0){
-    //       list.push(item)
-    //   }
-       
-    // })
-    console.log(list)
     this.shortlist$.next(list)    
   }
 
-
-  getAllDirectory$(): Observable<any[]>{
+  getAllDirectory$(page: string): Observable<any[]>{     
     const directory =  of(DATA)
     return directory;
   }
 
-  getAllDirectory(): void{
-    //const directory =  of(DATA)
-    this.shortlist$.next(DATA) 
+  getAllDirectory(): void{ 
+
+    let list:any[] = [];
+    list = list = DATA.slice(1);    
+    
+    this.shortlist$.next(list) 
   }
 
   getDirectory$(): Observable<any[]>{    
     return this.shortlist$.asObservable();  
   }
  
-  getItems$(): Observable<any>{
-     return this.selectedObjects$.asObservable();    
-  }
+  // getItems$(): Observable<any>{
+  //    return this.selectedObjects$.asObservable();    
+  // }
  
     //-------------end observable-----------//
 }

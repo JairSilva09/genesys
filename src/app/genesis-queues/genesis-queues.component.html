@@ -38,6 +38,9 @@
                 </form>
             </div>
         </div>
+        <div class="col-md-2 offset-md-3">
+            <app-pagination [records]="DATA_ALL" [current_page]="current_page" [total_pages]="num_pages"(newPage)="newPage($event)"></app-pagination>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-12">

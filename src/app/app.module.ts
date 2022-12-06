@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import { PaginationComponent } from './genesis-queues/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {MatIconModule} from '@angular/material/icon';
     DashboardComponent,
     MenuComponent,
     SideMenuComponent,
-    GenesisQueuesComponent
+    GenesisQueuesComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
