@@ -85,7 +85,7 @@ export class GenesysService {
     
   }
 
-  searchByLevelName$(terms: string[],column: string,page: string){  
+  searchByLevelName$(terms: string[],column: string,page: string){
       
     let list:any[] = [];   
     let paginatedList:any[] = DATA.slice(1);

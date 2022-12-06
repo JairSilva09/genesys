@@ -96,6 +96,10 @@ export class SideMenuComponent  {
   } 
 
   nameItemSelected(event: any, column: string){
+
+    if(column.split(' ').length > 1){
+      column =  column.replace(/\s+/g, '')
+    }
  
     if (this.NAME_LEVEL_SELECT.indexOf(event.target.value) === -1) {
       this.NAME_LEVEL_SELECT.push(event.target.value);

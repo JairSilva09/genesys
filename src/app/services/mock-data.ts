@@ -8,7 +8,7 @@ export const DATA: any[] = [{
     "department": "AT&T",
     "agent": "Agent 1",
     "manager": "Manager 1",
-    "predefined group": "ATT P1 Cooper Overflow"
+    "predefinedgroup": "ATT P1 Cooper Overflow"
   }, {
     "name": "Gray Tomaszczyk",
     "active": false,
@@ -19,7 +19,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 6",
     "manager": "Manager 5",
-    "predefined group": "Example Y"
+    "predefinedgroup": "Example Y"
   }, {
     "name": "Brandais Daveren",
     "active": false,
@@ -30,7 +30,7 @@ export const DATA: any[] = [{
     "department": "Dish",
     "agent": "Agent 4",
     "manager": "Manager 5",
-    "predefined group": "ATT P1 Cooper Overflow"
+    "predefinedgroup": "ATT P1 Cooper Overflow"
   }, {
     "name": "Maure Crispin",
     "active": false,
@@ -41,7 +41,7 @@ export const DATA: any[] = [{
     "department": "AT&T",
     "agent": "Agent 1",
     "manager": "Manager 1",
-    "predefined group": "ATT P1 Cooper Overflow"
+    "predefinedgroup": "ATT P1 Cooper Overflow"
   }, {
     "name": "Marve Mingardo",
     "active": false,
@@ -52,7 +52,7 @@ export const DATA: any[] = [{
     "department": "Dish",
     "agent": "Agent 6",
     "manager": "Manager 4",
-    "predefined group": "Example Y"
+    "predefinedgroup": "Example Y"
   }, {
     "name": "Lillis Bursnell",
     "active": false,
@@ -63,7 +63,7 @@ export const DATA: any[] = [{
     "department": "AT&T",
     "agent": "Agent 5",
     "manager": "Manager 5",
-    "predefined group": "Example Y"
+    "predefinedgroup": "Example Y"
   }, {
     "name": "Loutitia Fritche",
     "active": false,
@@ -74,7 +74,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 1",
     "manager": "Manager 4",
-    "predefined group": "ATT P1 Cooper Overflow"
+    "predefinedgroup": "ATT P1 Cooper Overflow"
   }, {
     "name": "Reena Nettleship",
     "active": false,
@@ -85,7 +85,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 5",
     "manager": "Manager 5",
-    "predefined group": "Example Y"
+    "predefinedgroup": "Example Y"
   }, {
     "name": "Rance Exley",
     "active": true,
@@ -96,7 +96,7 @@ export const DATA: any[] = [{
     "department": "AT&T",
     "agent": "Agent 1",
     "manager": "Manager 5",
-    "predefined group": "Example Y"
+    "predefinedgroup": "Example Y"
   }, {
     "name": "Rachel Guilloux",
     "active": true,
@@ -107,7 +107,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 2",
     "manager": "Manager 5",
-    "predefined group": "Example Z"
+    "predefinedgroup": "Example Z"
   }, {
     "name": "Quinn Sowter",
     "active": false,
@@ -118,7 +118,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 5",
     "manager": "Manager 1",
-    "predefined group": "Hughes Backup"
+    "predefinedgroup": "Hughes Backup"
   }, {
     "name": "Lani Abthorpe",
     "active": false,
@@ -129,7 +129,7 @@ export const DATA: any[] = [{
     "department": "AT&T",
     "agent": "Agent 5",
     "manager": "Manager 6",
-    "predefined group": "Example Y"
+    "predefinedgroup": "Example Y"
   }, {
     "name": "Barbara Doggett",
     "active": true,
@@ -140,7 +140,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 2",
     "manager": "Manager 5",
-    "predefined group": "Example Z"
+    "predefinedgroup": "Example Z"
   }, {
     "name": "Mordecai Bradder",
     "active": true,
@@ -151,7 +151,7 @@ export const DATA: any[] = [{
     "department": "Dish",
     "agent": "Agent 6",
     "manager": "Manager 4",
-    "predefined group": "Example Z"
+    "predefinedgroup": "Example Z"
   }, {
     "name": "Clovis McGurgan",
     "active": false,
@@ -162,7 +162,7 @@ export const DATA: any[] = [{
     "department": "Dish",
     "agent": "Agent 6",
     "manager": "Manager 4",
-    "predefined group": "Example Z"    
+    "predefinedgroup": "Example Z"    
   }, {
     "name": "Kati Demoge",
     "active": false,
@@ -173,7 +173,7 @@ export const DATA: any[] = [{
     "department": "AT&T",
     "agent": "Agent 5",
     "manager": "Manager 4",
-    "predefined group": "Example Y"
+    "predefinedgroup": "Example Y"
   }, {
     "name": "Kimmi Spadeck",
     "active": true,
@@ -184,7 +184,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 2",
     "manager": "Manager 1",
-    "predefined group": "ATT P1 Cooper Overflow"
+    "predefinedgroup": "ATT P1 Cooper Overflow"
   }, {
     "name": "Cristobal Trenbey",
     "active": true,
@@ -195,7 +195,7 @@ export const DATA: any[] = [{
     "department": "Dish",
     "agent": "Agent 1",
     "manager": "Manager 4",
-    "predefined group": "Example Y"
+    "predefinedgroup": "Example Y"
   }, {
     "name": "Morissa Agass",
     "active": false,
@@ -206,7 +206,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 5",
     "manager": "Manager 4",
-    "predefined group": "Example Z"
+    "predefinedgroup": "Example Z"
   }, {
     "name": "Hiram Grindell",
     "active": false,
@@ -217,7 +217,7 @@ export const DATA: any[] = [{
     "department": "AT&T",
     "agent": "Agent 6",
     "manager": "Manager 4",
-    "predefined group": "Example Z"
+    "predefinedgroup": "Example Z"
   },{
     "name": "Nicolas-Dickinson",
     "active": false,
@@ -228,7 +228,7 @@ export const DATA: any[] = [{
     "department": "Dish",
     "agent": "Agent 6",
     "manager": "Manager 4",
-    "predefined group": "Example Y"
+    "predefinedgroup": "Example Y"
   }, {
     "name": "Emard Inc",
     "active": true,
@@ -239,7 +239,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 5",
     "manager": "Manager 3",
-    "predefined group": "ATT P1 Cooper Overflow"
+    "predefinedgroup": "ATT P1 Cooper Overflow"
   }, {
     "name": "Hilpert, Fahey and Toy",
     "active": true,
@@ -250,7 +250,7 @@ export const DATA: any[] = [{
     "department": "AT&T",
     "agent": "Agent 1",
     "manager": "Manager 3",
-    "predefined group": "Hughes Backup"
+    "predefinedgroup": "Hughes Backup"
   }, {
     "name": "Lueilwitz-Bosco",
     "active": true,
@@ -261,7 +261,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 2",
     "manager": "Manager 2",
-    "predefined group": "Example Z"
+    "predefinedgroup": "Example Z"
   }, {
     "name": "Kuhn-Dickens",
     "active": false,
@@ -272,7 +272,7 @@ export const DATA: any[] = [{
     "department": "Dish",
     "agent": "Agent 4",
     "manager": "Manager 3",
-    "predefined group": "Hughes Backup"
+    "predefinedgroup": "Hughes Backup"
   }, {
     "name": "Zulauf, O'Hara and McCullough",
     "active": false,
@@ -283,7 +283,7 @@ export const DATA: any[] = [{
     "department": "HughesNet",
     "agent": "Agent 5",
     "manager": "Manager 3",
-    "predefined group": "Example Z"
+    "predefinedgroup": "Example Z"
   }, {
     "name": "O'Hara-Romaguera",
     "active": false,
@@ -294,7 +294,7 @@ export const DATA: any[] = [{
     "department": "AT&T",
     "agent": "Agent 5",
     "manager": "Manager 3",
-    "predefined group": "Example Y"
+    "predefinedgroup": "Example Y"
   }, {
     "name": "Haley Inc",
     "active": false,
@@ -305,7 +305,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 4",
     "manager": "Manager 5",
-    "predefined group": "Hughes Backup"
+    "predefinedgroup": "Hughes Backup"
   }, {
     "name": "O'Conner Inc",
     "active": true,
@@ -316,7 +316,7 @@ export const DATA: any[] = [{
     "department": "Cable",
     "agent": "Agent 5",
     "manager": "Manager 1",
-    "predefined group": "ATT P1 Cooper Overflow"
+    "predefinedgroup": "ATT P1 Cooper Overflow"
   }, {
     "name": "Mills, Gusikowski and Rau",
     "active": true,
@@ -327,7 +327,7 @@ export const DATA: any[] = [{
     "department": "Frontier",
     "agent": "Agent 1",
     "manager": "Manager 2",
-    "predefined group": "Example Y"
+    "predefinedgroup": "Example Y"
   }, {
     "name": "Padberg LLC",
     "active": false,
@@ -338,7 +338,7 @@ export const DATA: any[] = [{
     "department": "Cable",
     "agent": "Agent 4",
     "manager": "Manager 3",
-    "predefined group": "Hughes Backup"
+    "predefinedgroup": "Hughes Backup"
   }, {
     "name": "Haley LLC",
     "active": false,
@@ -349,7 +349,7 @@ export const DATA: any[] = [{
     "department": "Cable",
     "agent": "Agent 1",
     "manager": "Manager 3",
-    "predefined group": "Hughes Backup"
+    "predefinedgroup": "Hughes Backup"
   }, {
     "name": "Kirlin-Jones",
     "active": false,
@@ -360,7 +360,7 @@ export const DATA: any[] = [{
     "department": "AT&T",
     "agent": "Agent 4",
     "manager": "Manager 2",
-    "predefined group": "ATT P1 Fiber Overflow"
+    "predefinedgroup": "ATT P1 Fiber Overflow"
   }, {
     "name": "Durgan Group",
     "active": true,
@@ -371,7 +371,7 @@ export const DATA: any[] = [{
     "department": "Cable",
     "agent": "Agent 2",
     "manager": "Manager 1",
-    "predefined group": "ATT P1 Fiber Overflow"
+    "predefinedgroup": "ATT P1 Fiber Overflow"
   }, {
     "name": "Schumm-Bernhard",
     "active": true,
@@ -382,7 +382,7 @@ export const DATA: any[] = [{
     "department": "AT&T",
     "agent": "Agent 4",
     "manager": "Manager 2",
-    "predefined group": "Hughes Backup"
+    "predefinedgroup": "Hughes Backup"
   }, {
     "name": "Ferry-Walker",
     "active": false,
@@ -393,7 +393,7 @@ export const DATA: any[] = [{
     "department": "HughesNet",
     "agent": "Agent 6",
     "manager": "Manager 1",
-    "predefined group": "ATT P1 Fiber Overflow"
+    "predefinedgroup": "ATT P1 Fiber Overflow"
   }, {
     "name": "Mohr-Harvey",
     "active": false,
@@ -404,7 +404,7 @@ export const DATA: any[] = [{
     "department": "CenturyLink",
     "agent": "Agent 4",
     "manager": "Manager 5",
-    "predefined group": "ATT P1 Fiber Overflow"
+    "predefinedgroup": "ATT P1 Fiber Overflow"
   }, {
     "name": "Gutkowski-Paucek",
     "active": true,
@@ -415,7 +415,7 @@ export const DATA: any[] = [{
     "department": "Cable",
     "agent": "Agent 6",
     "manager": "Manager 1",
-    "predefined group": "ATT P1 Cooper Overflow"
+    "predefinedgroup": "ATT P1 Cooper Overflow"
   }, {
     "name": "Hills-Sauer",
     "active": true,
@@ -426,7 +426,7 @@ export const DATA: any[] = [{
     "department": "Frontier",
     "agent": "Agent 4",
     "manager": "Manager 2",
-    "predefined group": "Hughes Backup"
+    "predefinedgroup": "Hughes Backup"
   }, {
     "name": "Wolff and Sons",
     "active": false,
@@ -437,7 +437,7 @@ export const DATA: any[] = [{
     "department": "HughesNet",
     "agent": "Agent 4",
     "manager": "Manager 3",
-    "predefined group": "ATT P1 Fiber Overflow"
+    "predefinedgroup": "ATT P1 Fiber Overflow"
   },
   {
     "name": "AT&T",
@@ -449,7 +449,7 @@ export const DATA: any[] = [{
     "department": "Frontier",
     "agent": "Agent 4",
     "manager": "Manager 2",
-    "predefined group": "Hughes Backup"
+    "predefinedgroup": "Hughes Backup"
   },
   {
     "name": "CenturyLink",
@@ -461,7 +461,7 @@ export const DATA: any[] = [{
     "department": "Cable",
     "agent": "Agent 2",
     "manager": "Manager 1",
-    "predefined group": "ATT P1 Cooper Overflow"
+    "predefinedgroup": "ATT P1 Cooper Overflow"
   },
   {
     "name": "Cable",
@@ -473,7 +473,7 @@ export const DATA: any[] = [{
     "department": "HughesNet",
     "agent": "Agent 3",
     "manager": "Manager 2",
-    "predefined group": "ATT P1 Cooper Overflow"
+    "predefinedgroup": "ATT P1 Cooper Overflow"
   },
   {
     "name": "Dish",
@@ -485,7 +485,7 @@ export const DATA: any[] = [{
     "department": "HughesNet",
     "agent": "Agent 4",
     "manager": "Manager 2",
-    "predefined group": "ATT P1 Fiber Overflow"    
+    "predefinedgroup": "ATT P1 Fiber Overflow"    
   },
   {
     "name": "HughesNet",
@@ -497,7 +497,7 @@ export const DATA: any[] = [{
     "department": "Frontier",
     "agent": "Agent 4",
     "manager": "Manager 3",
-    "predefined group": "Hughes Backup"
+    "predefinedgroup": "Hughes Backup"
   },
   {
     "name": "Frontier",
@@ -509,7 +509,7 @@ export const DATA: any[] = [{
     "department": "Frontier",
     "agent": "Agent 3",
     "manager": "Manager 1",
-    "predefined group": "ATT P1 Fiber Overflow"
+    "predefinedgroup": "ATT P1 Fiber Overflow"
   },
   {
     "name": "ATT P1 Cooper Overflow",
@@ -521,7 +521,7 @@ export const DATA: any[] = [{
     "department": "HughesNet",
     "agent": "Agent 6",
     "manager": "Manager 4",
-    "predefined group": "ATT P1 Cooper Overflow"
+    "predefinedgroup": "ATT P1 Cooper Overflow"
   },  
   {
     "name": "Hughes Backup",
@@ -533,7 +533,7 @@ export const DATA: any[] = [{
     "department": "HughesNet",
     "agent": "Agent 3",
     "manager": "Manager 1",
-    "predefined group": "ATT P1 Fiber Overflow"
+    "predefinedgroup": "ATT P1 Fiber Overflow"
   },
   {
     "name": "Example Y",
@@ -545,7 +545,7 @@ export const DATA: any[] = [{
     "department": "Frontier",
     "agent": "Agent 6",
     "manager": "Manager 3",
-    "predefined group": "Example Z"
+    "predefinedgroup": "Example Z"
   },
   {
     "name": "Example Z",
@@ -557,7 +557,7 @@ export const DATA: any[] = [{
     "department": "Frontier",
     "agent": "Agent 3",
     "manager": "Manager 1",
-    "predefined group": "ATT P1 Fiber Overflow"
+    "predefinedgroup": "ATT P1 Fiber Overflow"
   }
 
 ]
