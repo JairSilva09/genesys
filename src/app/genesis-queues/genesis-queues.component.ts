@@ -41,26 +41,14 @@ export class GenesisQueuesComponent implements OnInit{
 
   AGENT: any[] =[
     "Agent 1","Agent 2","Agent 3","Agent 4","Agent 5","Agent 6"
-  ]
+  ] 
 
-  COLUMN_QUEUE_SELECT:string[] = [];
-
-  QUEUE: any[] = [
-    
-  ]
-
-  QUEUES_LIST: any[] = []
-  LIST_LANGUAGE: any[] = ["Language",[]]
-  LIST_QUEUE_ID: any[] = ["Queue ID",[]]
-  LIST_QUEUE_NAME: any[] = ["Queue Name",[]]
-  LIST_CALL_TYPE: any[] = ["Call Type",[]]
-  LIST_PROVIDER: any[] = ["Provider",[]]
+  QUEUE: any[] = [];
+  
 
   ngOnInit(): void {
-
     this.getAll();
     this.getDirectory();   
-   
   }
 
   ngAfterViewInit(){
@@ -87,8 +75,7 @@ export class GenesisQueuesComponent implements OnInit{
   queueSelectList: boolean = false;
 
   data: any= [];
-  DATA_ALL: any[] = [];
-  DATA_ALL_QUEUES: any[] = [];
+  DATA_ALL: any[] = [];  
   dataSource: any[] = [];
   dataSource_queue: any[] = [];
   observableSubs: any;
@@ -256,119 +243,6 @@ export class GenesisQueuesComponent implements OnInit{
     this.dataSource = event.slice(1);
     this.current_page = event[0].current_page;
    
-  }
-
-  //================ MODAL ================//
-
-  openModal(){
-    this.getAllDataQueues(); 
-    this.getDataQueues();   
-  }
-
-  getAllDataQueues(){
-    this.genesisService.getAllDataModal$().subscribe(
-      (data: any)=>{
-        this.DATA_ALL_QUEUES = data
-  
-        this.DATA_ALL_QUEUES.unshift(
-          {
-            "total_records": this.DATA_ALL_QUEUES.length,
-            "num_pages" : Math.ceil(data.length/10).toString(),
-            "current_page": "1"
-          }
-        )
-          //this.current_page = this.DATA_ALL_QUEUES[0].current_page;
-          //sthis.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
-        this.dataSource_queue = this.DATA_ALL_QUEUES.slice(1)
-
-        this.dataSource_queue.forEach((a:any)=>{
-          if(this.LIST_LANGUAGE[1].indexOf(a.language) === -1){
-            this.LIST_LANGUAGE[1].push(a.language)            
-          }
-
-          if(this.LIST_QUEUE_ID[1].indexOf(a.queueid) === -1){
-            this.LIST_QUEUE_ID[1].push(a.queueid)            
-          }
-
-          if(this.LIST_QUEUE_NAME[1].indexOf(a.queuename) === -1){
-            this.LIST_QUEUE_NAME[1].push(a.queuename)            
-          }
-          if(this.LIST_CALL_TYPE[1].indexOf(a.calltype) === -1){
-            this.LIST_CALL_TYPE[1].push(a.calltype)            
-          }
-          if(this.LIST_PROVIDER[1].indexOf(a.provider) === -1){
-            this.LIST_PROVIDER[1].push(a.provider)            
-          }
-          
-        })
-
-        this.QUEUE = [
-          this.LIST_LANGUAGE,
-          this.LIST_QUEUE_ID,
-          this.LIST_QUEUE_NAME,
-          this.LIST_CALL_TYPE,
-          this.LIST_PROVIDER
-        ]
-          
-        console.log(this.QUEUE)
-        console.log(this.DATA_ALL_QUEUES)
-  
-      }    
-    )
-  }
-
-  getDataQueues(){
-    this.genesisService.getDataModal$().subscribe(
-      (data: any) => {    
-        this.DATA_ALL_QUEUES = data        
-        this.DATA_ALL_QUEUES.unshift(
-          {
-            "total_records": this.DATA_ALL_QUEUES.length,
-            "num_pages" : Math.ceil(data.length/10).toString(),
-            "current_page": "1"
-          }
-        )
-
-        this.current_page = this.DATA_ALL_QUEUES[0].current_page;
-        this.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
-        this.dataSource_queue = data.slice(1)
-      }
-    )
-  }
-
-  setQueues(item: any): void{
-
-    if (this.QUEUES_LIST.indexOf(item) === -1) {
-      this.QUEUES_LIST.push(item);
-    }
-    else {
-      this.QUEUES_LIST.splice(this.QUEUES_LIST.indexOf(item), 1);
-    } 
-
-    console.log(this.QUEUES_LIST) 
-  }
-
-  columnSelected(event: any, column: string){
-    if(column.split(' ').length > 1){
-      column =  column.replace(/\s+/g, '')
-    }
-
-    if (this.COLUMN_QUEUE_SELECT.indexOf(event.target.value) === -1) {
-      this.COLUMN_QUEUE_SELECT.push(event.target.value);
-    }
-    else {
-      this.COLUMN_QUEUE_SELECT.splice(this.COLUMN_QUEUE_SELECT.indexOf(event.target.value), 1);
-    }
-
-    if(this.COLUMN_QUEUE_SELECT.length > 0){
-      this.genesisService.searchByColumnQueue$(this.COLUMN_QUEUE_SELECT,column)
-    }else{
-      this.genesisService.getAllDataModal()     
-    }
-  }
-
-  setColumnQueue(item: any){
-    this.setQueues(item)
   }
   
 }

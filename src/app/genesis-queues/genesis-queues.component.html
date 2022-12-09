@@ -23,7 +23,7 @@
                 <button type="button" class="btn btn-light dropdown-toggle me-1" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                     Actions
                 </button>
-                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal()">
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Actions 2
                 </button>
                 <form class="dropdown-menu p-4">
@@ -91,81 +91,5 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen-xxl-down">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-2 modal-sidebar">
-                                <div class="cont-modal-sidebar">
-                                    <div class="p-3" >
-                                        <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Select:</label>
-                                  
-                                        <div class="p-3" style="background-color: white; border-radius: 5px; width: 100%; margin: auto">
-                                          <div class="form-check" *ngFor="let item of QUEUE">
-                                            <input type="checkbox" class="form-check-input" (click)="setColumnQueue(item)" [value]="item">
-                                            <label class="form-check-label">{{item[0]}}</label>
-                                          </div> 
-                                        </div>
-                                    </div>
-                                    <div class="p-3">          
-                                        <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Fiter Queue:</label>
-                                        <ul class="list-group">
-                                          <div class="border-bottom border-secondary" *ngFor="let item of QUEUES_LIST" style="background-color: white">
-                                            <label for="exampleDropdownFormEmail2" class="form-label fs-7 mt-3" style="color: black;font-weight: 500;padding: 3px 5px;">{{item[0]}}:</label>
-                                                      
-                                            <li class="list-group-item" *ngFor="let elm of item[1]" style="border: none">
-                                              <input class="form-check-input me-1" type="checkbox" (change)="columnSelected($event,item[0])" value="{{elm}}" id="{{elm}}">
-                                              <label class="form-check-label stretched-link" for="{{elm}}">{{elm}}</label>
-                                            </li>
-                                          </div>
-                                        </ul>
-                                    </div> 
-                                </div>
-                            </div>
-                            <div class="col-md-10">
-                                <div class="row justify-content-start px-2">
-                                    <div class="col-md-4">
-                                        <div class="input-group mb-3 pt-2">
-                                            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" #searchQueues>
-                                            <span class="input-group-text" id="basic-addon2">Search</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cont-modal-table">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Queue Name</th>
-                                                <th scope="col">Queue ID</th>
-                                                <th scope="col">Call Type</th>
-                                                <th scope="col">Language</th>
-                                                <th scope="col">Provider</th>
-                                                <th scope="col">Description</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let item of dataSource_queue" >                    
-                                                <td>{{item.queuename}}</td>
-                                                <td>{{item.queueid}}</td>
-                                                <td>{{item.calltype}}</td>
-                                                <td>{{item.language}}</td>
-                                                <td>{{item.provider}}</td>
-                                                <td>{{item.description}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-modal></app-modal>
 </div>

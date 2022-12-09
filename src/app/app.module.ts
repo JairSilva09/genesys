@@ -14,6 +14,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import { PaginationComponent } from './genesis-queues/pagination/pagination.component';
+import { ModalComponent } from './genesis-queues/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PaginationComponent } from './genesis-queues/pagination/pagination.comp
     MenuComponent,
     SideMenuComponent,
     GenesisQueuesComponent,
-    PaginationComponent
+    PaginationComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

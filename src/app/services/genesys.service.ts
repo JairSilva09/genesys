@@ -60,7 +60,9 @@ export class GenesysService {
 
       if(item.name.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.email.toLowerCase().indexOf(term.toLowerCase()) >= 0
         || item.queues.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.license.toLowerCase().indexOf(term.toLowerCase()) >= 0
-        || item.skill.toLowerCase().indexOf(term.toLowerCase()) >= 0){
+        || item.skill.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.department.toLowerCase().indexOf(term.toLowerCase()) >= 0
+        || item.agent.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.manager.toLowerCase().indexOf(term.toLowerCase()) >= 0
+        || item.predefinedgroup.toLowerCase().indexOf(term.toLowerCase()) >= 0){
           list.push(item)
       }
        
@@ -123,7 +125,7 @@ export class GenesysService {
     return this.shortlist$.asObservable();  
   }
 
-  //---------  modal ---------//
+  //------------  modal ------------//
 
   getAllDataModal$(): Observable<any[]>{     
     const data_queue =  of(DATA_QUEUE)
@@ -142,8 +144,27 @@ export class GenesysService {
     this.shortlistqueues$.next(list) 
   }
 
+  searchQueues$(term: string){
+    console.log(term)
+    
+    let list:any[] = [];
+    let paginatedList:any[] = DATA_QUEUE.slice(1); 
+      
+    paginatedList.forEach((item: any) => {
+
+      if(item.queuename.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.queueid.toLowerCase().indexOf(term.toLowerCase()) >= 0
+        || item.calltype.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.language.toLowerCase().indexOf(term.toLowerCase()) >= 0
+        || item.provider.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.description.toLowerCase().indexOf(term.toLowerCase()) >= 0){
+          list.push(item)
+      }
+       
+    })
+
+    this.shortlistqueues$.next(list)
+    
+  }
+
   searchByColumnQueue$(terms: string[],column: string){
-    console.log(column)
       
     let list:any[] = [];   
     let paginatedList:any[] = DATA_QUEUE.slice(1);

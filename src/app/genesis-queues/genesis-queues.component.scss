@@ -70,24 +70,3 @@
 
 }
 
-.modal-sidebar{
-    background-color: grey;
-    padding: 0;
-}
-
-.modal-body{
-    padding: 0;
-    .cont-modal-sidebar{
-        background-color: #1a2a5d;
-        display: flex;
-        flex-direction: column;
-        height: 88.5vh;
-        overflow-y: auto;
-    }
-
-    .cont-modal-table{
-        height: 78vh;
-        overflow-y: auto;
-    }
-}
-
