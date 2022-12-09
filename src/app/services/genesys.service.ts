@@ -1,7 +1,7 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, Subject, of } from 'rxjs';
-import { DATA } from './mock-data';
+import { DATA,DATA_QUEUE } from './mock-data';
 
 export interface SetItems { 
   name: string,
@@ -39,6 +39,9 @@ export class GenesysService {
    private SELECTED_OBJECTS: SetItems;
    private selectedObjects$: Subject<SetItems> = new Subject()
    private shortlist$: Subject<any[]> = new Subject()
+   //-------modal--------//
+   private shortlistqueues$: Subject<any[]> = new Subject()
+
  
  
   addItem(item: SetItems){
@@ -79,8 +82,6 @@ export class GenesysService {
        
       })
     })
-    
-    console.log(list)
     this.shortlist$.next(list)
     
   }
@@ -121,10 +122,46 @@ export class GenesysService {
   getDirectory$(): Observable<any[]>{    
     return this.shortlist$.asObservable();  
   }
- 
-  // getItems$(): Observable<any>{
-  //    return this.selectedObjects$.asObservable();    
-  // }
- 
-    //-------------end observable-----------//
+
+  //---------  modal ---------//
+
+  getAllDataModal$(): Observable<any[]>{     
+    const data_queue =  of(DATA_QUEUE)
+    return data_queue;
+  }
+
+  getDataModal$(): Observable<any[]>{    
+    return this.shortlistqueues$.asObservable(); 
+  }
+
+  getAllDataModal(): void{ 
+
+    let list:any[] = [];
+    list = list = DATA_QUEUE.slice(1);    
+    
+    this.shortlistqueues$.next(list) 
+  }
+
+  searchByColumnQueue$(terms: string[],column: string){
+    console.log(column)
+      
+    let list:any[] = [];   
+    let paginatedList:any[] = DATA_QUEUE.slice(1);
+
+    terms.forEach((a: any) => {
+
+      paginatedList.forEach((item: any) => {   
+
+        if(item[column.toLowerCase()].toLowerCase().indexOf(a.toLowerCase()) >= 0){
+          list.push(item)
+        }
+
+      })
+
+    })
+
+    this.shortlistqueues$.next(list)    
+  }
+  
+  //-------------end observable-----------//
 }

@@ -43,45 +43,23 @@ export class GenesisQueuesComponent implements OnInit{
     "Agent 1","Agent 2","Agent 3","Agent 4","Agent 5","Agent 6"
   ]
 
+  COLUMN_QUEUE_SELECT:string[] = [];
+
   QUEUE: any[] = [
-    "Call Types", "Language", "Provider", "Queue Name"
+    
   ]
 
-  QUEUES_LIST: any[] = [
-    "Queue 1", "Queue 2", "Queue 3", "Queue 4","Queue 5","Queue 6"
-  ]
-
+  QUEUES_LIST: any[] = []
+  LIST_LANGUAGE: any[] = ["Language",[]]
+  LIST_QUEUE_ID: any[] = ["Queue ID",[]]
+  LIST_QUEUE_NAME: any[] = ["Queue Name",[]]
+  LIST_CALL_TYPE: any[] = ["Call Type",[]]
+  LIST_PROVIDER: any[] = ["Provider",[]]
 
   ngOnInit(): void {
 
     this.getAll();
-    this.getDirectory();
-   
-    //this.setSelectedItems = localStorage.getItem('queueData')
-
-    // if(this.setSelectedItems != null){
-    //   this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
-    //   if(this.SELECTED_OBJECTS.level != ""){
-    //     this.chosenLevel = this.SELECTED_OBJECTS.level;
-    //     this.setNameLevel(this.SELECTED_OBJECTS.level)
-    //     this.levelSelect = true;
-    //   }
-
-    //   if(this.SELECTED_OBJECTS.nameQueue != ""){
-    //     this.chosenQueue = this.SELECTED_OBJECTS.nameQueue;
-    //   }
-      
-    //   this.getTextSetting(this.SELECTED_OBJECTS);
-
-    // }  
-   
-    // this.genesisService.getItems$().subscribe(setSelectedItems => {    
-    //   localStorage.setItem('queueData',JSON.stringify(setSelectedItems))
-    //   this.setSelectedItems = localStorage.getItem('queueData')
-    //   this.SELECTED_OBJECTS = JSON.parse(this.setSelectedItems)
-    //   this.getTextSetting(this.SELECTED_OBJECTS);
-      
-    // })
+    this.getDirectory();   
    
   }
 
@@ -101,20 +79,6 @@ export class GenesisQueuesComponent implements OnInit{
       .subscribe();
   }
   
-  // filterList(): void {
-  //   this.searchTerm$.subscribe(term => {
-  //     this.dataSource
-  //       .filter(item => item.toLowerCase().indexOf(term.toLowerCase()) >= 0);
-  //   });
-  // }
-
-  // SELECTED_OBJECTS: SetItems = {
-  //   level: "",
-  //   name :  [],
-  //   nameQueue: "",
-  //   queue : []
-  // 
-
   chosenLevel: string = "select menu";
   chosenQueue: string = "select menu";  
 
@@ -124,7 +88,9 @@ export class GenesisQueuesComponent implements OnInit{
 
   data: any= [];
   DATA_ALL: any[] = [];
+  DATA_ALL_QUEUES: any[] = [];
   dataSource: any[] = [];
+  dataSource_queue: any[] = [];
   observableSubs: any;
 
   getDirectory(): void{
@@ -165,8 +131,6 @@ export class GenesisQueuesComponent implements OnInit{
         this.current_page = this.DATA_ALL[0].current_page;
         this.num_pages = this.DATA_ALL[0].num_pages;
         this.dataSource = this.DATA_ALL.slice(1,11)
-        console.log(this.dataSource)
-
       }    
   
     )
@@ -292,6 +256,119 @@ export class GenesisQueuesComponent implements OnInit{
     this.dataSource = event.slice(1);
     this.current_page = event[0].current_page;
    
+  }
+
+  //================ MODAL ================//
+
+  openModal(){
+    this.getAllDataQueues(); 
+    this.getDataQueues();   
+  }
+
+  getAllDataQueues(){
+    this.genesisService.getAllDataModal$().subscribe(
+      (data: any)=>{
+        this.DATA_ALL_QUEUES = data
+  
+        this.DATA_ALL_QUEUES.unshift(
+          {
+            "total_records": this.DATA_ALL_QUEUES.length,
+            "num_pages" : Math.ceil(data.length/10).toString(),
+            "current_page": "1"
+          }
+        )
+          //this.current_page = this.DATA_ALL_QUEUES[0].current_page;
+          //sthis.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
+        this.dataSource_queue = this.DATA_ALL_QUEUES.slice(1)
+
+        this.dataSource_queue.forEach((a:any)=>{
+          if(this.LIST_LANGUAGE[1].indexOf(a.language) === -1){
+            this.LIST_LANGUAGE[1].push(a.language)            
+          }
+
+          if(this.LIST_QUEUE_ID[1].indexOf(a.queueid) === -1){
+            this.LIST_QUEUE_ID[1].push(a.queueid)            
+          }
+
+          if(this.LIST_QUEUE_NAME[1].indexOf(a.queuename) === -1){
+            this.LIST_QUEUE_NAME[1].push(a.queuename)            
+          }
+          if(this.LIST_CALL_TYPE[1].indexOf(a.calltype) === -1){
+            this.LIST_CALL_TYPE[1].push(a.calltype)            
+          }
+          if(this.LIST_PROVIDER[1].indexOf(a.provider) === -1){
+            this.LIST_PROVIDER[1].push(a.provider)            
+          }
+          
+        })
+
+        this.QUEUE = [
+          this.LIST_LANGUAGE,
+          this.LIST_QUEUE_ID,
+          this.LIST_QUEUE_NAME,
+          this.LIST_CALL_TYPE,
+          this.LIST_PROVIDER
+        ]
+          
+        console.log(this.QUEUE)
+        console.log(this.DATA_ALL_QUEUES)
+  
+      }    
+    )
+  }
+
+  getDataQueues(){
+    this.genesisService.getDataModal$().subscribe(
+      (data: any) => {    
+        this.DATA_ALL_QUEUES = data        
+        this.DATA_ALL_QUEUES.unshift(
+          {
+            "total_records": this.DATA_ALL_QUEUES.length,
+            "num_pages" : Math.ceil(data.length/10).toString(),
+            "current_page": "1"
+          }
+        )
+
+        this.current_page = this.DATA_ALL_QUEUES[0].current_page;
+        this.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
+        this.dataSource_queue = data.slice(1)
+      }
+    )
+  }
+
+  setQueues(item: any): void{
+
+    if (this.QUEUES_LIST.indexOf(item) === -1) {
+      this.QUEUES_LIST.push(item);
+    }
+    else {
+      this.QUEUES_LIST.splice(this.QUEUES_LIST.indexOf(item), 1);
+    } 
+
+    console.log(this.QUEUES_LIST) 
+  }
+
+  columnSelected(event: any, column: string){
+    if(column.split(' ').length > 1){
+      column =  column.replace(/\s+/g, '')
+    }
+
+    if (this.COLUMN_QUEUE_SELECT.indexOf(event.target.value) === -1) {
+      this.COLUMN_QUEUE_SELECT.push(event.target.value);
+    }
+    else {
+      this.COLUMN_QUEUE_SELECT.splice(this.COLUMN_QUEUE_SELECT.indexOf(event.target.value), 1);
+    }
+
+    if(this.COLUMN_QUEUE_SELECT.length > 0){
+      this.genesisService.searchByColumnQueue$(this.COLUMN_QUEUE_SELECT,column)
+    }else{
+      this.genesisService.getAllDataModal()     
+    }
+  }
+
+  setColumnQueue(item: any){
+    this.setQueues(item)
   }
   
 }

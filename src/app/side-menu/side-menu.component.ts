@@ -12,7 +12,7 @@ export class SideMenuComponent  {
   constructor(private genesisService: GenesysService) { }
 
   collapse: boolean = false;
-  //levelSelect:boolean = false;
+
   NAME: any[] =[];
 
   NAME_ITEM: any[] =[];
@@ -115,27 +115,8 @@ export class SideMenuComponent  {
     }
   }
 
-  // selectQueue(event: any){    
-  //   this.queueSelectList = true;
-  //   this.SELECTED_OBJECTS.nameQueue = event;
-  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
-  // }
-
   close_queue_list(){
     this.queueSelectList = false;
-  }
-
-  // chequedBoxQueue(item: any){
-  //   if(this.SELECTED_OBJECTS.queue.indexOf(item) === -1){
-  //     return false      
-  //   }else{
-  //     return true
-  //   }
-  // }
-
-  levelSelect(event: any){
-    console.log(event)
-
   }
 
 }
