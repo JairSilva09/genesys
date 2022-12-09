@@ -95,7 +95,7 @@ export class SideMenuComponent  {
     this.setNameLevel(event)   
   } 
 
-  nameItemSelected(event: any, column: string){
+  nameItemSelected(event: any, column: string){ 
 
     if(column.split(' ').length > 1){
       column =  column.replace(/\s+/g, '')
@@ -109,7 +109,7 @@ export class SideMenuComponent  {
     }
 
     if(this.NAME_LEVEL_SELECT.length > 0){
-      this.genesisService.searchByLevelName$(this.NAME_LEVEL_SELECT,column,this.current_page)
+      this.genesisService.searchByLevelName$(this.NAME_LEVEL_SELECT,column)
     }else{
       this.genesisService.getAllDirectory()     
     }

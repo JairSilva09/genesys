@@ -88,8 +88,8 @@ export class GenesysService {
     
   }
 
-  searchByLevelName$(terms: string[],column: string,page: string){
-      
+  searchByLevelName$(terms: string[],column: string){
+   
     let list:any[] = [];   
     let paginatedList:any[] = DATA.slice(1);
 
@@ -145,7 +145,6 @@ export class GenesysService {
   }
 
   searchQueues$(term: string){
-    console.log(term)
     
     let list:any[] = [];
     let paginatedList:any[] = DATA_QUEUE.slice(1); 

@@ -2,8 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
 import { debounceTime, distinctUntilChanged, filter, fromEvent, tap } from 'rxjs';
 import { GenesysService } from '../services/genesys.service';
-import { SetItems } from '../services/genesys.service';  
-
 
 @Component({
   selector: 'app-genesis-queues',
