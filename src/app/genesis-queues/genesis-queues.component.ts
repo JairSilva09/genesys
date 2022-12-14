@@ -42,7 +42,9 @@ export class GenesisQueuesComponent implements OnInit{
   ] 
 
   QUEUE: any[] = [];
-  
+
+  loadModalQueue:boolean = false;
+  loadModalGroups: boolean = false; 
 
   ngOnInit(): void {
     this.getAll();
@@ -89,13 +91,13 @@ export class GenesisQueuesComponent implements OnInit{
           {
             "total_records": this.DATA_ALL.length,
             "num_pages" : Math.ceil(data.length/10).toString(),
-            "current_page": "1"
+            "current_page": "1"           
           }
         )
 
         this.current_page = this.DATA_ALL[0].current_page;
         this.num_pages = this.DATA_ALL[0].num_pages;
-        this.dataSource = data.slice(1,11)
+        this.dataSource = data.slice(1,11)        
       }    
     ) 
   }
@@ -110,12 +112,17 @@ export class GenesisQueuesComponent implements OnInit{
           {
             "total_records": this.DATA_ALL.length,
             "num_pages" : Math.ceil(data.length/10).toString(),
-            "current_page": "1"
+            "current_page": "1"            
           }
         )
         this.current_page = this.DATA_ALL[0].current_page;
         this.num_pages = this.DATA_ALL[0].num_pages;
+        
+        this.DATA_ALL.slice(1,11).forEach((element: any)=>{
+          element.is_ckecked = false;
+        })
         this.dataSource = this.DATA_ALL.slice(1,11)
+        console.log(this.dataSource)
       }    
   
     )
@@ -243,4 +250,19 @@ export class GenesisQueuesComponent implements OnInit{
    
   }
   
+  alertCheckbox(event: any) {
+    console.log(event.target.checked)
+    let text = "Are you sure you want to select/deselect all these records?.";
+    if (confirm(text) == true) {   
+        this.checkValueAll(event.target.checked);
+    } else {
+      text = "Canceled!";
+    }
+  }
+
+  checkValueAll(checked: boolean){
+    this.dataSource.forEach((element: any) => {
+      element.is_ckecked = checked
+    }) 
+  }
 }

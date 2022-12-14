@@ -1,1 +1,17 @@
-<p>modal-predefined-group works!</p>
+<div class="modal fade" id="ModalGroupPredefined" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">        
+        <div class="modal-body">
+            <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: black">Predefined Group:</label>
+            <ul class="list-group cont-list-group">
+                <li class="list-group-item" *ngFor="let item of GROUPS" style="border: none">
+                  <input class="form-check-input me-1" type="checkbox" value="{{item}}" id="{{item}}">
+                  <label class="form-check-label" for="firstCheckbox">{{item}}</label>
+                </li>
+            </ul>
+            <button type="button" class="btn btn-light mt-3">Add</button>
+        </div>
+      </div>
+    </div>
+</div>
+

@@ -21,26 +21,12 @@
         <div class="col-md-3">
             <div class="dropdown">
                 
-                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#ModalQueue">
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#ModalQueue" (click)="loadModalQueue=true">
                     Actions 
                 </button>
-                <button type="button" class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#ModalGroupPredefined" (click)="loadModalGroups=true">
                     Add To Predefines
-                </button>
-                
-                <form class="dropdown-menu p-4">
-                    <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3">Skills</label>
-                    <div class="form-check" *ngFor="let item of QUEUE">
-                        <input type="checkbox" class="form-check-input" [value]="item" (click)="skillSelect($event)">
-                        <label class="form-check-label">{{item}}</label>
-                    </div>
-                    <hr class="dropdown-divider"> 
-                    <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3">Start rating</label>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input">
-                        <label class="form-check-label">1</label>
-                    </div>                  
-                </form>
+                </button>          
             </div>
         </div>
         <div class="col-md-2 offset-md-3">
@@ -54,7 +40,7 @@
                     <thead>
                       <tr>
                         <th scope="col">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" (change)="alertCheckbox($event)" value="" id="selectAllItems">
                         </th>
                         <th scope="col">Name</th>
                         <th scope="col">Active</th>
@@ -72,7 +58,7 @@
                     <tbody>
                       <tr *ngFor="let item of dataSource">
                         <th scope="row">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="{{item.name}}" id="name" [checked]="item.is_ckecked">
                         </th>
                         <td>{{item.name}}</td>
                         <td><mat-icon *ngIf="item.active;  else notActive" style="color: #06F85C">check</mat-icon>
@@ -94,4 +80,5 @@
         </div>
     </div>
     <app-modal></app-modal>
+    <app-modal-predefined-group [GROUPS]="PREDEFINEDGROUP"></app-modal-predefined-group>  
 </div>
