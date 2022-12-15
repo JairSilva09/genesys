@@ -13,12 +13,16 @@ export class GenesisQueuesComponent implements OnInit{
   @ViewChild('queues') queues!: MatListModule;
   @ViewChild('checkboxName') checkboxName!: MatListModule;
   @ViewChild('searchBar') searchBar!: ElementRef;
+  @ViewChild('selectAllItems') selectAllItems!: ElementRef;
 
   settingItems: any;
   setSelectedItems: any;
 
   num_pages: string = "";
-  current_page: string = "1"
+  current_page: string = "1";
+  ITEMS_PER_PAGE: number[] = [10,20,30,40,50,60,70,80,90,100]
+  num_item_page: number = 10;
+
 
   constructor(private genesisService: GenesysService) { }
 
@@ -90,14 +94,14 @@ export class GenesisQueuesComponent implements OnInit{
         this.DATA_ALL.unshift(
           {
             "total_records": this.DATA_ALL.length,
-            "num_pages" : Math.ceil(data.length/10).toString(),
+            "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
             "current_page": "1"           
           }
         )
 
         this.current_page = this.DATA_ALL[0].current_page;
         this.num_pages = this.DATA_ALL[0].num_pages;
-        this.dataSource = data.slice(1,11)        
+        this.dataSource = data.slice(1,this.num_item_page+1)        
       }    
     ) 
   }
@@ -111,17 +115,17 @@ export class GenesisQueuesComponent implements OnInit{
         this.DATA_ALL.unshift(
           {
             "total_records": this.DATA_ALL.length,
-            "num_pages" : Math.ceil(data.length/10).toString(),
+            "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
             "current_page": "1"            
           }
         )
         this.current_page = this.DATA_ALL[0].current_page;
         this.num_pages = this.DATA_ALL[0].num_pages;
         
-        this.DATA_ALL.slice(1,11).forEach((element: any)=>{
-          element.is_ckecked = false;
+        this.DATA_ALL.slice(1,this.num_item_page+1).forEach((element: any)=>{
+          element.is_checked = false;
         })
-        this.dataSource = this.DATA_ALL.slice(1,11)
+        this.dataSource = this.DATA_ALL.slice(1,this.num_item_page+1)
         console.log(this.dataSource)
       }    
   
@@ -244,25 +248,61 @@ export class GenesisQueuesComponent implements OnInit{
   }
 
   newPage(event: any){ 
-    console.log(event)
+    let count = 0; 
     this.dataSource = event.slice(1);
     this.current_page = event[0].current_page;
+    this.dataSource.forEach((item: any)=>{
+
+      if(item.is_checked == true){
+        count++;
+      }
+
+      if(count == this.num_item_page){
+        this.selectAllItems.nativeElement.checked = true
+      }else{
+        this.selectAllItems.nativeElement.checked = false
+      }
+      
+    })
+    console.log(count)
    
   }
   
-  alertCheckbox(event: any) {
-    console.log(event.target.checked)
-    let text = "Are you sure you want to select/deselect all these records?.";
-    if (confirm(text) == true) {   
-        this.checkValueAll(event.target.checked);
-    } else {
-      text = "Canceled!";
-    }
+  alertCheckbox(event: any) {    
+    this.checkValueAll(event.target.checked);
   }
 
   checkValueAll(checked: boolean){
     this.dataSource.forEach((element: any) => {
-      element.is_ckecked = checked
+      element.is_checked = checked
     }) 
+  }
+
+  itemSelect(event: any,item:any){
+    
+    let count= 0;    
+    
+    if(event.target.checked == false){
+      this.selectAllItems.nativeElement.checked = false
+      item.is_checked = false
+      
+    }else{
+      item.is_checked = true
+      this.dataSource.forEach((item: any)=>{
+
+        if(item.is_checked == true){
+          count++;
+        }       
+      })
+
+      if(count == this.num_item_page){
+        this.selectAllItems.nativeElement.checked = true
+      }
+    }
+  }
+
+  number_of_pages(num: number){
+    this.num_item_page = num;
+    this.genesisService.getAllDirectory();         
   }
 }

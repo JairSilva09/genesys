@@ -1,13 +1,13 @@
 <!-- Modal -->
 <div class="modal fade" id="ModalQueue" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-2 modal-sidebar">
                             <div class="cont-modal-sidebar">
-                                <div class="p-3" >
+                                <!-- <div class="p-3" >
                                     <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Select:</label>
                               
                                     <div class="p-3" style="background-color: white; border-radius: 5px; width: 100%; margin: auto">
@@ -16,9 +16,9 @@
                                         <label class="form-check-label">{{item[0]}}</label>
                                       </div> 
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="p-3">          
-                                    <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Fiter Queue:</label>
+                                    <!-- <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Fiter Queue:</label>
                                     <ul class="list-group">
                                       <div class="border-bottom border-secondary" *ngFor="let item of QUEUES_LIST" style="background-color: white">
                                         <label for="exampleDropdownFormEmail2" class="form-label fs-7 mt-3" style="color: black;font-weight: 500;padding: 3px 5px;">{{item[0]}}:</label>
@@ -28,11 +28,26 @@
                                           <label class="form-check-label stretched-link" for="{{elm}}">{{elm}}</label>
                                         </li>
                                       </div>
-                                    </ul>
+                                    </ul> -->
+                                    <mat-accordion>                                     
+                                        <mat-expansion-panel *ngFor="let item of QUEUE" (opened)="panelOpenState = true"
+                                                             (closed)="panelOpenState = false">
+                                            <mat-expansion-panel-header>
+                                                <mat-panel-title>
+                                                    {{item[0]}}
+                                                </mat-panel-title>                                                
+                                            </mat-expansion-panel-header>
+                                            <div class="form-check" *ngFor="let elm of item[1]">
+                                                <input type="checkbox" class="form-check-input" (change)="columnSelected($event,item[0])" value="{{elm}}" id="{{elm}}">
+                                                <label class="form-check-label">{{elm}}</label>
+                                            </div>                                           
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
                                 </div> 
                             </div>
                         </div>
-                        <div class="col-md-10">
+                        
+                        <div class="col-md-10">                            
                             <div class="row justify-content-start px-2">
                                 <div class="col-md-4">
                                     <div class="input-group mb-3 pt-2">
@@ -40,13 +55,26 @@
                                         <span class="input-group-text" id="basic-addon2">Search</span>
                                     </div>
                                 </div>
+                                <div class="col-md-2">
+                                    <div class="btn-group mb-3 pt-2">
+                                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                                            {{num_item_page}}
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                          <li *ngFor="let item of ITEMS_PER_PAGE" class="dropdown-item"(click)="number_of_pages(item)" style="cursor: pointer">{{item}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
+                          
                             <div class="cont-modal-table">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Queue Name</th>
-                                            <th scope="col">Queue ID</th>
+                                            <th>
+                                                <input class="form-check-input" type="checkbox" (change)="alertCheckbox($event)" value="" #selectAllQueues>
+                                            </th>
+                                            <th scope="col">Queue Name</th>                                          
                                             <th scope="col">Call Type</th>
                                             <th scope="col">Language</th>
                                             <th scope="col">Provider</th>
@@ -54,9 +82,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of dataSource_queue" >                    
-                                            <td>{{item.queuename}}</td>
-                                            <td>{{item.queueid}}</td>
+                                        <tr *ngFor="let item of dataSource_queue" >
+                                            <td>
+                                                <input class="form-check-input" type="checkbox" (change)="itemSelect($event,item)" value="{{item.queuename}}" id="{{item.queuename}}" [checked]="item.is_checked">
+                                            </td>                    
+                                            <td>{{item.queuename}}</td>                                           
                                             <td>{{item.calltype}}</td>
                                             <td>{{item.language}}</td>
                                             <td>{{item.provider}}</td>
@@ -70,7 +100,10 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-light mx-1" (click)="save_Selected_Queues()" style="background-color:#1a2a5d; color: white">
+                    Save 
+                </button> 
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

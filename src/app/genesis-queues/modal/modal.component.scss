@@ -1,21 +1,28 @@
 .modal-sidebar{
+    height: 85vh;
     background-color: grey;
     padding: 0;
 }
 
 .modal-body{
     padding: 0;
+    height: 85vh;
     .cont-modal-sidebar{
         background-color: #1a2a5d;
         display: flex;
         flex-direction: column;
-        height: 88.5vh;
+        height: 85vh;
         overflow-y: auto;
     }
 
     .cont-modal-table{
-        height: 78vh;
+        height: 75vh;
         overflow-y: auto;
+    }
+    
+    .btn-light:hover{
+        background-color: #1a2a5d;
+        color: white;
     }
 }
 

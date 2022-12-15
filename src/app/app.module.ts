@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { PaginationComponent } from './genesis-queues/pagination/pagination.component';
 import { ModalComponent } from './genesis-queues/modal/modal.component';
 import { ModalPredefinedGroupComponent } from './genesis-queues/modal-predefined-group/modal-predefined-group.component';
@@ -36,7 +37,8 @@ import { ModalPredefinedGroupComponent } from './genesis-queues/modal-predefined
     MatSelectModule,
     FormsModule,
     MatListModule,
-    MatIconModule,    
+    MatIconModule,
+    MatExpansionModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]
