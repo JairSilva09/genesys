@@ -18,9 +18,8 @@
                 <span class="input-group-text" id="basic-addon2">Search</span>
             </div> 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="dropdown">
-                
                 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#ModalQueue" (click)="loadModalQueue=true">
                     Add Queues 
                 </button>
@@ -39,7 +38,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-2 offset-md-1">
+        <div class="col-md-2">
             <app-pagination [records]="DATA_ALL" [current_page]="current_page" [total_pages]="num_pages"(newPage)="newPage($event)"></app-pagination>
         </div>
     </div>
@@ -86,5 +85,5 @@
         </div>
     </div>
     <app-modal></app-modal>
-    <app-modal-predefined-group [GROUPS]="PREDEFINEDGROUP"></app-modal-predefined-group>  
+    <app-modal-predefined-group></app-modal-predefined-group>  
 </div>

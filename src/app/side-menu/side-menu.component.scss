@@ -103,3 +103,18 @@
         background-color: rgb(242, 242, 241);
     }
 }
+
+.cont-side-bar::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.cont-side-bar::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+.cont-side-bar::-webkit-scrollbar-thumb {
+  background: #283e90;
+  border-radius: 10px;
+}

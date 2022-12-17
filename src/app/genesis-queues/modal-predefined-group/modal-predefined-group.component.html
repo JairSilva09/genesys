@@ -2,13 +2,16 @@
     <div class="modal-dialog">
       <div class="modal-content">        
         <div class="modal-body">
-            <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: black">Predefined Group:</label>
-            <ul class="list-group cont-list-group">
-                <li class="list-group-item" *ngFor="let item of GROUPS" style="border: none">
+            <p>Predefined Group: {{predefinedGroup}}</p>
+            <div *ngFor="let item of GROUPS">
+              <label class="mt-2">{{item[0]}}</label>
+              <ul class="list-group cont-list-group" *ngFor="let elm of item[1]">                
+                <li class="list-group-item" *ngFor="let item of elm" style="border: none">
                   <input class="form-check-input me-1" type="checkbox" value="{{item}}" id="{{item}}">
                   <label class="form-check-label" for="firstCheckbox">{{item}}</label>
                 </li>
-            </ul>
+              </ul>
+            </div>            
             <button type="button" class="btn btn-light mt-3">Add</button>
         </div>
       </div>

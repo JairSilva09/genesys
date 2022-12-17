@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { GenesysService, SetItems } from '../services/genesys.service';
 
 @Component({
@@ -7,35 +7,26 @@ import { GenesysService, SetItems } from '../services/genesys.service';
   styleUrls: ['./side-menu.component.scss']
 })
 
-export class SideMenuComponent  {
+export class SideMenuComponent implements OnInit {
 
-  constructor(private genesisService: GenesysService) { }
+  constructor(private genesisService: GenesysService) {}
+
+  ngOnInit(): void {
+
+    this.genesisService.getPredefinedGroup().subscribe(
+      (data: any) =>{
+        this.DATA_PREDEFINED_GROUP = data     
+      }      
+    )       
+  }
 
   collapse: boolean = false;
 
   NAME: any[] =[];
 
-  NAME_ITEM: any[] =[];
+  NAME_ITEM: any[] =[]; 
 
-  AGENT: any[] =[
-    "Agent 1","Agent 2","Agent 3","Agent 4","Agent 5","Agent 6"
-  ]
-
-  MANAGER: any[] =[
-    "Manager 1","Manager 2","Manager 3","Manager 4","Manager 5","Manager 6"
-  ];
-  DEPARTMENT: any[] =[
-    "AT&T","CenturyLink","Cable","Dish","Frontier","HughesNet"
-  ];
-
-  PREDEFINEDGROUP: any[] =[
-    "ATT P1 Cooper Overflow","ATT P1 Fiber Overflow","Hughes Backup","Example Y","Example Z"
-  ];
-
-  LEVEL: any[] =[
-    [
-      "Agent",["Agent 1","Agent 2","Agent 3","Agent 4","Agent 5","Agent 6"]
-    ],
+  LEVEL: any[] =[    
     [
       "Manager",["Manager 1","Manager 2","Manager 3","Manager 4","Manager 5","Manager 6"]
     ],
@@ -58,12 +49,8 @@ export class SideMenuComponent  {
     "Queue 1", "Queue 2", "Queue 3", "Queue 4","Queue 5","Queue 6"
   ]
 
-  SELECTED_OBJECTS = {
-    level: "",
-    name :  [],
-    nameQueue: "",
-    queue : []
-  }
+  SELECTED_FILTERS: any[] = [];
+  DATA_PREDEFINED_GROUP: any = {}
 
   chosenLevel: string = "select menu";
   chosenQueue: string = "select menu";
@@ -95,7 +82,13 @@ export class SideMenuComponent  {
     this.setNameLevel(event)   
   } 
 
-  nameItemSelected(event: any, column: string){ 
+  nameItemSelected(event: any, column: string){
+    let elm = {
+      "column": column,
+      "event": event
+    }
+
+    this.setPredefinedGroup(event.target.value,column);
 
     if(column.split(' ').length > 1){
       column =  column.replace(/\s+/g, '')
@@ -103,13 +96,41 @@ export class SideMenuComponent  {
  
     if (this.NAME_LEVEL_SELECT.indexOf(event.target.value) === -1) {
       this.NAME_LEVEL_SELECT.push(event.target.value);
+  
+      this.SELECTED_FILTERS.push(elm)
     }
     else {
       this.NAME_LEVEL_SELECT.splice(this.NAME_LEVEL_SELECT.indexOf(event.target.value), 1);
+      this.SELECTED_FILTERS.splice(this.SELECTED_FILTERS.indexOf(elm),1)
     }
 
     if(this.NAME_LEVEL_SELECT.length > 0){
       this.genesisService.searchByLevelName$(this.NAME_LEVEL_SELECT,column)
+    }else{
+      this.genesisService.getAllDirectory()     
+    }
+  
+  }
+
+  setPredefinedGroup(event: string, column:string){
+    if(column == "Predefined Group"){
+      this.DATA_PREDEFINED_GROUP.predefineGruopName = event;
+    }else{
+      this.DATA_PREDEFINED_GROUP.data[column] == undefined?this.DATA_PREDEFINED_GROUP.data[column] = [event]:this.DATA_PREDEFINED_GROUP.data[column].indexOf(event)=== -1?this.DATA_PREDEFINED_GROUP.data[column].push(event):this.DATA_PREDEFINED_GROUP.data[column].splice(this.DATA_PREDEFINED_GROUP.data[column].indexOf(event),1)
+    }
+
+    this.genesisService.addItem(this.DATA_PREDEFINED_GROUP)
+  
+  }
+
+  deleteFilter(filter: any){
+    this.setPredefinedGroup(filter.event.target.value,filter.column);
+    this.SELECTED_FILTERS.splice(this.SELECTED_FILTERS.indexOf(filter), 1);    
+    this.NAME_LEVEL_SELECT.splice(this.NAME_LEVEL_SELECT.indexOf(filter.event.target.value), 1);
+    filter.event.target.checked = false;
+
+    if(this.NAME_LEVEL_SELECT.length > 0){
+      this.genesisService.searchByLevelName$(this.NAME_LEVEL_SELECT,"department")
     }else{
       this.genesisService.getAllDirectory()     
     }

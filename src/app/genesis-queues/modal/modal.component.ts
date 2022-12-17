@@ -21,6 +21,8 @@ export class ModalComponent implements OnInit{
   dataSource_queue: any[] = [];
   COLUMN_QUEUE_SELECT:string[] = [];
 
+  SELECTED_FILTER_QUEUES: any[] = []
+
   ITEMS_PER_PAGE: number[] = [10,20,30,40,50,60,70,80,90,100]
   num_item_page: number = 10;
 
@@ -33,9 +35,17 @@ export class ModalComponent implements OnInit{
 
   panelOpenState = false;
 
+  DATA_PREDEFINED_GROUP: any = {}
+
   ngOnInit(): void {
     this.getAllDataQueues(); 
-    this.getDataQueues();    
+    this.getDataQueues();
+    this.genesisService.getPredefinedGroup().subscribe(
+      (data: any) =>{
+        this.DATA_PREDEFINED_GROUP = data
+        console.log(this.DATA_PREDEFINED_GROUP)     
+      }      
+    )     
   }
 
   ngAfterViewInit(){
@@ -54,7 +64,6 @@ export class ModalComponent implements OnInit{
       .subscribe();
   }
 
-
   getAllDataQueues(){
     this.genesisService.getAllDataModal$().subscribe(
       (data: any)=>{
@@ -67,9 +76,9 @@ export class ModalComponent implements OnInit{
             "current_page": "1"
           }
         )
-          //this.current_page = this.DATA_ALL_QUEUES[0].current_page;
-          //sthis.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
         
+        this.current_page = this.DATA_ALL_QUEUES[0].current_page;
+        this.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
 
         this.DATA_ALL_QUEUES.slice(1,this.num_item_page+1).forEach((element: any)=>{
           element.is_checked = false;
@@ -77,9 +86,13 @@ export class ModalComponent implements OnInit{
 
         this.dataSource_queue = this.DATA_ALL_QUEUES.slice(1,this.num_item_page+1)
 
-        this.dataSource_queue.forEach((a:any)=>{
-          if(this.LIST_LANGUAGE[1].indexOf(a.language) === -1){
-            this.LIST_LANGUAGE[1].push(a.language)            
+        this.DATA_ALL_QUEUES.slice(1).forEach((a:any)=>{
+
+          if(a.language != undefined){
+            
+            if(this.LIST_LANGUAGE[1].indexOf(a.language) === -1){
+              this.LIST_LANGUAGE[1].push(a.language)            
+            }
           }
          
           if(this.LIST_CALL_TYPE[1].indexOf(a.calltype) === -1){
@@ -89,17 +102,13 @@ export class ModalComponent implements OnInit{
             this.LIST_PROVIDER[1].push(a.provider)            
           }
           
-        })
+        })  
 
         this.QUEUE = [
           this.LIST_LANGUAGE,
           this.LIST_CALL_TYPE,
           this.LIST_PROVIDER
         ]
-          
-        console.log(this.QUEUE)
-        console.log(this.dataSource_queue)
-  
       }    
     )
   }
@@ -135,20 +144,33 @@ export class ModalComponent implements OnInit{
     else {
       this.QUEUES_LIST.splice(this.QUEUES_LIST.indexOf(item), 1);
     } 
-
-    console.log(this.QUEUES_LIST) 
   }
 
   columnSelected(event: any, column: string){
+    
+    let elm = {
+      "column": column,
+      "event": event,
+      "value": event.target.value,
+    }
+    
+    this.setPredefinedGroup(event.target.value,column);
+
     if(column.split(' ').length > 1){
       column =  column.replace(/\s+/g, '')
     }
 
     if (this.COLUMN_QUEUE_SELECT.indexOf(event.target.value) === -1) {
       this.COLUMN_QUEUE_SELECT.push(event.target.value);
+      this.SELECTED_FILTER_QUEUES.push(elm)
+      console.log(this.SELECTED_FILTER_QUEUES)
     }
     else {
+      console.log(this.SELECTED_FILTER_QUEUES)
+      console.log(elm)
       this.COLUMN_QUEUE_SELECT.splice(this.COLUMN_QUEUE_SELECT.indexOf(event.target.value), 1);
+      this.SELECTED_FILTER_QUEUES.splice(this.SELECTED_FILTER_QUEUES.indexOf(elm),1)
+      
     }
 
     if(this.COLUMN_QUEUE_SELECT.length > 0){
@@ -158,10 +180,16 @@ export class ModalComponent implements OnInit{
     }
   }
 
-  alertCheckbox(event: any) {    
-   
+  setPredefinedGroup(event: string, column:string){
+     
+    this.DATA_PREDEFINED_GROUP.data[column] == undefined?this.DATA_PREDEFINED_GROUP.data[column] = [event]:this.DATA_PREDEFINED_GROUP.data[column].indexOf(event)=== -1?this.DATA_PREDEFINED_GROUP.data[column].push(event):this.DATA_PREDEFINED_GROUP.data[column].splice(this.DATA_PREDEFINED_GROUP.data[column].indexOf(event),1)
+
+    this.genesisService.addItem(this.DATA_PREDEFINED_GROUP)
+  
+  }
+
+  alertCheckbox(event: any) {  
      this.checkValueAll(event.target.checked);
-   
   }
 
   checkValueAll(checked: boolean){
@@ -215,5 +243,37 @@ export class ModalComponent implements OnInit{
   number_of_pages(num: number){
     this.num_item_page = num;
     this.genesisService.getAllDataModal()         
+  }
+
+  newPage(event: any){ 
+    let count = 0; 
+    this.dataSource_queue = event.slice(1);
+    this.current_page = event[0].current_page;
+    this.dataSource_queue.forEach((item: any)=>{
+
+      if(item.is_checked == true){
+        count++;
+      }
+
+      if(count == this.num_item_page){
+        this.selectAllQueues.nativeElement.checked = true
+      }else{
+        this.selectAllQueues.nativeElement.checked = false
+      }
+      
+    })
+  }
+
+  deleteFilter(filter: any){
+    this.setPredefinedGroup(filter.event.target.value,filter.column);
+    this.SELECTED_FILTER_QUEUES.splice(this.SELECTED_FILTER_QUEUES.indexOf(filter), 1);    
+    this.COLUMN_QUEUE_SELECT.splice(this.COLUMN_QUEUE_SELECT.indexOf(filter.event.target.value), 1);
+    filter.event.target.checked = false;
+
+    if(this.COLUMN_QUEUE_SELECT.length > 0){
+      this.genesisService.searchByColumnQueue$(this.COLUMN_QUEUE_SELECT,"language")
+    }else{
+      this.genesisService.getAllDataModal()     
+    } 
   }
 }

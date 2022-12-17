@@ -9,9 +9,15 @@
     </div>
   </nav>
   <div class="collapse" id="sideMenuGenesys" style="margin-top: 75px">
+   
+    <div class="px-3 pb-1" style="border-radius: 5px; width: 100%; margin: auto">
+      <li *ngFor="let item of SELECTED_FILTERS" class="list-group-item d-flex justify-content-between px-3 py-2" style="background-color: white;">
+          {{item.event.target.value}}
+        <span (click)="deleteFilter(item)" style="cursor: pointer">X</span>
+      </li>
+    </div>
     <div class="p-3" >
       <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Add to:</label>
-
       <div class="p-3" style="background-color: white; border-radius: 5px; width: 100%; margin: auto">
         <div class="form-check" *ngFor="let item of LEVEL">
           <input type="checkbox" class="form-check-input" (click)="selectLevel(item)" [value]="item">

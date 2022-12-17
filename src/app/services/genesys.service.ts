@@ -12,45 +12,38 @@ export interface SetItems {
   license: string
 }
 
-// export interface SetItems {
-//   level: string;
-//   name: string[];
-//   nameQueue: string;
-//   queue: string[];
-// }
-
 @Injectable({
   providedIn: 'root'
 })
 export class GenesysService {
 
-  constructor() {
-    this.SELECTED_OBJECTS = {
-      name: "",
-      active: true,
-      email: "",
-      queues: "",
-      skill:  "",
-      license: ""
-    }
-  }
+  public SELECTED_OBJECTS: any = {
+    "predefineGruopName": "No group",
+   "data": {}
+  };
+  private selectedObjects$: Subject<any> = new Subject()
 
-   //-------------observable-----------//
-   private SELECTED_OBJECTS: SetItems;
-   private selectedObjects$: Subject<SetItems> = new Subject()
+  constructor() {}
+
+   //-------------observable-----------//  
    private shortlist$: Subject<any[]> = new Subject()
    //-------modal--------//
    private shortlistqueues$: Subject<any[]> = new Subject()
-
  
- 
-  addItem(item: SetItems){
-    
-      this.SELECTED_OBJECTS = item
-      this.selectedObjects$.next(this.SELECTED_OBJECTS);
-
+  addItem(item: any){    
+    this.SELECTED_OBJECTS = item
+    this.selectedObjects$.next(this.SELECTED_OBJECTS);
   }
 
+  getPredefinedGroup$(): Observable<any>{    
+    return this.selectedObjects$.asObservable();  
+  }
+
+  getPredefinedGroup(): Observable<any>{ 
+    const predefinedGroup = of(this.SELECTED_OBJECTS)   
+    return predefinedGroup;  
+  }
+    
   search$(term: string){
     
     let list:any[] = [];
@@ -170,18 +163,19 @@ export class GenesysService {
 
     terms.forEach((a: any) => {
 
-      paginatedList.forEach((item: any) => {   
-
-        if(item[column.toLowerCase()].toLowerCase().indexOf(a.toLowerCase()) >= 0){
-          list.push(item)
+      paginatedList.forEach((item: any) => { 
+        if(item[column.toLowerCase()] != undefined && item[column.toLowerCase()] != 0){        
+          if(item[column.toLowerCase()].toLowerCase().indexOf(a.toLowerCase()) >= 0){
+            list.push(item)
+          }
         }
-
       })
-
     })
 
     this.shortlistqueues$.next(list)    
   }
+
+  //------------ predefined groups data ------------//
   
   //-------------end observable-----------//
 }

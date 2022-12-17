@@ -23,7 +23,6 @@ export class GenesisQueuesComponent implements OnInit{
   ITEMS_PER_PAGE: number[] = [10,20,30,40,50,60,70,80,90,100]
   num_item_page: number = 10;
 
-
   constructor(private genesisService: GenesysService) { }
 
   SKILL_SELECT: any[] =[]
@@ -40,10 +39,6 @@ export class GenesisQueuesComponent implements OnInit{
   PREDEFINEDGROUP: any[] =[
     "ATT P1 Cooper Overflow","ATT P1 Fiber Overflow","Hughes Backup","Example Y","Example Z"
   ];
-
-  AGENT: any[] =[
-    "Agent 1","Agent 2","Agent 3","Agent 4","Agent 5","Agent 6"
-  ] 
 
   QUEUE: any[] = [];
 
@@ -87,9 +82,7 @@ export class GenesisQueuesComponent implements OnInit{
   getDirectory(): void{
     this.genesisService.getDirectory$().subscribe(
       (data: any) => {
-        // this.dataSource = data.slice(1)
-        // this.current_page = data[0].current_page 
-        // this.num_pages = data[0].num_pages
+            
         this.DATA_ALL = data        
         this.DATA_ALL.unshift(
           {
@@ -125,8 +118,7 @@ export class GenesisQueuesComponent implements OnInit{
         this.DATA_ALL.slice(1,this.num_item_page+1).forEach((element: any)=>{
           element.is_checked = false;
         })
-        this.dataSource = this.DATA_ALL.slice(1,this.num_item_page+1)
-        console.log(this.dataSource)
+        this.dataSource = this.DATA_ALL.slice(1,this.num_item_page+1)     
       }    
   
     )
@@ -139,14 +131,11 @@ export class GenesisQueuesComponent implements OnInit{
             text += obj[key]+" ";
         }
       }
-      text += "\n"
-      this.settingItems = text;
+    text += "\n"
+    this.settingItems = text;
   }
 
   setNameLevel(level: string): void{
-    if(level == "Agent"){
-      this.NAME = this.AGENT;
-    }
 
     if(level == "Manager"){
       this.NAME = this.MANAGER;

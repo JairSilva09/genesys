@@ -1,7 +1,6 @@
-.modal-sidebar{
-    height: 85vh;
-    background-color: grey;
+.modal-sidebar{  
     padding: 0;
+    height: 85vh;      
 }
 
 .modal-body{
@@ -14,9 +13,28 @@
         height: 85vh;
         overflow-y: auto;
     }
+    //-------------modal side bar---------//
+    /* Track */
+    .cont-modal-sidebar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .cont-modal-sidebar::-webkit-scrollbar-track {
+        background: white;
+    }
+
+    /* Handle */
+    .cont-modal-sidebar::-webkit-scrollbar-thumb {
+        background: #283e90;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    .cont-modal-sidebar::-webkit-scrollbar-thumb:hover {
+        background: #283e90;
+    }
 
     .cont-modal-table{
-        height: 75vh;
+        height: 73vh;
         overflow-y: auto;
     }
     
@@ -25,4 +43,30 @@
         color: white;
     }
 }
+
+.cont-modal-table::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+.cont-modal-table::-webkit-scrollbar-track {
+    background: white;
+}
+
+/* Handle */
+.cont-modal-table::-webkit-scrollbar-thumb {
+    background: #283e90;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.cont-modal-table::-webkit-scrollbar-thumb:hover {
+    background: #283e90;
+}
+
+
+
+
+
+
 

@@ -7,28 +7,13 @@
                     <div class="row">
                         <div class="col-md-2 modal-sidebar">
                             <div class="cont-modal-sidebar">
-                                <!-- <div class="p-3" >
-                                    <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Select:</label>
-                              
-                                    <div class="p-3" style="background-color: white; border-radius: 5px; width: 100%; margin: auto">
-                                      <div class="form-check" *ngFor="let item of QUEUE">
-                                        <input type="checkbox" class="form-check-input" (click)="setColumnQueue(item)" [value]="item">
-                                        <label class="form-check-label">{{item[0]}}</label>
-                                      </div> 
-                                    </div>
-                                </div> -->
-                                <div class="p-3">          
-                                    <!-- <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Fiter Queue:</label>
-                                    <ul class="list-group">
-                                      <div class="border-bottom border-secondary" *ngFor="let item of QUEUES_LIST" style="background-color: white">
-                                        <label for="exampleDropdownFormEmail2" class="form-label fs-7 mt-3" style="color: black;font-weight: 500;padding: 3px 5px;">{{item[0]}}:</label>
-                                                  
-                                        <li class="list-group-item" *ngFor="let elm of item[1]" style="border: none">
-                                          <input class="form-check-input me-1" type="checkbox" (change)="columnSelected($event,item[0])" value="{{elm}}" id="{{elm}}">
-                                          <label class="form-check-label stretched-link" for="{{elm}}">{{elm}}</label>
-                                        </li>
-                                      </div>
-                                    </ul> -->
+                                <div class="px-3 pb-1 mt-2" style="border-radius: 5px; width: 100%">
+                                    <li *ngFor="let item of SELECTED_FILTER_QUEUES" class="list-group-item d-flex justify-content-between px-3 py-2" style="background-color: white;">
+                                        {{item.event.target.value}}
+                                      <span (click)="deleteFilter(item)" style="cursor: pointer">X</span>
+                                    </li>
+                                </div>                                                            
+                                <div class="p-3">         
                                     <mat-accordion>                                     
                                         <mat-expansion-panel *ngFor="let item of QUEUE" (opened)="panelOpenState = true"
                                                              (closed)="panelOpenState = false">
@@ -61,9 +46,12 @@
                                             {{num_item_page}}
                                         </button>
                                         <ul class="dropdown-menu">
-                                          <li *ngFor="let item of ITEMS_PER_PAGE" class="dropdown-item"(click)="number_of_pages(item)" style="cursor: pointer">{{item}}</li>
+                                          <li *ngFor="let item of ITEMS_PER_PAGE" class="dropdown-item" (click)="number_of_pages(item)" style="cursor: pointer">{{item}}</li>
                                         </ul>
                                     </div>
+                                </div>
+                                <div class="col-md-3 mb-3 pt-2 offset-md-3">
+                                    <app-pagination [records]="DATA_ALL_QUEUES" [current_page]="current_page" [total_pages]="num_pages" (newPage)="newPage($event)"></app-pagination>
                                 </div>
                             </div>
                           
