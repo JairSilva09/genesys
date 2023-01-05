@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { GenesysInterceptorService } from './services/genesys-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -40,9 +40,16 @@ import { ModalPredefinedGroupComponent } from './genesis-queues/modal-predefined
     MatListModule,
     MatIconModule,
     MatExpansionModule,
-    HttpClientModule,   
+    HttpClientModule,
+       
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GenesysInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

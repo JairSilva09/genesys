@@ -1,9 +1,10 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, Subject, of } from 'rxjs';
+import { Observable, BehaviorSubject, Subject, of,throwError } from 'rxjs';
 import { DATA,DATA_QUEUE } from './mock-data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import {Buffer} from 'buffer';
 
 
 export interface SetItems { 
@@ -24,38 +25,44 @@ export class GenesysService {
   constructor(private http: HttpClient) {}
 
   private baseUrl = "https://api.usw2.pure.cloud";
-  private token = "uTvxTNhGQw9dPhMApqrUn6liHEwhVDyC31njJ2CIpwQjr7xvTkXqcPGhmSDaB5Dj3SrRfoeMnFgl33chWRp6wA"
+  private loginUrl = "https://login.usw2.pure.cloud/oauth/token";
+  token =  ''
 
-  httpOptions = {
-    headers: new HttpHeaders(
-        { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.token}`
-        }
-      )
-  };
+ /*Hacemos el login */
+ 
+  getLogin(user: any){
+    let clientId = '45fe7e80-b705-4f0c-bca8-d98d3f70afa5';
+    let clientSecret = '8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU';
+    let encodedData = Buffer.from(clientId + ':' + clientSecret).toString('base64');
+    let authorizationHeaderString = 'Authorization: Basic ' + encodedData;
 
-  login={
-    "username": "45fe7e80-b705-4f0c-bca8-d98d3f70afa5",
-    "password": "8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU"
-  }
+    const header = new HttpHeaders({
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": authorizationHeaderString
+    });
 
-  getLogin$(login: any){
-    return this.http.post('https://login.usw2.pure.cloud/oauth/token',login).subscribe(
-      (data:any) =>{
-        console.log(data)
-      }
+    return this.http.post(this.loginUrl,header).pipe(
+      catchError((err) => {
+        console.log('error caught in service')
+        console.error(err);
+
+        //Handle the error here
+
+        return throwError(err);    //Rethrow it back to component
+      })
     )
   }
 
+  /*Obtenemos todos los agentes */
+
   getAllDirectory$(page: string) {
-    this.getLogin$(this.login)     
-    return this.http.get(this.baseUrl+'/api/v2/users',this.httpOptions)
+    
+    return this.http.get(this.baseUrl+'/api/v2/users')
   }
 
   getAgent$(page: string) {
     let id = "221ce8e4-0481-47ea-94eb-605f99a1805c"     
-    return this.http.get(this.baseUrl+'/api/v2/users/'+id,this.httpOptions)
+    return this.http.get(this.baseUrl+'/api/v2/users/'+id)
   }
 
   //------------------------------------------------------------------------//

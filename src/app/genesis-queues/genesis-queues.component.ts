@@ -25,6 +25,11 @@ export class GenesisQueuesComponent implements OnInit{
 
   constructor(private genesisService: GenesysService) { }
 
+  user = {
+    client_id: "45fe7e80-b705-4f0c-bca8-d98d3f70afa5",
+    client_secret: "8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU"
+  } 
+
   SKILL_SELECT: any[] =[]
 
   NAME: any[] =[];
@@ -46,13 +51,34 @@ export class GenesisQueuesComponent implements OnInit{
   loadModalGroups: boolean = false; 
 
   ngOnInit(): void {
+
+    /*llamamos la funcion para hecer el login*/
+    this.getLogin();   
+
     this.getAll();
     this.getDirectory(); 
-    this.genesisService.getAgent$("1").subscribe(
-      (data: any)=>{
-        console.log(data)
-      }      
-    )  
+    // this.genesisService.getAgent$("1").subscribe(
+    //   (data: any)=>{
+    //     console.log(data)
+    //   }      
+    // )  
+  }
+
+  /*Hacemos el login nos debe devolver un token */
+
+   getLogin(){
+
+    this.genesisService.getLogin(this.user).subscribe((response: any)=>{
+      if( response && response.token ){
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('refresh_token', response.refresh_token);
+      }else{
+        if( response.error ){
+          console.log(response.error);
+          return response.error;
+        }
+      }
+    })
   }
 
   ngAfterViewInit(){
