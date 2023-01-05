@@ -37,13 +37,14 @@ export class ModalComponent implements OnInit{
 
   DATA_PREDEFINED_GROUP: any = {}
 
+  column: string = "";
+
   ngOnInit(): void {
     this.getAllDataQueues(); 
     this.getDataQueues();
     this.genesisService.getPredefinedGroup().subscribe(
       (data: any) =>{
-        this.DATA_PREDEFINED_GROUP = data
-        console.log(this.DATA_PREDEFINED_GROUP)     
+        this.DATA_PREDEFINED_GROUP = data          
       }      
     )     
   }
@@ -94,7 +95,7 @@ export class ModalComponent implements OnInit{
               this.LIST_LANGUAGE[1].push(a.language)            
             }
           }
-         
+          
           if(this.LIST_CALL_TYPE[1].indexOf(a.calltype) === -1){
             this.LIST_CALL_TYPE[1].push(a.calltype)            
           }
@@ -102,15 +103,28 @@ export class ModalComponent implements OnInit{
             this.LIST_PROVIDER[1].push(a.provider)            
           }
           
-        })  
-
-        this.QUEUE = [
-          this.LIST_LANGUAGE,
-          this.LIST_CALL_TYPE,
-          this.LIST_PROVIDER
-        ]
+        })
       }    
     )
+    this.QUEUE = [
+      this.fillList(this.LIST_LANGUAGE),
+      this.fillList(this.LIST_CALL_TYPE),
+      this.fillList(this.LIST_PROVIDER)
+    ]
+  }
+
+  fillList(list: any): any{
+    let list_queue: any = ["",[]]
+    list_queue[0] = list[0]
+    list[1].forEach((a:any)=>{    
+      list_queue[1].push(
+        {
+          "column": list[0],
+          "value": a
+        }
+      )
+    })
+    return list_queue;    
   }
 
   getDataQueues(){
@@ -146,35 +160,29 @@ export class ModalComponent implements OnInit{
     } 
   }
 
-  columnSelected(event: any, column: string){
-    
-    let elm = {
-      "column": column,
-      "event": event,
-      "value": event.target.value,
-    }
-    
-    this.setPredefinedGroup(event.target.value,column);
+  columnSelected(event: any,element: any){
+    event.column = element.column    
 
-    if(column.split(' ').length > 1){
-      column =  column.replace(/\s+/g, '')
+    this.setPredefinedGroup(element.value,element.column);
+
+    if(element.column.split(' ').length > 1){
+      this.column =  element.column.replace(/\s+/g, '')
+    }else{
+      this.column = element.column;
     }
 
-    if (this.COLUMN_QUEUE_SELECT.indexOf(event.target.value) === -1) {
-      this.COLUMN_QUEUE_SELECT.push(event.target.value);
-      this.SELECTED_FILTER_QUEUES.push(elm)
-      console.log(this.SELECTED_FILTER_QUEUES)
-    }
-    else {
-      console.log(this.SELECTED_FILTER_QUEUES)
-      console.log(elm)
-      this.COLUMN_QUEUE_SELECT.splice(this.COLUMN_QUEUE_SELECT.indexOf(event.target.value), 1);
-      this.SELECTED_FILTER_QUEUES.splice(this.SELECTED_FILTER_QUEUES.indexOf(elm),1)
+    if (this.COLUMN_QUEUE_SELECT.indexOf(element.value) === -1) {
       
+      this.COLUMN_QUEUE_SELECT.push(element.value);
+      this.SELECTED_FILTER_QUEUES.push(event)
+    }
+    else {     
+      this.COLUMN_QUEUE_SELECT.splice(this.COLUMN_QUEUE_SELECT.indexOf(element.value), 1);
+      this.SELECTED_FILTER_QUEUES.splice(this.SELECTED_FILTER_QUEUES.findIndex((a)=>a.column === element.column && a.target.value === element.value),1)
     }
 
     if(this.COLUMN_QUEUE_SELECT.length > 0){
-      this.genesisService.searchByColumnQueue$(this.COLUMN_QUEUE_SELECT,column)
+      this.genesisService.searchByColumnQueue$(this.COLUMN_QUEUE_SELECT,this.column)
     }else{
       this.genesisService.getAllDataModal()     
     }
@@ -183,13 +191,12 @@ export class ModalComponent implements OnInit{
   setPredefinedGroup(event: string, column:string){
      
     this.DATA_PREDEFINED_GROUP.data[column] == undefined?this.DATA_PREDEFINED_GROUP.data[column] = [event]:this.DATA_PREDEFINED_GROUP.data[column].indexOf(event)=== -1?this.DATA_PREDEFINED_GROUP.data[column].push(event):this.DATA_PREDEFINED_GROUP.data[column].splice(this.DATA_PREDEFINED_GROUP.data[column].indexOf(event),1)
-
     this.genesisService.addItem(this.DATA_PREDEFINED_GROUP)
   
   }
 
   alertCheckbox(event: any) {  
-     this.checkValueAll(event.target.checked);
+    this.checkValueAll(event.target.checked);
   }
 
   checkValueAll(checked: boolean){
@@ -265,10 +272,10 @@ export class ModalComponent implements OnInit{
   }
 
   deleteFilter(filter: any){
-    this.setPredefinedGroup(filter.event.target.value,filter.column);
+    this.setPredefinedGroup(filter.target.value,filter.column);
     this.SELECTED_FILTER_QUEUES.splice(this.SELECTED_FILTER_QUEUES.indexOf(filter), 1);    
-    this.COLUMN_QUEUE_SELECT.splice(this.COLUMN_QUEUE_SELECT.indexOf(filter.event.target.value), 1);
-    filter.event.target.checked = false;
+    this.COLUMN_QUEUE_SELECT.splice(this.COLUMN_QUEUE_SELECT.indexOf(filter.target.value), 1);
+    filter.target.checked = false;
 
     if(this.COLUMN_QUEUE_SELECT.length > 0){
       this.genesisService.searchByColumnQueue$(this.COLUMN_QUEUE_SELECT,"language")

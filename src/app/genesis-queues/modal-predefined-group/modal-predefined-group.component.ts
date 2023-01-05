@@ -23,7 +23,6 @@ export class ModalPredefinedGroupComponent implements OnInit {
             data.data[key].length > 0?[key,[data.data[key]]]:[]
           )
         })
-        console.log(this.GROUPS)   
       }  
     ) 
        

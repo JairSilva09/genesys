@@ -2350,6 +2350,5 @@ const DATA_QUEUE: any[] = [   {
    }
   ] 
   
-  
 
 export { DATA_QUEUE, DATA };

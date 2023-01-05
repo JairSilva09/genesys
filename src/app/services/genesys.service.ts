@@ -2,6 +2,9 @@ import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, Subject, of } from 'rxjs';
 import { DATA,DATA_QUEUE } from './mock-data';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+
 
 export interface SetItems { 
   name: string,
@@ -15,15 +18,56 @@ export interface SetItems {
 @Injectable({
   providedIn: 'root'
 })
+
 export class GenesysService {
+
+  constructor(private http: HttpClient) {}
+
+  private baseUrl = "https://api.usw2.pure.cloud";
+  private token = "uTvxTNhGQw9dPhMApqrUn6liHEwhVDyC31njJ2CIpwQjr7xvTkXqcPGhmSDaB5Dj3SrRfoeMnFgl33chWRp6wA"
+
+  httpOptions = {
+    headers: new HttpHeaders(
+        { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.token}`
+        }
+      )
+  };
+
+  login={
+    "username": "45fe7e80-b705-4f0c-bca8-d98d3f70afa5",
+    "password": "8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU"
+  }
+
+  getLogin$(login: any){
+    return this.http.post('https://login.usw2.pure.cloud/oauth/token',login).subscribe(
+      (data:any) =>{
+        console.log(data)
+      }
+    )
+  }
+
+  getAllDirectory$(page: string) {
+    this.getLogin$(this.login)     
+    return this.http.get(this.baseUrl+'/api/v2/users',this.httpOptions)
+  }
+
+  getAgent$(page: string) {
+    let id = "221ce8e4-0481-47ea-94eb-605f99a1805c"     
+    return this.http.get(this.baseUrl+'/api/v2/users/'+id,this.httpOptions)
+  }
+
+  //------------------------------------------------------------------------//
 
   public SELECTED_OBJECTS: any = {
     "predefineGruopName": "No group",
    "data": {}
   };
+
   private selectedObjects$: Subject<any> = new Subject()
 
-  constructor() {}
+  
 
    //-------------observable-----------//  
    private shortlist$: Subject<any[]> = new Subject()
@@ -101,10 +145,10 @@ export class GenesysService {
     this.shortlist$.next(list)    
   }
 
-  getAllDirectory$(page: string): Observable<any[]>{     
-    const directory =  of(DATA)
-    return directory;
-  }
+  // getAllDirectory$(page: string): Observable<any[]>{     
+  //   const directory =  of(DATA)
+  //   return directory;
+  // }
 
   getAllDirectory(): void{ 
 
@@ -157,21 +201,24 @@ export class GenesysService {
   }
 
   searchByColumnQueue$(terms: string[],column: string){
-      
+    console.log(column) 
+    column = column.toLowerCase()     
     let list:any[] = [];   
     let paginatedList:any[] = DATA_QUEUE.slice(1);
 
     terms.forEach((a: any) => {
 
       paginatedList.forEach((item: any) => { 
-        if(item[column.toLowerCase()] != undefined && item[column.toLowerCase()] != 0){        
-          if(item[column.toLowerCase()].toLowerCase().indexOf(a.toLowerCase()) >= 0){
+       
+        if(item[column] != undefined && item[column] != 0){        
+          if(item[column].toLowerCase().indexOf(a.toLowerCase()) >= 0){
             list.push(item)
           }
         }
+        
       })
     })
-
+  
     this.shortlistqueues$.next(list)    
   }
 

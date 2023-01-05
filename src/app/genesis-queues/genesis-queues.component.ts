@@ -47,7 +47,12 @@ export class GenesisQueuesComponent implements OnInit{
 
   ngOnInit(): void {
     this.getAll();
-    this.getDirectory();   
+    this.getDirectory(); 
+    this.genesisService.getAgent$("1").subscribe(
+      (data: any)=>{
+        console.log(data)
+      }      
+    )  
   }
 
   ngAfterViewInit(){
@@ -103,15 +108,16 @@ export class GenesisQueuesComponent implements OnInit{
 
     this.genesisService.getAllDirectory$(this.current_page).subscribe(
       (data: any)=>{
+        console.log(data.entities)
         this.DATA_ALL = data
 
-        this.DATA_ALL.unshift(
-          {
-            "total_records": this.DATA_ALL.length,
-            "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
-            "current_page": "1"            
-          }
-        )
+        // this.DATA_ALL.unshift(
+        //   {
+        //     "total_records": this.DATA_ALL.length,
+        //     "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
+        //     "current_page": "1"            
+        //   }
+        // )
         this.current_page = this.DATA_ALL[0].current_page;
         this.num_pages = this.DATA_ALL[0].num_pages;
         

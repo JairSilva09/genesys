@@ -9,7 +9,7 @@
                             <div class="cont-modal-sidebar">
                                 <div class="px-3 pb-1 mt-2" style="border-radius: 5px; width: 100%">
                                     <li *ngFor="let item of SELECTED_FILTER_QUEUES" class="list-group-item d-flex justify-content-between px-3 py-2" style="background-color: white;">
-                                        {{item.event.target.value}}
+                                        {{item.target.value}}
                                       <span (click)="deleteFilter(item)" style="cursor: pointer">X</span>
                                     </li>
                                 </div>                                                            
@@ -23,8 +23,8 @@
                                                 </mat-panel-title>                                                
                                             </mat-expansion-panel-header>
                                             <div class="form-check" *ngFor="let elm of item[1]">
-                                                <input type="checkbox" class="form-check-input" (change)="columnSelected($event,item[0])" value="{{elm}}" id="{{elm}}">
-                                                <label class="form-check-label">{{elm}}</label>
+                                                <input type="checkbox" class="form-check-input" (change)="columnSelected($event,elm)" value="{{elm.value}}" id="{{elm.value}}">
+                                                <label class="form-check-label">{{elm.value}}</label>
                                             </div>                                           
                                         </mat-expansion-panel>
                                     </mat-accordion>

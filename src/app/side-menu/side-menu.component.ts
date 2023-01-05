@@ -83,7 +83,8 @@ export class SideMenuComponent implements OnInit {
   } 
 
   nameItemSelected(event: any, column: string){
-    let elm = {
+  
+    let elm  = {
       "column": column,
       "event": event
     }
@@ -95,11 +96,16 @@ export class SideMenuComponent implements OnInit {
     }
  
     if (this.NAME_LEVEL_SELECT.indexOf(event.target.value) === -1) {
+      
       this.NAME_LEVEL_SELECT.push(event.target.value);
-  
       this.SELECTED_FILTERS.push(elm)
     }
     else {
+
+      if(this.SELECTED_FILTERS.indexOf(elm) == -1){
+        console.log("no existe")
+      }
+  
       this.NAME_LEVEL_SELECT.splice(this.NAME_LEVEL_SELECT.indexOf(event.target.value), 1);
       this.SELECTED_FILTERS.splice(this.SELECTED_FILTERS.indexOf(elm),1)
     }
@@ -124,6 +130,7 @@ export class SideMenuComponent implements OnInit {
   }
 
   deleteFilter(filter: any){
+   
     this.setPredefinedGroup(filter.event.target.value,filter.column);
     this.SELECTED_FILTERS.splice(this.SELECTED_FILTERS.indexOf(filter), 1);    
     this.NAME_LEVEL_SELECT.splice(this.NAME_LEVEL_SELECT.indexOf(filter.event.target.value), 1);
