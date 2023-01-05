@@ -28,7 +28,7 @@ export class GenesisQueuesComponent implements OnInit{
   user = {
     client_id: "45fe7e80-b705-4f0c-bca8-d98d3f70afa5",
     client_secret: "8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU"
-  } 
+  }
 
   SKILL_SELECT: any[] =[]
 
@@ -48,20 +48,20 @@ export class GenesisQueuesComponent implements OnInit{
   QUEUE: any[] = [];
 
   loadModalQueue:boolean = false;
-  loadModalGroups: boolean = false; 
+  loadModalGroups: boolean = false;
 
   ngOnInit(): void {
 
     /*llamamos la funcion para hecer el login*/
-    this.getLogin();   
+    this.getLogin();
 
     this.getAll();
-    this.getDirectory(); 
+    this.getDirectory();
     // this.genesisService.getAgent$("1").subscribe(
     //   (data: any)=>{
     //     console.log(data)
-    //   }      
-    // )  
+    //   }
+    // )
   }
 
   /*Hacemos el login nos debe devolver un token */
@@ -82,7 +82,7 @@ export class GenesisQueuesComponent implements OnInit{
   }
 
   ngAfterViewInit(){
-    
+
     fromEvent(this.searchBar.nativeElement, 'keyup')
       .pipe(
         filter(Boolean),
@@ -90,22 +90,22 @@ export class GenesisQueuesComponent implements OnInit{
         distinctUntilChanged(),
         tap((text: any) => {
           let term = this.searchBar.nativeElement.value;
-          this.genesisService.search$(term)         
-          
+          this.genesisService.search$(term)
+
         })
       )
       .subscribe();
   }
-  
+
   chosenLevel: string = "select menu";
-  chosenQueue: string = "select menu";  
+  chosenQueue: string = "select menu";
 
   nameItem: any;
   levelSelect:boolean = false;
   queueSelectList: boolean = false;
 
   data: any= [];
-  DATA_ALL: any[] = [];  
+  DATA_ALL: any[] = [];
   dataSource: any[] = [];
   dataSource_queue: any[] = [];
   observableSubs: any;
@@ -113,21 +113,21 @@ export class GenesisQueuesComponent implements OnInit{
   getDirectory(): void{
     this.genesisService.getDirectory$().subscribe(
       (data: any) => {
-            
-        this.DATA_ALL = data        
+
+        this.DATA_ALL = data
         this.DATA_ALL.unshift(
           {
             "total_records": this.DATA_ALL.length,
             "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
-            "current_page": "1"           
+            "current_page": "1"
           }
         )
 
         this.current_page = this.DATA_ALL[0].current_page;
         this.num_pages = this.DATA_ALL[0].num_pages;
-        this.dataSource = data.slice(1,this.num_item_page+1)        
-      }    
-    ) 
+        this.dataSource = data.slice(1,this.num_item_page+1)
+      }
+    )
   }
 
   getAll(): void{
@@ -141,18 +141,18 @@ export class GenesisQueuesComponent implements OnInit{
         //   {
         //     "total_records": this.DATA_ALL.length,
         //     "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
-        //     "current_page": "1"            
+        //     "current_page": "1"
         //   }
         // )
         this.current_page = this.DATA_ALL[0].current_page;
         this.num_pages = this.DATA_ALL[0].num_pages;
-        
+
         this.DATA_ALL.slice(1,this.num_item_page+1).forEach((element: any)=>{
           element.is_checked = false;
         })
-        this.dataSource = this.DATA_ALL.slice(1,this.num_item_page+1)     
-      }    
-  
+        this.dataSource = this.DATA_ALL.slice(1,this.num_item_page+1)
+      }
+
     )
   }
 
@@ -173,11 +173,11 @@ export class GenesisQueuesComponent implements OnInit{
       this.NAME = this.MANAGER;
     }
 
-    if(level == "Predefined Groups"){      
+    if(level == "Predefined Groups"){
       this.NAME = this.PREDEFINEDGROUP;
     }
 
-    if(level == "Department"){      
+    if(level == "Department"){
       this.NAME = this.DEPARTMENT;
     }
   }
@@ -187,17 +187,17 @@ export class GenesisQueuesComponent implements OnInit{
   //   this.setNameLevel(event)
   //   this.levelSelect = true;
   //   this.SELECTED_OBJECTS.level = event
-  //   this.genesisService.addItem(this.SELECTED_OBJECTS); 
-    
+  //   this.genesisService.addItem(this.SELECTED_OBJECTS);
+
   // }
 
-  // selectQueue(event: any){    
+  // selectQueue(event: any){
   //   this.queueSelectList = true;
   //   this.SELECTED_OBJECTS.nameQueue = event;
   //   this.genesisService.addItem(this.SELECTED_OBJECTS)
   // }
 
-  // nameItemSelected(event: any){  
+  // nameItemSelected(event: any){
 
   //   if (this.SELECTED_OBJECTS.name.indexOf(event.target.value) === -1) {
   //     this.SELECTED_OBJECTS.name.push(event.target.value);
@@ -205,7 +205,7 @@ export class GenesisQueuesComponent implements OnInit{
   //   else {
   //     this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(event.target.value), 1);
   //   }
-  
+
   //   this.genesisService.addItem(this.SELECTED_OBJECTS)
   // }
 
@@ -216,24 +216,24 @@ export class GenesisQueuesComponent implements OnInit{
 
   // chequedBoxName(item: any){
   //   if(this.SELECTED_OBJECTS.name.indexOf(item) === -1){
-  //     return false      
+  //     return false
   //   }else{
   //     return true
-  //   }   
+  //   }
   // }
 
-  // selectedQueue(event: any,item: any){    
+  // selectedQueue(event: any,item: any){
 
   //   if (this.SELECTED_OBJECTS.queue.indexOf(item) === -1) {
   //     this.SELECTED_OBJECTS.queue.push(item);
   //   }
   //   else {
   //     this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
-  //   } 
-    
+  //   }
+
   //   this.genesisService.addItem(this.SELECTED_OBJECTS)
 
-  // }  
+  // }
 
   // removeQueue(item: any){
   //   this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
@@ -242,7 +242,7 @@ export class GenesisQueuesComponent implements OnInit{
 
   // chequedBoxQueue(item: any){
   //   if(this.SELECTED_OBJECTS.queue.indexOf(item) === -1){
-  //     return false      
+  //     return false
   //   }else{
   //     return true
   //   }
@@ -264,12 +264,12 @@ export class GenesisQueuesComponent implements OnInit{
     if(this.SKILL_SELECT.length > 0){
       this.genesisService.searchBySkill$(this.SKILL_SELECT)
     }else{
-      this.genesisService.getAllDirectory();      
+      this.genesisService.getAllDirectory();
     }
   }
 
-  newPage(event: any){ 
-    let count = 0; 
+  newPage(event: any){
+    let count = 0;
     this.dataSource = event.slice(1);
     this.current_page = event[0].current_page;
     this.dataSource.forEach((item: any)=>{
@@ -283,37 +283,37 @@ export class GenesisQueuesComponent implements OnInit{
       }else{
         this.selectAllItems.nativeElement.checked = false
       }
-      
+
     })
     console.log(count)
-   
+
   }
-  
-  alertCheckbox(event: any) {    
+
+  alertCheckbox(event: any) {
     this.checkValueAll(event.target.checked);
   }
 
   checkValueAll(checked: boolean){
     this.dataSource.forEach((element: any) => {
       element.is_checked = checked
-    }) 
+    })
   }
 
   itemSelect(event: any,item:any){
-    
-    let count= 0;    
-    
+
+    let count= 0;
+
     if(event.target.checked == false){
       this.selectAllItems.nativeElement.checked = false
       item.is_checked = false
-      
+
     }else{
       item.is_checked = true
       this.dataSource.forEach((item: any)=>{
 
         if(item.is_checked == true){
           count++;
-        }       
+        }
       })
 
       if(count == this.num_item_page){
@@ -324,6 +324,6 @@ export class GenesisQueuesComponent implements OnInit{
 
   number_of_pages(num: number){
     this.num_item_page = num;
-    this.genesisService.getAllDirectory();         
+    this.genesisService.getAllDirectory();
   }
 }
