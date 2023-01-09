@@ -53,10 +53,10 @@ export class GenesisQueuesComponent implements OnInit{
   ngOnInit(): void {
 
     /*llamamos la funcion para hecer el login*/
-    this.getLogin();
+    //this.getLogin();
 
-    // this.getAll();
-    // this.getDirectory(); 
+    this.getAll();
+    this.getDirectory(); 
     
     // this.genesisService.getAgent$("1").subscribe(
     //   (data: any)=>{
@@ -67,10 +67,7 @@ export class GenesisQueuesComponent implements OnInit{
 
   /*Hacemos el login nos debe devolver un token */
 
-   async getLogin(){
-
-    // const token = await this.genesisService.getLogin();
-    // console.log(token)
+   getLogin(){
 
     this.genesisService.getLogin().subscribe((response: any)=>{
       if( response && response.token ){
@@ -83,6 +80,7 @@ export class GenesisQueuesComponent implements OnInit{
         }
       }
     })
+    
   }
 
   ngAfterViewInit(){
@@ -141,13 +139,13 @@ export class GenesisQueuesComponent implements OnInit{
         console.log(data.entities)
         this.DATA_ALL = data
 
-        // this.DATA_ALL.unshift(
-        //   {
-        //     "total_records": this.DATA_ALL.length,
-        //     "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
-        //     "current_page": "1"
-        //   }
-        // )
+        this.DATA_ALL.unshift(
+          {
+            "total_records": this.DATA_ALL.length,
+            "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
+            "current_page": "1"
+          }
+        )
         this.current_page = this.DATA_ALL[0].current_page;
         this.num_pages = this.DATA_ALL[0].num_pages;
 
