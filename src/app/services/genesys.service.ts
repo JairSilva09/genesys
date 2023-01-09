@@ -114,6 +114,7 @@ export class GenesysService {
 
   //------------------------------------------------------------------------//
 
+  algo= "borrar luego"
   public SELECTED_OBJECTS: any = {
     "predefineGruopName": "No group",
    "data": {}
