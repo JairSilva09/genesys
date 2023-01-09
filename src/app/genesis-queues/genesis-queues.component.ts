@@ -55,8 +55,9 @@ export class GenesisQueuesComponent implements OnInit{
     /*llamamos la funcion para hecer el login*/
     this.getLogin();   
 
-    this.getAll();
-    this.getDirectory(); 
+    // this.getAll();
+    // this.getDirectory(); 
+    
     // this.genesisService.getAgent$("1").subscribe(
     //   (data: any)=>{
     //     console.log(data)
@@ -66,9 +67,12 @@ export class GenesisQueuesComponent implements OnInit{
 
   /*Hacemos el login nos debe devolver un token */
 
-   getLogin(){
+   async getLogin(){
 
-    this.genesisService.getLogin(this.user).subscribe((response: any)=>{
+    // const token = await this.genesisService.getLogin();
+    // console.log(token)
+
+    this.genesisService.getLogin().subscribe((response: any)=>{
       if( response && response.token ){
         localStorage.setItem('token', response.token);
         localStorage.setItem('refresh_token', response.refresh_token);

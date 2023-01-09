@@ -30,7 +30,40 @@ export class GenesysService {
 
  /*Hacemos el login */
  
-  getLogin(user: any){
+  getLogin(){
+
+    const formData: FormData = new FormData();
+    formData.append('Username', '45fe7e80-b705-4f0c-bca8-d98d3f70afa5');
+    formData.append('Password', '8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU');
+
+    // var myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    // myHeaders.append("Accept", "application/json");
+    
+
+    // var clientId = '45fe7e80-b705-4f0c-bca8-d98d3f70afa5';
+    // var clientSecret = '8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU';
+    // var encodedData = window.btoa(clientId + ':' + clientSecret);
+    // var authorizationHeaderString = 'Authorization: Basic ' + encodedData;
+    
+    // myHeaders.append("Authorization", 'Basic '+encodedData);
+
+    // var urlencoded = new URLSearchParams();
+    // urlencoded.append("grant_type", "formData");
+
+    // var requestOptions = {
+    //   method: 'POST',
+    //   headers: myHeaders,
+    //   body: urlencoded          
+    // };
+
+    // fetch("https://login.usw2.pure.cloud/oauth/token", requestOptions)
+    //   .then(response => response.text())
+    //   .then(result => console.log(result))
+    //   .catch(error => console.log('error', error));
+
+  //-----------------------------------------------------------------//
+
     let clientId = '45fe7e80-b705-4f0c-bca8-d98d3f70afa5';
     let clientSecret = '8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU';
     let encodedData = Buffer.from(clientId + ':' + clientSecret).toString('base64');
@@ -38,10 +71,16 @@ export class GenesysService {
 
     const header = new HttpHeaders({
       "Content-Type": "application/x-www-form-urlencoded",
-      "Authorization": authorizationHeaderString
+      "Authorization": 'Basic ' + encodedData,
+      "Accept": "application/json",
     });
 
-    return this.http.post(this.loginUrl,header).pipe(
+    var requestOptions = {
+      method: 'POST',
+      headers: header,
+    };
+
+    return this.http.post(this.loginUrl,formData,requestOptions).pipe(
       catchError((err) => {
         console.log('error caught in service')
         console.error(err);
