@@ -312,7 +312,21 @@ export class GenesisQueuesComponent implements OnInit{
   checkValueAll(checked: boolean){
     this.dataSource.forEach((element: any) => {
       element.is_checked = checked
+
+      if(element.is_checked){
+        if(this.SELECTED_AGENTS.indexOf(element) === -1){
+          this.SELECTED_AGENTS.push(element)
+        }        
+      }
+
     })
+    
+    /* deseleccionamos los agentes en bloque que estan en la tabla de arriba */
+    if(checked == false){
+      this.dataSource.forEach((element: any) => {
+        this.SELECTED_AGENTS.splice(this.SELECTED_AGENTS.indexOf(element), 1)        
+      })
+    }
   }
 
   itemSelect(event: any,item:any){
