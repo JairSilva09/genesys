@@ -207,7 +207,7 @@ export class ModalComponent implements OnInit{
 
   }
 
-  itemSelect(event: any,item:any){
+  queueSelect(event: any,item:any){
     
     let count= 0;    
     

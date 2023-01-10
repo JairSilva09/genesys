@@ -18,6 +18,8 @@ export class GenesisQueuesComponent implements OnInit{
   settingItems: any;
   setSelectedItems: any;
 
+  SELECTED_AGENTS: any = []
+
   num_pages: string = "";
   current_page: string = "1";
   ITEMS_PER_PAGE: number[] = [10,20,30,40,50,60,70,80,90,100]
@@ -57,7 +59,7 @@ export class GenesisQueuesComponent implements OnInit{
     const token = "KN29zylryyzOUNvv0OQf-HJV7NrwPkfrkZ91ZbKMB8l_wc1YZSHEZWU3_cdOWSXrkva7WNU1qceWFqrvmlppjw"
     localStorage.setItem('token', token);
 
-    this.getAllAgents();
+    //this.getAllAgents();
 
     this.getAll();
     this.getDirectory(); 
@@ -314,6 +316,10 @@ export class GenesisQueuesComponent implements OnInit{
   }
 
   itemSelect(event: any,item:any){
+    
+    this.SELECTED_AGENTS.push(
+      item      
+    )
 
     let count= 0;
 
@@ -334,6 +340,8 @@ export class GenesisQueuesComponent implements OnInit{
         this.selectAllItems.nativeElement.checked = true
       }
     }
+
+    console.log(this.SELECTED_AGENTS)
   }
 
   number_of_pages(num: number){

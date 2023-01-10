@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-table-agents',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./table-agents.component.scss']
 })
 export class TableAgentsComponent {
+
+  @Input() selected_agents: any[] = [];
+
+  
 
 }
