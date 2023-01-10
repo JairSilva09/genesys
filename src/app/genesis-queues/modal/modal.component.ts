@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { debounceTime, distinctUntilChanged, filter, fromEvent, tap } from 'rxjs';
 import { GenesysService } from 'src/app/services/genesys.service';
 
@@ -12,6 +12,8 @@ export class ModalComponent implements OnInit{
   @ViewChild('searchQueues') searchQueues!: ElementRef;
   @ViewChild('selectAllQueues') selectAllQueues!: ElementRef;
 
+  @Output() savedQueues = new EventEmitter();
+
   constructor(private genesisService: GenesysService) { }
   
 
@@ -21,7 +23,8 @@ export class ModalComponent implements OnInit{
   dataSource_queue: any[] = [];
   COLUMN_QUEUE_SELECT:string[] = [];
 
-  SELECTED_FILTER_QUEUES: any[] = []
+  SELECTED_FILTER_QUEUES: any[] = [];
+  SELECTED_QUEUES: any[] = [];  
 
   ITEMS_PER_PAGE: number[] = [10,20,30,40,50,60,70,80,90,100]
   num_item_page: number = 10;
@@ -195,7 +198,7 @@ export class ModalComponent implements OnInit{
   
   }
 
-  alertCheckbox(event: any) {  
+  selectQueues(event: any) {  
     this.checkValueAll(event.target.checked);
   }
 
@@ -203,11 +206,30 @@ export class ModalComponent implements OnInit{
     
     this.dataSource_queue.forEach((element: any) => {
       element.is_checked = checked
+      if(element.is_checked){
+        if(this.SELECTED_QUEUES.indexOf(element) === -1){
+          this.SELECTED_QUEUES.push(element)
+        }        
+      }
+
     }) 
 
+    /* deseleccionamos los queues en bloque que estan en la tabla de arriba */
+    if(checked == false){
+      this.dataSource_queue.forEach((element: any) => {
+        this.SELECTED_QUEUES.splice(this.SELECTED_QUEUES.indexOf(element), 1)        
+      })
+    }
+    console.log(this.SELECTED_QUEUES)
   }
 
   queueSelect(event: any,item:any){
+
+    if(this.SELECTED_QUEUES.indexOf(item) === -1){
+      this.SELECTED_QUEUES.push(item)
+    }else{
+      this.SELECTED_QUEUES.splice(this.SELECTED_QUEUES.indexOf(item), 1)
+    }
     
     let count= 0;    
     
@@ -227,24 +249,34 @@ export class ModalComponent implements OnInit{
       
     })
 
-    if(count == 25){
+    if(count == this.num_item_page){
       this.selectAllQueues.nativeElement.checked = true
     }
+
+    console.log(this.SELECTED_QUEUES)
 
   }
   
   save_Selected_Queues(){
     let text = "Are you sure to save the selected queues?.";
-    if (confirm(text) == true) {       
-      console.log("Saved queues")
+    if (confirm(text) == true) {
+      this.saved();     
     } else {
       text = "Canceled!";
     }
 
-    this.dataSource_queue.forEach((element: any) => {
+    this.SELECTED_QUEUES.forEach((element: any) => {
       element.is_checked = false
     })
     this.selectAllQueues.nativeElement.checked = false;
+  }
+
+  saved(){    
+    this.savedQueues.emit(this.SELECTED_QUEUES)
+    this.SELECTED_QUEUES.forEach((element)=>{
+      element.is_checked = false;
+    })
+    this.SELECTED_QUEUES = []
   }
 
   number_of_pages(num: number){

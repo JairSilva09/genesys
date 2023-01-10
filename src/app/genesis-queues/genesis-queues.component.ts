@@ -123,7 +123,6 @@ export class GenesisQueuesComponent implements OnInit{
   data: any= [];
   DATA_ALL: any[] = [];
   dataSource: any[] = [];
-  dataSource_queue: any[] = [];
   observableSubs: any;
 
   getDirectory(): void{
@@ -269,7 +268,6 @@ export class GenesisQueuesComponent implements OnInit{
   }
 
   skillSelect(event: any){
-
     if (this.SKILL_SELECT.indexOf(event.target.value) === -1) {
       this.SKILL_SELECT.push(event.target.value);
     }
@@ -300,9 +298,7 @@ export class GenesisQueuesComponent implements OnInit{
         this.selectAllItems.nativeElement.checked = false
       }
 
-    })
-    console.log(count)
-
+    })    
   }
 
   alertCheckbox(event: any) {
@@ -363,5 +359,18 @@ export class GenesisQueuesComponent implements OnInit{
   number_of_pages(num: number){
     this.num_item_page = num;
     this.genesisService.getAllDirectory();
+  }
+
+  addQueues(event: any){
+    if(this.SELECTED_AGENTS.length > 0){
+      this.SELECTED_AGENTS.forEach((element: any) =>{
+        element.queues = event
+      })
+      
+      console.log(this.SELECTED_AGENTS)
+    }else{
+      console.log("no agents selected")
+    }
+    
   }
 }

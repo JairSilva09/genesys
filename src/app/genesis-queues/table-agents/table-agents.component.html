@@ -19,7 +19,7 @@
         <td><mat-icon *ngIf="item.active;  else notActive" style="color: #06F85C">check</mat-icon>
             <ng-template #notActive><mat-icon style="color: #ef3131">cancel</mat-icon></ng-template>
         </td>
-        <td>{{item.queues}}</td>                     
+        <td><span *ngFor="let queue of item.queues">{{queue.queuename}}, </span></td>                     
         <td>{{item.department}}</td>
         <td>{{item.agent}}</td>
         <td>{{item.manager}}</td>

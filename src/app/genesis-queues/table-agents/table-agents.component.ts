@@ -7,8 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class TableAgentsComponent {
 
-  @Input() selected_agents: any[] = [];
-
-  
+  @Input() selected_agents: any[] = [];  
 
 }

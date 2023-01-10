@@ -60,7 +60,7 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                <input class="form-check-input" type="checkbox" (change)="alertCheckbox($event)" value="" #selectAllQueues>
+                                                <input class="form-check-input" type="checkbox" (change)="selectQueues($event)" value="" #selectAllQueues>
                                             </th>
                                             <th scope="col">Queue Name</th>                                          
                                             <th scope="col">Call Type</th>
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light mx-1" (click)="save_Selected_Queues()" style="background-color:#1a2a5d; color: white">
+                <button type="button" class="btn btn-light mx-1" (click)="save_Selected_Queues()" data-bs-dismiss="modal" style="background-color:#1a2a5d; color: white">
                     Save 
                 </button> 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
