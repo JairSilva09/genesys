@@ -92,7 +92,7 @@ export class GenesisQueuesComponent implements OnInit{
   getAllAgents(){
     this.genesisService.getAllAgents$("1").subscribe(
       (data: any)=>{
-        console.log(typeof data.entities)
+        console.log(data.entities)
       }
     )
   }
@@ -317,9 +317,11 @@ export class GenesisQueuesComponent implements OnInit{
 
   itemSelect(event: any,item:any){
     
-    this.SELECTED_AGENTS.push(
-      item      
-    )
+    if(this.SELECTED_AGENTS.indexOf(item) === -1){
+      this.SELECTED_AGENTS.push(item)
+    }else{
+      this.SELECTED_AGENTS.splice(this.SELECTED_AGENTS.indexOf(item), 1)
+    }
 
     let count= 0;
 
