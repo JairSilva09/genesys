@@ -54,6 +54,10 @@ export class GenesisQueuesComponent implements OnInit{
 
     /*llamamos la funcion para hecer el login*/
     //this.getLogin();
+    const token = "KN29zylryyzOUNvv0OQf-HJV7NrwPkfrkZ91ZbKMB8l_wc1YZSHEZWU3_cdOWSXrkva7WNU1qceWFqrvmlppjw"
+    localStorage.setItem('token', token);
+
+    this.getAllAgents();
 
     this.getAll();
     this.getDirectory(); 
@@ -64,7 +68,7 @@ export class GenesisQueuesComponent implements OnInit{
     //   }
     // )
   }
-
+//------------------------------------------------------------//
   /*Hacemos el login nos debe devolver un token */
 
    getLogin(){
@@ -83,6 +87,14 @@ export class GenesisQueuesComponent implements OnInit{
     
   }
 
+  getAllAgents(){
+    this.genesisService.getAllAgents$("1").subscribe(
+      (data: any)=>{
+        console.log(typeof data.entities)
+      }
+    )
+  }
+//------------------------------------------------------------//
   ngAfterViewInit(){
 
     fromEvent(this.searchBar.nativeElement, 'keyup')
@@ -132,7 +144,7 @@ export class GenesisQueuesComponent implements OnInit{
     )
   }
 
-  getAll(): void{
+  getAll(): void{    
 
     this.genesisService.getAllDirectory$(this.current_page).subscribe(
       (data: any)=>{

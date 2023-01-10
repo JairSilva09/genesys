@@ -102,10 +102,10 @@ export class GenesysService {
 
   /*Obtenemos todos los agentes */
 
-  // getAllDirectory$(page: string) {
+  getAllAgents$(page: string) {
 
-  //   return this.http.get(this.baseUrl+'/api/v2/users')
-  // }
+    return this.http.get(this.baseUrl+'/api/v2/users')
+  }
 
   getAgent$(page: string) {
     let id = "221ce8e4-0481-47ea-94eb-605f99a1805c"
@@ -116,7 +116,7 @@ export class GenesysService {
 
   public SELECTED_OBJECTS: any = {
     "predefineGruopName": "No group",
-   "data": {}
+    "data": {}
   };
 
   private selectedObjects$: Subject<any> = new Subject()

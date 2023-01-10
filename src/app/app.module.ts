@@ -18,6 +18,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { PaginationComponent } from './genesis-queues/pagination/pagination.component';
 import { ModalComponent } from './genesis-queues/modal/modal.component';
 import { ModalPredefinedGroupComponent } from './genesis-queues/modal-predefined-group/modal-predefined-group.component';
+import { TableAgentsComponent } from './genesis-queues/table-agents/table-agents.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ModalPredefinedGroupComponent } from './genesis-queues/modal-predefined
     GenesisQueuesComponent,
     PaginationComponent,
     ModalComponent,
-    ModalPredefinedGroupComponent
+    ModalPredefinedGroupComponent,
+    TableAgentsComponent
   ],
   imports: [
     BrowserModule,
