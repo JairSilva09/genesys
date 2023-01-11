@@ -342,7 +342,9 @@ export class GenesisQueuesComponent implements OnInit{
     }
 
     this.genesisService.setAgentSelecteds(this.SELECTED_AGENTS)
-    this.data_table_selected_agents = this.SELECTED_AGENTS    
+    this.data_table_selected_agents = this.SELECTED_AGENTS
+    this.showTableAgents = true;
+    this.showTableGroupPredenined= false;    
   }
 
   itemSelect(event: any,item:any){
@@ -374,6 +376,8 @@ export class GenesisQueuesComponent implements OnInit{
     }
     this.genesisService.setAgentSelecteds(this.SELECTED_AGENTS)
     this.data_table_selected_agents = this.SELECTED_AGENTS
+    this.showTableAgents = true;
+    this.showTableGroupPredenined= false;
   }
 
   number_of_pages(num: number){
@@ -409,8 +413,10 @@ export class GenesisQueuesComponent implements OnInit{
         })
         
         this.data_table_selected_agents = data
-        console.log(this.SELECTED_AGENTS)
-      
+        this.SELECTED_AGENTS.forEach((a)=>{
+          a.is_checked = false
+        })
+        this.SELECTED_AGENTS = []      
       }else{
         console.log("no agents selected")
       }      

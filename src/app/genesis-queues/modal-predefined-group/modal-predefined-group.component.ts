@@ -10,26 +10,30 @@ export class ModalPredefinedGroupComponent implements OnInit {
 
   constructor(private genesisService: GenesysService) {}
 
-  GROUPS: any[] = []
-  predefinedGroup = "no group"
+  groupName: string = "";
+
+
+
+  //GROUPS: any[] = []
+  //predefinedGroup = "no group"
 
   ngOnInit(): void {
-    this.genesisService.getPredefinedGroup$().subscribe(
-      (data: any) =>{
-        this.GROUPS = []
-        this.predefinedGroup = data.predefineGruopName;
-        Object.keys(data.data).forEach((key: any)=>{
-          this.GROUPS.push(
-            data.data[key].length > 0?[key,[data.data[key]]]:[]
-          )
-        })
-      }  
-    ) 
+    // this.genesisService.getPredefinedGroup$().subscribe(
+    //   (data: any) =>{
+    //     this.GROUPS = []
+    //     this.predefinedGroup = data.predefineGruopName;
+    //     Object.keys(data.data).forEach((key: any)=>{
+    //       this.GROUPS.push(
+    //         data.data[key].length > 0?[key,[data.data[key]]]:[]
+    //       )
+    //     })
+    //   }  
+    // ) 
        
   }
 
-  loadGroups(){    
-
+  createGroup(){
+    this.genesisService.addPredefinedGroup(this.groupName)
   }
 
 }

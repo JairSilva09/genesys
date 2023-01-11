@@ -36,6 +36,18 @@ export class GenesysService {
 
   constructor(private http: HttpClient) {}
 
+  PREDEFINED_GROUPS: any[]=[
+    [
+      "Group 1",[]
+    ],
+    [
+      "Group 2",[]
+    ],
+    [
+      "Group 3",[]
+    ]
+  ]
+
   private baseUrl = "https://api.usw2.pure.cloud";
   private loginUrl = "https://login.usw2.pure.cloud/oauth/token";
   token =  ''
@@ -122,6 +134,10 @@ export class GenesysService {
     "data": {}
   };
 
+  //---------------------list predefined group-----------------//
+
+  private listPredefinedGroup$: Subject<any[]> = new Subject()
+
   //----------------data group predefined----------------------//
   private agentsInGroup$: Subject<any[]> = new Subject()
   private agentsInGroup: any[]= [];
@@ -140,6 +156,28 @@ export class GenesysService {
   //----------------modal--------------//
   private shortlistqueues$: Subject<any[]> = new Subject()
 
+  //-----------------------predefined group-------------------------------//
+
+  getListPredefinedgroup(): Observable<any[]>{
+    const groups =  of(this.PREDEFINED_GROUPS)
+    return groups;
+  }
+  
+  addPredefinedGroup(group: string){
+    
+    this.PREDEFINED_GROUPS.push(
+      [
+        group,[]
+      ]
+    )
+    this.listPredefinedGroup$.next(this.PREDEFINED_GROUPS);
+  }
+
+  getListPredefinedgroup$(): Observable<any[]>{
+    return this.listPredefinedGroup$.asObservable();
+  } 
+
+  
 
   //------------------active table-------------------------//
   setActiveTable(active: string){

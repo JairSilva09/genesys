@@ -13,13 +13,31 @@ export class SideMenuComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.getListDefinedGroups();
+    this.getNewListDefinedGroups$();
+
     this.genesisService.getPredefinedGroup().subscribe(
       (data: any) =>{
         this.DATA_PREDEFINED_GROUP = data
         console.log(data)     
       }      
-    )       
+    )
+
   }
+
+  getListDefinedGroups(){
+    this.genesisService.getListPredefinedgroup().subscribe((data: any)=>{
+      console.log(data)
+      this.PREDEFINED_GROUPS = data
+    })
+  }
+
+  getNewListDefinedGroups$(){
+    this.genesisService.getListPredefinedgroup$().subscribe((data: any)=>{     
+      this.PREDEFINED_GROUPS = data
+    })
+  }
+  
 
   collapse: boolean = false;
 
@@ -37,17 +55,7 @@ export class SideMenuComponent implements OnInit {
     
   ];
 
-  PREDEFINED_GROUPS: any[]=[
-    [
-      "Group 1",[]
-    ],
-    [
-      "Group 2",[]
-    ],
-    [
-      "Group 3",[]
-    ]
-  ]
+  PREDEFINED_GROUPS: any[]=[]
 
   predefinedGroup: any;
   eventChecked: any;
