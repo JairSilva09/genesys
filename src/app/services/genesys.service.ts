@@ -5,10 +5,13 @@ import { DATA,DATA_QUEUE } from './mock-data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import {Buffer} from 'buffer';
+
 let clientId = '45fe7e80-b705-4f0c-bca8-d98d3f70afa5';
 let clientSecret = '8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU';
+
 let encodedData = Buffer.from(clientId + ':' + clientSecret).toString('base64');
 let authorizationHeaderString = 'Basic ' + encodedData;
+
 const httpOptions = {
   headers:  new HttpHeaders({
     "Content-Type": "application/x-www-form-urlencoded",
@@ -119,12 +122,30 @@ export class GenesysService {
     "data": {}
   };
 
+  private SELECTED_AGENTS_SERVICE: any = []
+
   private selectedObjects$: Subject<any> = new Subject()
+
+  //private agentsSelected$: Subject<any> = new Subject()
 
    //-------------observable-----------//
    private shortlist$: Subject<any[]> = new Subject()
    //-------modal--------//
    private shortlistqueues$: Subject<any[]> = new Subject()
+
+   //------------- agent señected--------------//
+
+  setAgentSelecteds(item: any){
+    this.SELECTED_AGENTS_SERVICE = item
+    console.log(this.SELECTED_AGENTS_SERVICE)
+  }  
+  
+  getAgentSelecteds(): Observable<any[]>{
+    const agentsSelected= of(this.SELECTED_AGENTS_SERVICE);
+    return agentsSelected;
+  }
+
+   //-----------------------------------------//
 
   addItem(item: any){
     this.SELECTED_OBJECTS = item

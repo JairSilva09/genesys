@@ -10,22 +10,31 @@
   </nav>
   <div class="collapse" id="sideMenuGenesys" style="margin-top: 75px">
    
-    <div class="px-3 pb-1" style="border-radius: 5px; width: 100%; margin: auto">
+    <!-- <div class="px-3 pb-1" style="border-radius: 5px; width: 100%; margin: auto">
       <li *ngFor="let item of SELECTED_FILTERS" class="list-group-item d-flex justify-content-between px-3 py-2" style="background-color: white;">
           {{item.event.target.value}}
         <span (click)="deleteFilter(item)" style="cursor: pointer">X</span>
       </li>
-    </div>
+    </div> -->
     <div class="p-3" >
-      <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Add to:</label>
-      <div class="p-3" style="background-color: white; border-radius: 5px; width: 100%; margin: auto">
+      <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Add to predefines group:</label>
+      <!-- <div class="p-3" style="background-color: white; border-radius: 5px; width: 100%; margin: auto">
         <div class="form-check" *ngFor="let item of LEVEL">
           <input type="checkbox" class="form-check-input" (click)="selectLevel(item)" [value]="item">
           <label class="form-check-label">{{item[0]}}</label>
         </div> 
-      </div>
+      </div> -->
+      <ul class="list-group">
+        <div class="border-bottom border-secondary" *ngFor="let item of PREDEFINED_GROUPS">
+          <li class="list-group-item">
+            <input class="form-check-input me-1" type="checkbox" (change)="selectedPredefinedGroup($event,item)" value="{{item}}" id="{{item[0]}}">
+            <label class="form-check-label stretched-link" for="{{item[0]}}">{{item[0]}}</label>
+          </li>
+        </div>
+      </ul>
+      <button type="button" (click)="addToPredefinedGroup()" class="btn btn-secondary mt-2">Add</button>
     </div>
-    <div class="p-3">          
+    <!-- <div class="p-3">          
       <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Name:</label>
       <ul class="list-group">
         <div class="border-bottom border-secondary" *ngFor="let item of NAME" style="background-color: white">
@@ -37,6 +46,6 @@
           </li>
         </div>
       </ul>
-    </div>    
+    </div>     -->
   </div>
 </div>

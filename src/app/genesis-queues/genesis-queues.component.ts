@@ -44,7 +44,7 @@ export class GenesisQueuesComponent implements OnInit{
   ];
 
   PREDEFINEDGROUP: any[] =[
-    "ATT P1 Cooper Overflow","ATT P1 Fiber Overflow","Hughes Backup","Example Y","Example Z"
+    "Group 1","Group 2","group 3"
   ];
 
   QUEUE: any[] = [];
@@ -323,6 +323,8 @@ export class GenesisQueuesComponent implements OnInit{
         this.SELECTED_AGENTS.splice(this.SELECTED_AGENTS.indexOf(element), 1)        
       })
     }
+
+    this.genesisService.setAgentSelecteds(this.SELECTED_AGENTS)
   }
 
   itemSelect(event: any,item:any){
@@ -352,7 +354,7 @@ export class GenesisQueuesComponent implements OnInit{
         this.selectAllItems.nativeElement.checked = true
       }
     }
-
+    this.genesisService.setAgentSelecteds(this.SELECTED_AGENTS)
     console.log(this.SELECTED_AGENTS)
   }
 
@@ -365,9 +367,7 @@ export class GenesisQueuesComponent implements OnInit{
     if(this.SELECTED_AGENTS.length > 0){
       this.SELECTED_AGENTS.forEach((element: any) =>{
         element.queues = event
-      })
-      
-      console.log(this.SELECTED_AGENTS)
+      })      
     }else{
       console.log("no agents selected")
     }
