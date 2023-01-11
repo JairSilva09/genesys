@@ -16,16 +16,35 @@
       </li>
     </div>
 
-    <div style="padding: 15px">
+    <!-- <div style="padding: 15px">
       <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Add to predefined group:</label>
       <ul class="list-group">
         <div class="border-bottom border-secondary" *ngFor="let item of PREDEFINED_GROUPS">
           <li class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" (change)="selectedPredefinedGroup($event,item)" value="{{item}}" id="{{item[0]}}">
+            <input class="form-check-input me-1" type="checkbox" (change)="selectedPredefinedGroup($event,item)" value="{{item}}">
             <label class="form-check-label stretched-link" for="{{item[0]}}">{{item[0]}}</label>
           </li>
+          <span style="margin-left: 10px"><button type="button" (click)="lowPredefinedGroup(item)" class="btn btn-primary" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .70rem;">Load</button></span>
+
         </div>
       </ul>
+      <button type="button" (click)="addToPredefinedGroup()" class="btn btn-secondary mt-2">Add</button>
+    </div> -->
+    
+    <div style="padding: 15px">
+      <label for="exampleDropdownFormEmail2" class="form-label fs-5 mb-3" style="color: white">Add to predefined group:</label>
+  
+      <div class="p-3" style="background-color: white; width: 100%; margin: auto">
+        <div class="my-2" *ngFor="let item of PREDEFINED_GROUPS">
+          <div class="form-check">
+            <input class="form-check-input me-1" type="checkbox" (change)="selectedPredefinedGroup($event,item)" value="{{item}}">
+            <label class="form-check-label">{{item[0]}}</label>
+            <button type="button"  class="btn btn-primary" (click)="lowPredefinedGroup(item)" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .70rem; margin-left: 10px">Load</button>
+
+          </div>
+        </div>
+
+      </div>
       <button type="button" (click)="addToPredefinedGroup()" class="btn btn-secondary mt-2">Add</button>
     </div>
     

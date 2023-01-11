@@ -8,12 +8,32 @@ import { GenesysService } from 'src/app/services/genesys.service';
 })
 export class TablePredefinedGroupComponent implements OnInit{
 
-  constructor(private genesisService: GenesysService) { }   
+  constructor(private genesisService: GenesysService) { }  
+
+  dataSource: any[] = [];  
 
   ngOnInit(): void{
     
+    this.getPredefinedGroup()
+    this.getPredefinedNewGroup()
+   
   }
-  
+
+  getPredefinedGroup(){
+    this.genesisService.getPredefinedGroupAgents().subscribe(
+      (data: any) =>{
+        this.dataSource = data    
+      }      
+    )    
+  }
+
+  getPredefinedNewGroup(){
+    this.genesisService.getPredefinedGroupAgents$().subscribe(
+      (data: any) =>{
+        this.dataSource = data    
+      }      
+    )    
+  }
 
 }
 

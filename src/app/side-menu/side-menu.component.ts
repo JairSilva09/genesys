@@ -149,8 +149,12 @@ export class SideMenuComponent implements OnInit {
       
     })
     this.predefinedGroup[1].push(x)
-    this.genesisService.setGroupData(this.DATA_PREDEFINED_GROUP)
-    console.log(this.predefinedGroup)
+  }
+
+  lowPredefinedGroup(group: any){
+    console.log(group)
+    this.genesisService.setGroupData(group)
+    this.genesisService.setActiveTable("predefined group")
   }
 
   setPredefinedGroup(event: string, column:string){
@@ -160,8 +164,7 @@ export class SideMenuComponent implements OnInit {
       this.DATA_PREDEFINED_GROUP.data[column] == undefined?this.DATA_PREDEFINED_GROUP.data[column] = [event]:this.DATA_PREDEFINED_GROUP.data[column].indexOf(event)=== -1?this.DATA_PREDEFINED_GROUP.data[column].push(event):this.DATA_PREDEFINED_GROUP.data[column].splice(this.DATA_PREDEFINED_GROUP.data[column].indexOf(event),1)
     }
 
-    this.genesisService.addItem(this.DATA_PREDEFINED_GROUP)
-  
+    this.genesisService.addItem(this.DATA_PREDEFINED_GROUP)   
   }
 
   deleteFilter(filter: any){

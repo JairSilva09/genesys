@@ -66,6 +66,19 @@ export class GenesisQueuesComponent implements OnInit{
 
     this.getAll();
     this.getDirectory(); 
+
+    this.genesisService.getActiveTable$().subscribe((data)=>{
+      console.log(data)
+      if(data === "predefined group"){
+        this.showTableAgents= false;
+        this.showTableGroupPredenined = true;        
+      }else{
+        this.showTableAgents = true;
+        this.showTableGroupPredenined= false;
+      }
+    })
+
+
     
     // this.genesisService.getAgent$("1").subscribe(
     //   (data: any)=>{
@@ -396,6 +409,7 @@ export class GenesisQueuesComponent implements OnInit{
         })
         
         this.data_table_selected_agents = data
+        console.log(this.SELECTED_AGENTS)
       
       }else{
         console.log("no agents selected")

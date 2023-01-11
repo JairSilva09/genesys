@@ -123,8 +123,11 @@ export class GenesysService {
   };
 
   //----------------data group predefined----------------------//
-  private agentsInGroup$: Subject<any> = new Subject()
+  private agentsInGroup$: Subject<any[]> = new Subject()
+  private agentsInGroup: any[]= [];
   //--------------------------------------//
+
+  private activetable$: Subject<string> = new Subject()
 
   private SELECTED_AGENTS_SERVICE: any = []
 
@@ -132,19 +135,37 @@ export class GenesysService {
 
   //private agentsSelected$: Subject<any> = new Subject()
 
-   //-------------observable-----------//
-   private shortlist$: Subject<any[]> = new Subject()
-   //-------modal--------//
-   private shortlistqueues$: Subject<any[]> = new Subject()
+  //-------------observable-----------//
+  private shortlist$: Subject<any[]> = new Subject()
+  //----------------modal--------------//
+  private shortlistqueues$: Subject<any[]> = new Subject()
 
-   //----------------data group predefined----------------------//
+
+  //------------------active table-------------------------//
+  setActiveTable(active: string){
+    this.activetable$.next(active);
+  }
+
+  getActiveTable$(): Observable<string>{
+    return this.activetable$.asObservable();
+  } 
+
+  //----------------data group with agents predefined------//
    
   setGroupData(item: any){
-    this.agentsInGroup$.next(item);
+    this.agentsInGroup = item   
+    this.agentsInGroup$.next(this.agentsInGroup);
   }
-   
 
+  getPredefinedGroupAgents$(): Observable<any[]>{    
+    return this.agentsInGroup$.asObservable();
+  }
 
+  getPredefinedGroupAgents(): Observable<any[]>{
+    const group =  of(this.agentsInGroup)
+    return group;
+  } 
+  
    //------------- agent selected--------------//
 
   setAgentSelecteds(item: any){
