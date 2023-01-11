@@ -19,6 +19,7 @@ import { PaginationComponent } from './genesis-queues/pagination/pagination.comp
 import { ModalComponent } from './genesis-queues/modal/modal.component';
 import { ModalPredefinedGroupComponent } from './genesis-queues/modal-predefined-group/modal-predefined-group.component';
 import { TableAgentsComponent } from './genesis-queues/table-agents/table-agents.component';
+import { TablePredefinedGroupComponent } from './genesis-queues/table-predefined-group/table-predefined-group.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TableAgentsComponent } from './genesis-queues/table-agents/table-agents
     PaginationComponent,
     ModalComponent,
     ModalPredefinedGroupComponent,
-    TableAgentsComponent
+    TableAgentsComponent,
+    TablePredefinedGroupComponent
   ],
   imports: [
     BrowserModule,

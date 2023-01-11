@@ -52,7 +52,7 @@ export class GenesisQueuesComponent implements OnInit{
 
   loadModalQueue:boolean = false;
   loadModalGroups: boolean = false;
-  showTableAgents: boolean = false;
+  showTableAgents: boolean = true;
 
   ngOnInit(): void {
 

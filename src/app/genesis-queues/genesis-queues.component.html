@@ -79,7 +79,7 @@
                       </tr>
                     </tbody>
                 </table>
-                <app-table-agents [selected_agents]="data_table_selected_agents"></app-table-agents>
+                <app-table-agents *ngIf="showTableAgents" [selected_agents]="data_table_selected_agents"></app-table-agents>
             </div>
         </div>
     </div>
