@@ -133,11 +133,21 @@ export class GenesysService {
    //-------modal--------//
    private shortlistqueues$: Subject<any[]> = new Subject()
 
-   //------------- agent señected--------------//
+   //------------- agent selected--------------//
 
   setAgentSelecteds(item: any){
-    this.SELECTED_AGENTS_SERVICE = item
-    console.log(this.SELECTED_AGENTS_SERVICE)
+    let x:any = []
+    
+    item.forEach((a: any) => {
+      let objeto:any = {}
+      for(const key of Object.keys(a)){
+        objeto[key] = a[key]
+      }      
+      x.push(objeto)
+    })
+    
+    this.SELECTED_AGENTS_SERVICE = x
+    
   }  
   
   getAgentSelecteds(): Observable<any[]>{
@@ -214,7 +224,6 @@ export class GenesysService {
       })
 
     })
-
     this.shortlist$.next(list)
   }
 
@@ -224,10 +233,8 @@ export class GenesysService {
   }
 
   getAllDirectory(): void{
-
     let list:any[] = [];
     list = list = DATA.slice(1);
-
     this.shortlist$.next(list)
   }
 

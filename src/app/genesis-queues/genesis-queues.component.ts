@@ -18,8 +18,9 @@ export class GenesisQueuesComponent implements OnInit{
   settingItems: any;
   setSelectedItems: any;
 
-  SELECTED_AGENTS: any = []
-
+  SELECTED_AGENTS: any[] = [];
+  data_table_selected_agents: any[] = [];
+  
   num_pages: string = "";
   current_page: string = "1";
   ITEMS_PER_PAGE: number[] = [10,20,30,40,50,60,70,80,90,100]
@@ -70,7 +71,7 @@ export class GenesisQueuesComponent implements OnInit{
     //   }
     // )
   }
-//------------------------------------------------------------//
+  //------------------------------------------------------------//
   /*Hacemos el login nos debe devolver un token */
 
    getLogin(){
@@ -140,7 +141,7 @@ export class GenesisQueuesComponent implements OnInit{
 
         this.current_page = this.DATA_ALL[0].current_page;
         this.num_pages = this.DATA_ALL[0].num_pages;
-        this.dataSource = data.slice(1,this.num_item_page+1)
+        this.dataSource = data.slice(1,this.num_item_page+1)        
       }
     )
   }
@@ -307,6 +308,7 @@ export class GenesisQueuesComponent implements OnInit{
 
   checkValueAll(checked: boolean){
     this.dataSource.forEach((element: any) => {
+
       element.is_checked = checked
 
       if(element.is_checked){
@@ -325,10 +327,11 @@ export class GenesisQueuesComponent implements OnInit{
     }
 
     this.genesisService.setAgentSelecteds(this.SELECTED_AGENTS)
+    this.data_table_selected_agents = this.SELECTED_AGENTS    
   }
 
   itemSelect(event: any,item:any){
-    
+   
     if(this.SELECTED_AGENTS.indexOf(item) === -1){
       this.SELECTED_AGENTS.push(item)
     }else{
@@ -355,7 +358,7 @@ export class GenesisQueuesComponent implements OnInit{
       }
     }
     this.genesisService.setAgentSelecteds(this.SELECTED_AGENTS)
-    console.log(this.SELECTED_AGENTS)
+    this.data_table_selected_agents = this.SELECTED_AGENTS
   }
 
   number_of_pages(num: number){
@@ -364,13 +367,39 @@ export class GenesisQueuesComponent implements OnInit{
   }
 
   addQueues(event: any){
-    if(this.SELECTED_AGENTS.length > 0){
-      this.SELECTED_AGENTS.forEach((element: any) =>{
-        element.queues = event
-      })      
-    }else{
-      console.log("no agents selected")
-    }
-    
+    console.log(event)
+    let x:any[] = []
+    let AgentQueues: any[] = []
+    this.genesisService.getAgentSelecteds().subscribe((data)=>{
+
+      if(data.length > 0){
+
+        let b = {}
+        let newObject;       
+
+        data.forEach((element: any) => {
+          AgentQueues = [];
+
+          element.queues.forEach((a: any) =>{
+            newObject = Object.assign(b,a)
+            AgentQueues.push(newObject)            
+          })
+          
+          event.forEach((a:any)=>{
+            AgentQueues.push(a)
+          })
+
+          element.queues = AgentQueues
+        
+        })
+        
+        this.data_table_selected_agents = data
+      
+      }else{
+        console.log("no agents selected")
+      }      
+    })
+
   }
+
 }
