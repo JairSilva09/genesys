@@ -27,18 +27,15 @@ export class SideMenuComponent implements OnInit {
 
   NAME_ITEM: any[] =[]; 
 
-  // LEVEL: any[] =[    
-  //   [
-  //     "Manager",["Manager 1","Manager 2","Manager 3","Manager 4","Manager 5","Manager 6"]
-  //   ],
-  //   [
-  //     "Department",["AT&T","CenturyLink","Cable","Dish","Frontier","HughesNet"]
-  //   ],
-  //   [
-  //     "Predefined Group",["Group 1","Group 2","group 3"]
-  //   ]
+  LEVEL: any[] =[    
+    [
+      "Manager",["Manager 1","Manager 2","Manager 3","Manager 4","Manager 5","Manager 6"]
+    ],
+    [
+      "Department",["AT&T","CenturyLink","Cable","Dish","Frontier","HughesNet"]
+    ]
     
-  // ];
+  ];
 
   PREDEFINED_GROUPS: any[]=[
     [
@@ -98,41 +95,41 @@ export class SideMenuComponent implements OnInit {
     this.setNameLevel(event)   
   } 
 
-  // nameItemSelected(event: any, column: string){
+  nameItemSelected(event: any, column: string){
   
-  //   let elm  = {
-  //     "column": column,
-  //     "event": event
-  //   }
+    let elm  = {
+      "column": column,
+      "event": event
+    }
 
-  //   this.setPredefinedGroup(event.target.value,column);
+    this.setPredefinedGroup(event.target.value,column);
 
-  //   if(column.split(' ').length > 1){
-  //     column =  column.replace(/\s+/g, '')
-  //   }
+    if(column.split(' ').length > 1){
+      column =  column.replace(/\s+/g, '')
+    }
  
-  //   if (this.NAME_LEVEL_SELECT.indexOf(event.target.value) === -1) {
+    if (this.NAME_LEVEL_SELECT.indexOf(event.target.value) === -1) {
       
-  //     this.NAME_LEVEL_SELECT.push(event.target.value);
-  //     this.SELECTED_FILTERS.push(elm)
-  //   }
-  //   else {
+      this.NAME_LEVEL_SELECT.push(event.target.value);
+      this.SELECTED_FILTERS.push(elm)
+    }
+    else {
 
-  //     if(this.SELECTED_FILTERS.indexOf(elm) == -1){
-  //       console.log("no existe")
-  //     }
+      if(this.SELECTED_FILTERS.indexOf(elm) == -1){
+        console.log("no existe")
+      }
   
-  //     this.NAME_LEVEL_SELECT.splice(this.NAME_LEVEL_SELECT.indexOf(event.target.value), 1);
-  //     this.SELECTED_FILTERS.splice(this.SELECTED_FILTERS.indexOf(elm),1)
-  //   }
+      this.NAME_LEVEL_SELECT.splice(this.NAME_LEVEL_SELECT.indexOf(event.target.value), 1);
+      this.SELECTED_FILTERS.splice(this.SELECTED_FILTERS.indexOf(elm),1)
+    }
 
-  //   if(this.NAME_LEVEL_SELECT.length > 0){
-  //     this.genesisService.searchByLevelName$(this.NAME_LEVEL_SELECT,column)
-  //   }else{
-  //     this.genesisService.getAllDirectory()     
-  //   }
+    if(this.NAME_LEVEL_SELECT.length > 0){
+      this.genesisService.searchByLevelName$(this.NAME_LEVEL_SELECT,column)
+    }else{
+      this.genesisService.getAllDirectory()     
+    }
   
-  // }
+  }
 
   selectedPredefinedGroup(event: any,item: any){
     this.eventChecked = event
