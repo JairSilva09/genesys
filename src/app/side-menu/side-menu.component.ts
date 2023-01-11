@@ -149,7 +149,8 @@ export class SideMenuComponent implements OnInit {
       
     })
     this.predefinedGroup[1].push(x)
-    console.log(this.predefinedGroup[1])
+    this.genesisService.setGroupData(this.DATA_PREDEFINED_GROUP)
+    console.log(this.predefinedGroup)
   }
 
   setPredefinedGroup(event: string, column:string){

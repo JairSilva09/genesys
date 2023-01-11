@@ -122,6 +122,10 @@ export class GenesysService {
     "data": {}
   };
 
+  //----------------data group predefined----------------------//
+  private agentsInGroup$: Subject<any> = new Subject()
+  //--------------------------------------//
+
   private SELECTED_AGENTS_SERVICE: any = []
 
   private selectedObjects$: Subject<any> = new Subject()
@@ -132,6 +136,14 @@ export class GenesysService {
    private shortlist$: Subject<any[]> = new Subject()
    //-------modal--------//
    private shortlistqueues$: Subject<any[]> = new Subject()
+
+   //----------------data group predefined----------------------//
+   
+  setGroupData(item: any){
+    this.agentsInGroup$.next(item);
+  }
+   
+
 
    //------------- agent selected--------------//
 
