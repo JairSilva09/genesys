@@ -67,6 +67,7 @@
                                             <th scope="col">Language</th>
                                             <th scope="col">Provider</th>
                                             <th scope="col">Description</th>
+                                            <th scope="col" colspan="3">Temporary update</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -79,6 +80,52 @@
                                             <td>{{item.language}}</td>
                                             <td>{{item.provider}}</td>
                                             <td>{{item.description}}</td>
+                                            <td><div class="form-check form-switch">
+                                                 <input class="form-check-input" type="checkbox" role="switch" (change)="activeTemporary($event,item)" value="{{item}}" id="{{item.name}}">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span *ngIf="item.temporary">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                          Hours
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                          <li><button class="dropdown-item" type="button">2</button></li>
+                                                          <li><button class="dropdown-item" type="button">2</button></li>
+                                                          <li><button class="dropdown-item" type="button">3</button></li>
+                                                          <li><button class="dropdown-item" type="button">4</button></li>
+                                                          <li><button class="dropdown-item" type="button">5</button></li>
+                                                          <li><button class="dropdown-item" type="button">6</button></li>
+                                                          <li><button class="dropdown-item" type="button">7</button></li>
+                                                          <li><button class="dropdown-item" type="button">8</button></li>
+                                                          <li><button class="dropdown-item" type="button">9</button></li>
+                                                          <li><button class="dropdown-item" type="button">10</button></li>
+                                                        </ul>
+                                                    </div>                                                  
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span *ngIf="item.temporary">                                                    
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                          Days
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><button class="dropdown-item" type="button">2</button></li>
+                                                            <li><button class="dropdown-item" type="button">2</button></li>
+                                                            <li><button class="dropdown-item" type="button">3</button></li>
+                                                            <li><button class="dropdown-item" type="button">4</button></li>
+                                                            <li><button class="dropdown-item" type="button">5</button></li>
+                                                            <li><button class="dropdown-item" type="button">6</button></li>
+                                                            <li><button class="dropdown-item" type="button">7</button></li>
+                                                            <li><button class="dropdown-item" type="button">8</button></li>
+                                                            <li><button class="dropdown-item" type="button">9</button></li>
+                                                            <li><button class="dropdown-item" type="button">10</button></li>
+                                                          </ul>
+                                                    </div>
+                                                </span>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -315,4 +315,9 @@ export class ModalComponent implements OnInit{
       this.genesisService.getAllDataModal()     
     } 
   }
+
+  activeTemporary(event: any,item: any){
+    
+    item.temporary = event.target.checked;  
+  }
 }
