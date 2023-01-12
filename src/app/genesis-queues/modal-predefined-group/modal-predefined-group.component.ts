@@ -12,8 +12,6 @@ export class ModalPredefinedGroupComponent implements OnInit {
 
   groupName: string = "";
 
-
-
   //GROUPS: any[] = []
   //predefinedGroup = "no group"
 
