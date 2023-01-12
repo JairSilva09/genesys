@@ -67,7 +67,8 @@
                                             <th scope="col">Language</th>
                                             <th scope="col">Provider</th>
                                             <th scope="col">Description</th>
-                                            <th scope="col" colspan="3">Temporary update</th>
+                                            <th scope="col" colspan="2">Temporary update</th>
+                                            <th scope="col" colspan="3"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -80,6 +81,8 @@
                                             <td>{{item.language}}</td>
                                             <td>{{item.provider}}</td>
                                             <td>{{item.description}}</td>
+                                            <td>{{item.hour}}</td>
+                                            <td>{{item.days}}</td>
                                             <td><div class="form-check form-switch">
                                                  <input class="form-check-input" type="checkbox" role="switch" (change)="activeTemporary($event,item)" value="{{item}}" id="{{item.name}}">
                                                 </div>
@@ -91,16 +94,16 @@
                                                           Hours
                                                         </button>
                                                         <ul class="dropdown-menu">
-                                                          <li><button class="dropdown-item" type="button">2</button></li>
-                                                          <li><button class="dropdown-item" type="button">2</button></li>
-                                                          <li><button class="dropdown-item" type="button">3</button></li>
-                                                          <li><button class="dropdown-item" type="button">4</button></li>
-                                                          <li><button class="dropdown-item" type="button">5</button></li>
-                                                          <li><button class="dropdown-item" type="button">6</button></li>
-                                                          <li><button class="dropdown-item" type="button">7</button></li>
-                                                          <li><button class="dropdown-item" type="button">8</button></li>
-                                                          <li><button class="dropdown-item" type="button">9</button></li>
-                                                          <li><button class="dropdown-item" type="button">10</button></li>
+                                                          <li><button (click)="addHour('1',item)" class="dropdown-item" type="button">2</button></li>
+                                                          <li><button (click)="addHour('2',item)" class="dropdown-item" type="button">2</button></li>
+                                                          <li><button (click)="addHour('3',item)" class="dropdown-item" type="button">3</button></li>
+                                                          <li><button (click)="addHour('4',item)" class="dropdown-item" type="button">4</button></li>
+                                                          <li><button (click)="addHour('5',item)" class="dropdown-item" type="button">5</button></li>
+                                                          <li><button (click)="addHour('6',item)" class="dropdown-item" type="button">6</button></li>
+                                                          <li><button (click)="addHour('7',item)" class="dropdown-item" type="button">7</button></li>
+                                                          <li><button (click)="addHour('8',item)" class="dropdown-item" type="button">8</button></li>
+                                                          <li><button (click)="addHour('9',item)" class="dropdown-item" type="button">9</button></li>
+                                                          <li><button (click)="addHour('10',item)"class="dropdown-item" type="button">10</button></li>
                                                         </ul>
                                                     </div>                                                  
                                                 </span>
@@ -112,16 +115,16 @@
                                                           Days
                                                         </button>
                                                         <ul class="dropdown-menu">
-                                                            <li><button class="dropdown-item" type="button">2</button></li>
-                                                            <li><button class="dropdown-item" type="button">2</button></li>
-                                                            <li><button class="dropdown-item" type="button">3</button></li>
-                                                            <li><button class="dropdown-item" type="button">4</button></li>
-                                                            <li><button class="dropdown-item" type="button">5</button></li>
-                                                            <li><button class="dropdown-item" type="button">6</button></li>
-                                                            <li><button class="dropdown-item" type="button">7</button></li>
-                                                            <li><button class="dropdown-item" type="button">8</button></li>
-                                                            <li><button class="dropdown-item" type="button">9</button></li>
-                                                            <li><button class="dropdown-item" type="button">10</button></li>
+                                                            <li><button (click)="addDays('1',item)" class="dropdown-item" type="button">2</button></li>
+                                                            <li><button (click)="addDays('2',item)" class="dropdown-item" type="button">2</button></li>
+                                                            <li><button (click)="addDays('3',item)" class="dropdown-item" type="button">3</button></li>
+                                                            <li><button (click)="addDays('4',item)" class="dropdown-item" type="button">4</button></li>
+                                                            <li><button (click)="addDays('5',item)" class="dropdown-item" type="button">5</button></li>
+                                                            <li><button (click)="addDays('6',item)" class="dropdown-item" type="button">6</button></li>
+                                                            <li><button (click)="addDays('7',item)" class="dropdown-item" type="button">7</button></li>
+                                                            <li><button (click)="addDays('8',item)" class="dropdown-item" type="button">8</button></li>
+                                                            <li><button (click)="addDays('9',item)" class="dropdown-item" type="button">9</button></li>
+                                                            <li><button (click)="addDays('10',item)"class="dropdown-item" type="button">10</button></li>
                                                           </ul>
                                                     </div>
                                                 </span>

@@ -320,4 +320,13 @@ export class ModalComponent implements OnInit{
     
     item.temporary = event.target.checked;  
   }
+
+  addHour(hour: string,item: any){
+    console.log(hour)
+    item.hour = hour;
+  }
+
+  addDays(days: string,item: any){
+    item.days = days;
+  }
 }

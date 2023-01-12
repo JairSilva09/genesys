@@ -153,7 +153,7 @@ export class SideMenuComponent implements OnInit {
       })
 
       this.eventChecked.target.checked = false;
-      alert("agents added to predefined group "+this.predefinedGroup[0])  
+      confirm("agents added to predefined group "+this.predefinedGroup[0])  
       
     })
     this.predefinedGroup[1].push(x)
