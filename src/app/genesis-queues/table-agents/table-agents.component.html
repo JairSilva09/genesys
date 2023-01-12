@@ -3,7 +3,6 @@
     <thead>
       <tr>
         <th scope="col">Name</th>
-        <!-- <th scope="col">Active</th> -->
         <th scope="col">Queues</th>
         <th scope="col">Department</th>
         <th scope="col">Agent</th>
@@ -15,10 +14,7 @@
       <tr *ngFor="let item of selected_agents">
 
         <td>{{item.name}}</td>
-        <!-- <td><mat-icon *ngIf="item.active;  else notActive" style="color: #06F85C">check</mat-icon>
-            <ng-template #notActive><mat-icon style="color: #ef3131">cancel</mat-icon></ng-template>
-        </td> -->
-        <td><span *ngFor="let queue of item.queues , let i = index" [style.color]="(i%2 === 0)?'green':'red'">{{queue.queuename}}, </span></td>
+        <td><span *ngFor="let queue of item.queues , let i = index" [style.color]="(i%2 === 0)?'red':'#08ca4d'">{{queue.queuename}}, </span></td>
         <td>{{item.department}}</td>
         <td>{{item.agent}}</td>
         <td>{{item.manager}}</td>

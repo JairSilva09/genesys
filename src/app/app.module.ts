@@ -20,6 +20,7 @@ import { ModalComponent } from './genesis-queues/modal/modal.component';
 import { ModalPredefinedGroupComponent } from './genesis-queues/modal-predefined-group/modal-predefined-group.component';
 import { TableAgentsComponent } from './genesis-queues/table-agents/table-agents.component';
 import { TablePredefinedGroupComponent } from './genesis-queues/table-predefined-group/table-predefined-group.component';
+import { TableModifyQueuesComponent } from './genesis-queues/table-modify-queues/table-modify-queues.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { TablePredefinedGroupComponent } from './genesis-queues/table-predefined
     ModalComponent,
     ModalPredefinedGroupComponent,
     TableAgentsComponent,
-    TablePredefinedGroupComponent
+    TablePredefinedGroupComponent,
+    TableModifyQueuesComponent
   ],
   imports: [
     BrowserModule,
