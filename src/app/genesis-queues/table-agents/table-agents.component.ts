@@ -22,7 +22,11 @@ export class TableAgentsComponent {
   }
 
   activateQueue(){
-    this.queue.active = true
+    if(this.queue.active != true){
+      this.queue.active = true
+    }else{
+      this.queue.active = false
+    }
   }
 
   removeQueue(){

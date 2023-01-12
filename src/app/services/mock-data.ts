@@ -569,7 +569,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "Altice, All Spanish",
-    "description": "CABLE "
+    "description": "CABLE ",
+    "active": true
    },
    {
     "queuename": "Altice_Lat_Zip_Lookup",
@@ -578,7 +579,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "Altice, All English",
-    "description": "CABLE "
+    "description": "CABLE ",
+    "active": true
    },
    {
     "queuename": "Altice_Verification",
@@ -587,7 +589,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "Altice, All English",
-    "description": "CABLE "
+    "description": "CABLE ",
+    "active": true
    },
    {
     "queuename": "Altice_Zip_Lookup",
@@ -596,7 +599,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "Altice, All English",
-    "description": "CABLE "
+    "description": "CABLE ",
+    "active": false
    },
    {
     "queuename": "ATT_ACP",
@@ -605,7 +609,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": 0,
-    "description": "QA"
+    "description": "QA",
+    "active": false
    },
    {
     "queuename": "ATT_Bus",
@@ -614,7 +619,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Business",
     "calltype": "AT&amp;T, Business, All English",
-    "description": "Business "
+    "description": "Business ",
+    "active": false
    },
    {
     "queuename": "ATT_Bus_Latino_SG",
@@ -623,7 +629,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "Spanish",
     "residential\/business": "Business",
     "calltype": "AT&amp;T",
-    "description": "Business "
+    "description": "Business ",
+    "active": true
    },
    {
     "queuename": "ATT_Copper_Overflow",
@@ -632,7 +639,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "ALL, AT&amp;T Position, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": true
    },
    {
     "queuename": "ATT_Fiber_Overflow",
@@ -641,7 +649,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "ALL, AT&amp;T Position, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": false
    },
    {
     "queuename": "ATT_In_SG",
@@ -650,7 +659,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "ALL, Remianing Wireline, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": true
    },
    {
     "queuename": "ATT_LAT_TV_SG",
@@ -659,7 +669,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "Spanish",
     "residential\/business": "Residential",
     "calltype": "ALL, All Spanish",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": false
    },
    {
     "queuename": "ATT_Lat_Verification",
@@ -668,7 +679,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "Spanish",
     "residential\/business": "Residential",
     "calltype": "ALL, All Spanish",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": false
    },
    {
     "queuename": "ATT_Lat_Zip_Lookup",
@@ -677,7 +689,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "Spanish",
     "residential\/business": "Residential",
     "calltype": "ALL, All Spanish",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": true
    },
    {
     "queuename": "ATT_Latino_SG",
@@ -686,7 +699,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "Spanish",
     "residential\/business": "Residential",
     "calltype": "ALL, All Spanish",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": true
    },
    {
     "queuename": "ATT_NonBrand",
@@ -695,7 +709,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "ALL, Remianing Wireline, All English, ATT Non brand",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": false
    },
    {
     "queuename": "ATT_P1_Copper",
@@ -704,7 +719,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "ALL, AT&amp;T Position, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": true
    },
    {
     "queuename": "ATT_P1_Fiber",
@@ -713,7 +729,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "ALL, AT&amp;T Position, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": true
    },
    {
     "queuename": "ATT_P1_Latino_SG",
@@ -722,7 +739,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "Spanish",
     "residential\/business": "Residential",
     "calltype": "ALL, AT&amp;T Position, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": true
    },
    {
     "queuename": "ATT_P1_Movers",
@@ -731,7 +749,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "ALL, AT&amp;T Position, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": false
    },
    {
     "queuename": "ATT_P1_Upgrade",
@@ -740,7 +759,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "ALL, AT&amp;T Position, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": false
    },
    {
     "queuename": "ATT_P1_Wireless",
@@ -749,7 +769,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "All, AT&amp;T Position ",
-    "description": "AT&amp;T Wireless"
+    "description": "AT&amp;T Wireless",
+    "active": false
    },
    {
     "queuename": "ATT_Store_Apt_SG",
@@ -758,7 +779,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": 0,
-    "description": "QA"
+    "description": "QA",
+    "active": true
    },
    {
     "queuename": "ATT_Transfers_Latino_SG",
@@ -767,7 +789,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "ALL, All Spanish",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": true
    },
    {
     "queuename": "ATT_TV_SG",
@@ -776,7 +799,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "ALL, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": false
    },
    {
     "queuename": "ATT_TV_Verification",
@@ -785,7 +809,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "ALL, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": true
    },
    {
     "queuename": "ATT_Upgrade_SG",
@@ -794,7 +819,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "All, Remaining Wireline, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": false
    },
    {
     "queuename": "ATT_Verification",
@@ -803,7 +829,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "All, Remaining Wireline, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": true
    },
    {
     "queuename": "ATT_Wireless_Bus_SG",
@@ -812,7 +839,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Business",
     "calltype": "AT&amp;T",
-    "description": "Business "
+    "description": "Business",
+    "active": true
    },
    {
     "queuename": "ATT_Wireless_LAT_SG",
@@ -821,7 +849,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "Spanish",
     "residential\/business": "Residential",
     "calltype": "All, AT&amp;T Wireless",
-    "description": "AT&amp;T Wireless"
+    "description": "AT&amp;T Wireless",
+    "active": true
    },
    {
     "queuename": "ATT_Wireless_SG",
@@ -830,7 +859,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "All, AT&amp;T Wireless",
-    "description": "AT&amp;T Wireless"
+    "description": "AT&amp;T Wireless",
+    "active": true
    },
    {
     "queuename": "ATT_Zip_Lookup",
@@ -839,21 +869,24 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "All, Remaining Wireline, All English",
-    "description": "AT&amp;T"
+    "description": "AT&amp;T",
+    "active": true
    },
    {
     "queuename": "Base Settings Queue - Not for Use",
     "queueid": "592d6ea9-48f4-42ed-94ce-ab255bc60243",
     "provider": "TEST",
     "calltype": "#N\/A",
-    "description": "#N\/A"
+    "description": "#N\/A",
+    "active": true
    },
    {
     "queuename": "Base Settings Test Queue",
     "queueid": "2121c5a8-103f-4714-9820-9abfa36e8bbc",
     "provider": "TEST",
     "calltype": "#N\/A",
-    "description": "#N\/A"
+    "description": "#N\/A",
+    "active": true
    },
    {
     "queuename": "BBND_LAT_Internal_Transfer",
@@ -862,7 +895,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "Spanish",
     "residential\/business": "Residential",
     "calltype": "BBND Spanish",
-    "description": 0
+    "description": 0,
+    "active": true
    },
    {
     "queuename": "BestBuy_Sales_SG",
@@ -871,7 +905,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": 0,
-    "description": 0
+    "description": 0,
+    "active": true
    },
    {
     "queuename": "Brightspeed_ACQ",
@@ -880,7 +915,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Residential",
     "calltype": "Bright Speed",
-    "description": "Brightspeed"
+    "description": "Brightspeed",
+    "active": true
    },
    {
     "queuename": "Brightspeed_ACQ_Bus",
@@ -889,7 +925,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Business",
     "calltype": 0,
-    "description": "Business "
+    "description": "Business ",
+    "active": true
    },
    {
     "queuename": "Brightspeed_ACQ_Lat",
@@ -898,7 +935,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "Spanish",
     "residential\/business": "Residential",
     "calltype": 0,
-    "description": "Brightspeed"
+    "description": "Brightspeed",
+    "active": true
    },
    {
     "queuename": "Brightspeed_Bus_SG",
@@ -907,7 +945,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "English",
     "residential\/business": "Business",
     "calltype": 0,
-    "description": "Business "
+    "description": "Business ",
+    "active": true
    },
    {
     "queuename": "Brightspeed_Lat_SG",
@@ -970,7 +1009,8 @@ const DATA_QUEUE: any[] = [   {
     "language": "Spanish",
     "residential\/business": "Business",
     "calltype": 0,
-    "description": "Business "
+    "description": "Business ",
+    "active": true
    },
    {
     "queuename": "Cable_Internal_Transfer",
