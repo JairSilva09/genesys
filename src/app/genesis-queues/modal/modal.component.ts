@@ -42,6 +42,8 @@ export class ModalComponent implements OnInit{
 
   column: string = "";
 
+  teporaryHour: string = "";
+
   ngOnInit(): void {
     this.getAllDataQueues(); 
     this.getDataQueues();
@@ -329,4 +331,10 @@ export class ModalComponent implements OnInit{
   addDays(days: string,item: any){
     item.days = days;
   }
+
+  onOptionsSelected(event: any) {
+    const value = event.target.value;
+    // this.selected = value;
+    console.log(value);
+ }
 }

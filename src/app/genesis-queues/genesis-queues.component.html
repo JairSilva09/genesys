@@ -5,10 +5,8 @@
                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                 <label class="form-check-label" for="inlineCheckbox1">Temporary Update</label>
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">Modify Existing Queues/Skills</label>
-            </div>            
+            <button type="button" class="btn btn-primary" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModifyqueues">Modify Existing Queues/Skills</button>
+                      
         </section>
     </div>
     <div class="row justify-content-start px-2">
@@ -52,7 +50,7 @@
                             <input class="form-check-input" type="checkbox" (change)="alertCheckbox($event)" value="" #selectAllItems>
                         </th>
                         <th scope="col">Name</th>
-                        <th scope="col">Active</th>
+                        <th scope="col">Online</th>
                         <th scope="col">Queues</th>                   
                         <th scope="col">Department</th>
                         <th scope="col">Agent</th>
@@ -81,9 +79,10 @@
                 </table>
                 <app-table-agents *ngIf="showTableAgents" [selected_agents]="data_table_selected_agents"></app-table-agents>
                 <app-table-predefined-group *ngIf="showTableGroupPredenined"></app-table-predefined-group>
+                <app-modal-predefined-group></app-modal-predefined-group>
+                <app-table-modify-queues [selected_agents]="SELECTED_AGENTS"></app-table-modify-queues>
             </div>
         </div>
     </div>
     <app-modal (savedQueues)="addQueues($event)"></app-modal>
-    <app-modal-predefined-group></app-modal-predefined-group>  
 </div>

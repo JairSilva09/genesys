@@ -69,6 +69,7 @@
                                             <th scope="col">Description</th>
                                             <th scope="col" colspan="2">Temporary update</th>
                                             <th scope="col" colspan="3"></th>
+                                            <th scope="col" colspan="3"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -87,8 +88,22 @@
                                                  <input class="form-check-input" type="checkbox" role="switch" (change)="activeTemporary($event,item)" value="{{item}}" id="{{item.name}}">
                                                 </div>
                                             </td>
+                                                <td><button type="button" class="btn btn-primary btn-sm">Open</button></td>
                                             <td>
                                                 <span *ngIf="item.temporary">
+                                                    <!-- <select class="form-select" [(ngModel)]="teporaryHour" (change)='onOptionsSelected($event)' aria-label="Default select example">
+                                                        <option selected>Hours</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="3">4</option>
+                                                        <option value="3">5</option>
+                                                        <option value="3">6</option>
+                                                        <option value="3">7</option>
+                                                        <option value="3">8</option>
+                                                        <option value="3">8</option>
+                                                        <option value="3">10</option>
+                                                    </select> -->
                                                     <div class="dropdown">
                                                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                           Hours
