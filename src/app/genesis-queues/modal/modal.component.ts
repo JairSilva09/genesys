@@ -44,6 +44,66 @@ export class ModalComponent implements OnInit{
 
   teporaryHour: string = "";
 
+  LIST_FALSE: any[] = [
+    {
+      "name": "Marve Mingardo",
+      "active": false,
+      "email": "mmingardo4@issuu.com",
+      "queues": [],
+      "skill": "provider",
+      "license": "Cloud CX 3,*",
+      "department": "Dish",
+      "agent": "Agent 6",
+      "manager": "Manager 4",
+      "predefinedgroup": "Example Y"
+    }, {
+      "name": "Lillis Bursnell",
+      "active": false,
+      "email": "lbursnell5@woothemes.com",
+      "queues": [],
+      "skill": "provider",
+      "license": "Cloud CX 3,*",
+      "department": "AT&T",
+      "agent": "Agent 5",
+      "manager": "Manager 5",
+      "predefinedgroup": "Example Y"
+    }, {
+      "name": "Loutitia Fritche",
+      "active": false,
+      "email": "lfritche6@ehow.com",
+      "queues": [],
+      "skill": "provider",
+      "license": "Collaborate",
+      "department": "CenturyLink",
+      "agent": "Agent 1",
+      "manager": "Manager 4",
+      "predefinedgroup": "ATT P1 Cooper Overflow"
+    }, {
+      "name": "Reena Nettleship",
+      "active": false,
+      "email": "rnettleship7@shop-pro.jp",
+      "queues": [],
+      "skill": "queuename",
+      "license": "Cloud CX 3,*",
+      "department": "CenturyLink",
+      "agent": "Agent 5",
+      "manager": "Manager 5",
+      "predefinedgroup": "Example Y"
+    }, {
+      "name": "Rance Exley",
+      "skill": "calltypes",
+      "license": "Cloud CX 3,*",
+      "department": "AT&T",
+      "agent": "Agent 1",
+      "manager": "Manager 5",
+      "predefinedgroup": "Example Y"
+    }
+  ]
+  nameQueueOpen: string = ""
+
+
+  
+
   ngOnInit(): void {
     this.getAllDataQueues(); 
     this.getDataQueues();
@@ -336,5 +396,14 @@ export class ModalComponent implements OnInit{
     const value = event.target.value;
     // this.selected = value;
     console.log(value);
- }
+  }
+
+  removeAgent(item: any){
+    let text = "Are you sure to remove the agent from the queue?";
+    if (confirm(text) == true) {
+      this.LIST_FALSE.splice(this.LIST_FALSE.indexOf(item), 1);    
+    } else {
+      text = "Canceled!";
+    }
+  }
 }

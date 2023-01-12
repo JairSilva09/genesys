@@ -13,8 +13,9 @@
     <tbody>
       <tr *ngFor="let item of selected_agents">
 
-        <td>{{item.name}}</td>        
-        <td><span *ngFor="let queue of item.queues">{{queue.queuename}}, </span></td>                     
+        <td>{{item.name}}</td>
+        <td><span *ngFor="let queue of item.queues , let i = index" [style.color]="(i%2 === 0)?'green':'red'">{{queue.queuename}}, </span></td>        
+        <!-- <td><span *ngFor="let queue of item.queues">{{queue.queuename}}, </span></td>                      -->
         <td>{{item.department}}</td>
         <td>{{item.agent}}</td>
         <td>{{item.manager}}</td>
