@@ -10,25 +10,29 @@ export class TableAgentsComponent {
   queue: any;
   agent: any;
   nameQueue: string = "";
+  activeDesactive: string = "";
 
   loadModalQueue:boolean = false;
 
   @Input() selected_agents: any[] = [];
   
   activeRemoveQueue(agent: any, queue: any){
+  
     this.queue = queue;
     this.agent = agent;
     this.nameQueue = queue.queuename
-    console.log(agent.queues)
-    console.log(queue)
+    this.queue.active == true?this.activeDesactive="Desactive":this.activeDesactive="Active"
+   
   }
 
   activateQueue(){
+
     if(this.queue.active != true){
       this.queue.active = true
     }else{
       this.queue.active = false
     }
+    this.queue.active == true?this.activeDesactive="Desactive":this.activeDesactive="Active"    
   }
 
   removeQueue(){

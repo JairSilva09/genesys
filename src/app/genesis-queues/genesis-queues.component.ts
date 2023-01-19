@@ -388,30 +388,34 @@ export class GenesisQueuesComponent implements OnInit{
   }
 
   addQueues(event: any){
-    console.log(event)
-    let x:any[] = []
+    
     let AgentQueues: any[] = []
     this.genesisService.getAgentSelecteds().subscribe((data)=>{
 
       if(data.length > 0){
 
         let b = {}
-        let newObject;       
-
+        let newObject; 
+        
+        //selected agent data        
         data.forEach((element: any) => {
+
           AgentQueues = [];
 
-          element.queues.forEach((a: any) =>{
-            newObject = Object.assign(b,a)
-            AgentQueues.push(newObject)            
-          })
+          if(element.queues.length > 0){
+            element.queues.forEach((a: any) =>{
+              newObject = Object.assign(b,a)
+              AgentQueues.push(newObject)            
+            })
+          }
           
+                   
           event.forEach((a:any)=>{
-            AgentQueues.push(a)
+            b = {}
+            Object.assign(b,a)            
+            AgentQueues.push(b)
           })
-
           element.queues = AgentQueues
-        
         })
         
         this.data_table_selected_agents = data
