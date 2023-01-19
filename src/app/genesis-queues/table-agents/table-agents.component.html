@@ -15,8 +15,6 @@
 
         <td>{{item.name}}</td>
         <td><span *ngFor="let queue of item.queues , let i = index" [ngClass]="{'active':queue.active == true,'inactive':queue.active != true}" (click)="activeRemoveQueue(item,queue)" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#ModalQuestion">{{queue.queuename}},</span></td>
-        <!-- <td><span *ngFor="let queue of item.queues , let i = index" [style.color]="(i%2 === 0 && queue.active != true)?'red':'#08ca4d'"><span *ngIf="i%2 === 0; else active" (click)="activeRemoveQueue(item,queue)" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#ModalQuestion">{{queue.queuename}}, </span><ng-template #active><span (click)="activeRemoveQueue(item,queue)" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#ModalQuestion">{{queue.queuename}}, </span></ng-template></span></td> -->
-        <!-- <td><span *ngFor="let queue of item.queues , let i = index" [style.color]="(i%2 === 0)?'red':'#08ca4d'">{{queue.queuename}}, </span></td> -->
         <td>{{item.department}}</td>
         <td>{{item.agent}}</td>
         <td>{{item.manager}}</td>
