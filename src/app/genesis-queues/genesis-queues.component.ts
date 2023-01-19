@@ -26,6 +26,8 @@ export class GenesisQueuesComponent implements OnInit{
   ITEMS_PER_PAGE: number[] = [10,20,30,40,50,60,70,80,90,100]
   num_item_page: number = 10;
 
+  layout: string = "Horizontal"
+
   constructor(private genesisService: GenesysService) { }
 
   user = {
@@ -422,6 +424,15 @@ export class GenesisQueuesComponent implements OnInit{
       }      
     })
 
+  }
+
+  setLayout(value: string){
+
+    if(value == "Vertical"){
+      this.layout = "Horizontal"
+    }else{
+      this.layout = "Vertical"
+    }
   }
 
 }
