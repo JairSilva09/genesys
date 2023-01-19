@@ -11,6 +11,8 @@ export class TableAgentsComponent {
   agent: any;
   nameQueue: string = "";
 
+  loadModalQueue:boolean = false;
+
   @Input() selected_agents: any[] = [];
   
   activeRemoveQueue(agent: any, queue: any){
