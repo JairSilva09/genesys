@@ -12,27 +12,27 @@
                                         {{item.target.value}}
                                       <span (click)="deleteFilter(item)" style="cursor: pointer">X</span>
                                     </li>
-                                </div>                                                            
-                                <div class="p-3">         
-                                    <mat-accordion>                                     
+                                </div>
+                                <div class="p-3">
+                                    <mat-accordion>
                                         <mat-expansion-panel *ngFor="let item of QUEUE" (opened)="panelOpenState = true"
                                                              (closed)="panelOpenState = false">
                                             <mat-expansion-panel-header>
                                                 <mat-panel-title>
                                                     {{item[0]}}
-                                                </mat-panel-title>                                                
+                                                </mat-panel-title>
                                             </mat-expansion-panel-header>
                                             <div class="form-check" *ngFor="let elm of item[1]">
                                                 <input type="checkbox" class="form-check-input" (change)="columnSelected($event,elm)" value="{{elm.value}}" id="{{elm.value}}">
                                                 <label class="form-check-label">{{elm.value}}</label>
-                                            </div>                                           
+                                            </div>
                                         </mat-expansion-panel>
                                     </mat-accordion>
-                                </div> 
+                                </div>
                             </div>
                         </div>
-                        
-                        <div class="col-md-10">                            
+
+                        <div class="col-md-10">
                             <div class="row justify-content-start px-2">
                                 <div class="col-md-4">
                                     <div class="input-group mb-3 pt-2">
@@ -54,7 +54,7 @@
                                     <app-pagination [records]="DATA_ALL_QUEUES" [current_page]="current_page" [total_pages]="num_pages" (newPage)="newPage($event)"></app-pagination>
                                 </div>
                             </div>
-                          
+
                             <div class="cont-modal-table">
                                 <table class="table">
                                     <thead>
@@ -62,12 +62,12 @@
                                             <th>
                                                 <input class="form-check-input" type="checkbox" (change)="selectQueues($event)" value="" #selectAllQueues>
                                             </th>
-                                            <th scope="col">Queue Name</th>                                          
+                                            <th scope="col">Queue Name</th>
                                             <th scope="col">Call Type</th>
                                             <th scope="col">Language</th>
                                             <th scope="col">Provider</th>
                                             <th scope="col">Description</th>
-                                            <th scope="col" colspan="2">Temporary update</th>
+                                            <th scope="col" colspan="2">Temporary</th>
                                             <th scope="col" colspan="3"></th>
                                             <th scope="col"></th>
                                         </tr>
@@ -76,8 +76,8 @@
                                         <tr *ngFor="let item of dataSource_queue" >
                                             <td>
                                                 <input class="form-check-input" type="checkbox" (change)="queueSelect($event,item)" value="{{item.queuename}}" id="{{item.queuename}}" [checked]="item.is_checked">
-                                            </td>                    
-                                            <td>{{item.queuename}}</td>                                           
+                                            </td>
+                                            <td>{{item.queuename}}</td>
                                             <td>{{item.calltype}}</td>
                                             <td>{{item.language}}</td>
                                             <td>{{item.provider}}</td>
@@ -88,7 +88,8 @@
                                                  <input class="form-check-input" type="checkbox" role="switch" (change)="activeTemporary($event,item)" value="{{item}}" id="{{item.name}}">
                                                 </div>
                                             </td>
-                                                <td><button type="button" (click)="nameQueueOpen = item.queuename" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalOpenQueue">Open</button></td>
+                                                <td><button type="button" (click)="nameQueueOpen = item.queuename" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalOpenQueue">Agents</button></td>
+                                                <td><button type="button"  class="btn btn-primary btn-sm" >Queue</button></td>
                                             <td>
                                                 <span *ngIf="item.temporary">
                                                     <!-- <select class="form-select" [(ngModel)]="teporaryHour" (change)='onOptionsSelected($event)' aria-label="Default select example">
@@ -120,11 +121,11 @@
                                                           <li><button (click)="addHour('9',item)" class="dropdown-item" type="button">9</button></li>
                                                           <li><button (click)="addHour('10',item)"class="dropdown-item" type="button">10</button></li>
                                                         </ul>
-                                                    </div>                                                  
+                                                    </div>
                                                 </span>
                                             </td>
                                             <td>
-                                                <span *ngIf="item.temporary">                                                    
+                                                <span *ngIf="item.temporary">
                                                     <div class="dropdown">
                                                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                           Days
@@ -154,8 +155,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light mx-1" (click)="save_Selected_Queues()" data-bs-dismiss="modal" style="background-color:#1a2a5d; color: white">
-                    Save 
-                </button> 
+                    Create New Queue
+                </button>
+                <button type="button" class="btn btn-light mx-1" (click)="save_Selected_Queues()" data-bs-dismiss="modal" style="background-color:#1a2a5d; color: white">
+                    Save
+                </button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -174,13 +178,13 @@
                             </h2>
                         </div>
                     </div>
-                    <div class="row">                       
-                        <div class="col-md-12">                            
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="cont-modal-table">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Name</th>                                          
+                                            <th scope="col">Name</th>
                                             <th scope="col">Department</th>
                                             <th scope="col">Agent</th>
                                             <th scope="col">Manager</th>
@@ -190,14 +194,14 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let item of LIST_FALSE" >
-                                            <td>{{item.name}}</td>                                           
+                                            <td>{{item.name}}</td>
                                             <td>{{item.department}}</td>
                                             <td>{{item.agent}}</td>
                                             <td>{{item.manager}}</td>
                                             <td>{{item.predefinedgroup}}</td>
                                             <td>
                                                 <button type="button" (click)="removeAgent(item)" class="btn btn-link">remove</button>
-                                            </td>                                            
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -1,19 +1,20 @@
-<div class=""> 
+<div class="">
     <div class="container-fluid" style="display: flex;justify-content: space-between;align-items: center;gap: 20px;">
+       <div style="display: flex;justify-content: center;align-items: center;gap: 10px;">
         <img src="assets/logo.jpg" style="cursor: auto;"  alt="">
         <h1>Genesys Skilling Tool</h1>
-      
+
         <table class="table table-sm" style="width: 30%">
             <thead>
                 <tr>
-                    <th scope="col">Skill</th>                                          
+                    <th scope="col">Skill</th>
                     <th scope="col">Queue</th>
                     <th scope="col">Await</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of LIST_FALSE" >
-                    <td>{{item.skill}}</td>                                           
+                    <td>{{item.skill}}</td>
                     <td>{{item.queue}}</td>
                     <td>{{item.wait}}</td>
                 </tr>
@@ -27,20 +28,20 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="container-fluid">
-                    <div class="row">                       
-                        <div class="col-md-12">                            
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="cont-modal-table">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Skill</th>                                          
+                                            <th scope="col">Skill</th>
                                             <th scope="col">Queue</th>
                                             <th scope="col">Await</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let item of LIST_FALSE" >
-                                            <td>{{item.skill}}</td>                                           
+                                            <td>{{item.skill}}</td>
                                             <td>{{item.queue}}</td>
                                             <td>{{item.wait}}</td>
                                         </tr>
