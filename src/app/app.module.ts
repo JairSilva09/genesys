@@ -21,6 +21,7 @@ import { ModalPredefinedGroupComponent } from './genesis-queues/modal-predefined
 import { TableAgentsComponent } from './genesis-queues/table-agents/table-agents.component';
 import { TablePredefinedGroupComponent } from './genesis-queues/table-predefined-group/table-predefined-group.component';
 import { TableModifyQueuesComponent } from './genesis-queues/table-modify-queues/table-modify-queues.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { TableModifyQueuesComponent } from './genesis-queues/table-modify-queues
     MatIconModule,
     MatExpansionModule,
     HttpClientModule,
-       
+    MatChipsModule,       
   ],
   providers: [
     {

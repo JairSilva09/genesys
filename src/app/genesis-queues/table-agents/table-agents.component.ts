@@ -7,36 +7,19 @@ import { Component, Input } from '@angular/core';
 })
 export class TableAgentsComponent {
   
-  queue: any;
-  agent: any;
-  nameQueue: string = "";
-  activeDesactive: string = "";
-
-  loadModalQueue:boolean = false;
+ loadModalQueue:boolean = false;
 
   @Input() selected_agents: any[] = [];
-  
-  activeRemoveQueue(agent: any, queue: any){
-  
-    this.queue = queue;
-    this.agent = agent;
-    this.nameQueue = queue.queuename
-    this.queue.active == true?this.activeDesactive="Desactive":this.activeDesactive="Active"
-   
-  }
+ 
 
-  activateQueue(){
+  removeQueue(list: any,queue: any){
 
-    if(this.queue.active != true){
-      this.queue.active = true
-    }else{
-      this.queue.active = false
+    if (confirm("Are you sure you want to remove this queue from the agent list?") == true) {
+      list.splice(list.indexOf(queue), 1);
+    } else {
+      console.log("Cancel")
     }
-    this.queue.active == true?this.activeDesactive="Desactive":this.activeDesactive="Active"    
-  }
 
-  removeQueue(){
-    this.agent.queues.splice(this.agent.queues.indexOf(this.queue), 1);
   }
 
 }

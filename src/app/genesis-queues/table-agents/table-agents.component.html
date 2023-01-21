@@ -1,11 +1,11 @@
 
   <div class="col-12">
     <h2 class="m-2" style="display: inline-block">Selected agents</h2>
-    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#ModalQueue" (click)="loadModalQueue=true">
+    <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#ModalQueue" (click)="loadModalQueue=true">
       Add Queues
     </button>
   </div>
-<table class="table">
+<table class="table mt-3">
     <thead>
       <tr>
         <th scope="col">Name</th>
@@ -20,7 +20,19 @@
       <tr *ngFor="let item of selected_agents">
 
         <td>{{item.name}}</td>
-        <td><span *ngFor="let queue of item.queues , let i = index" [ngClass]="{'active':queue.active == true,'inactive':queue.active != true}" (click)="activeRemoveQueue(item,queue)" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#ModalQuestion">{{queue.queuename}},</span></td>
+        <td style="max-width: 280px" >
+          <mat-chip-listbox aria-label="select a shirt size">
+            <mat-chip *ngFor="let queue of item.queues">
+              <mat-icon (click)="queue.active = !queue.active" style="cursor: pointer" *ngIf="queue.active; else disabledQueue" [ngClass]="{'active':queue.active == true,'inactive':queue.active != true}">check</mat-icon>
+              <ng-template #disabledQueue ><mat-icon (click)="queue.active = !queue.active" style="cursor: pointer" [ngClass]="{'active':queue.active == true,'inactive':queue.active != true}">sentiment_very_dissatisfied</mat-icon></ng-template>
+              <span style="line-height: 2">{{queue.queuename}}</span>
+              <button (click)="removeQueue(item.queues,queue)" matChipRemove aria-label="'remove ' + keyword">
+                <mat-icon style="color: #ef3131">cancel</mat-icon>
+              </button>
+            </mat-chip>          
+          </mat-chip-listbox>
+        </td>
+        <!-- <td><span *ngFor="let queue of item.queues , let i = index" [ngClass]="{'active':queue.active == true,'inactive':queue.active != true}" (click)="activeRemoveQueue(item,queue)" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#ModalQuestion">{{queue.queuename}},</span></td> -->
         <td>{{item.department}}</td>
         <td>{{item.agent}}</td>
         <td>{{item.manager}}</td>
@@ -30,7 +42,7 @@
 </table>
 
 <!-- Modal -->
-<div class="modal fade" id="ModalQuestion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="ModalQuestion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -43,10 +55,10 @@
             <div class="col-12 d-flex">
               <div class="mr-2" style="margin-right: 10px">
                 <input type="radio" class="btn-check" name="queueOptions" (click)="activateQueue()" id="activate" autocomplete="off" checked>
-                <label class="btn btn-success ml-2" for="activate">{{activeDesactive}}</label>
+                <label class="btn btn-primary ml-2" for="activate">{{activeDesactive}}</label>
               </div>
               <div>
-                <input type="radio" class="btn-check" name="queueOptions" (click)="removeQueue()" id="remove" autocomplete="off">
+                <input type="radio" class="btn-check" name="queueOptions" id="remove" autocomplete="off">
                 <label class="btn btn-danger" for="remove">Remove</label>
               </div>
             </div>
@@ -58,4 +70,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
