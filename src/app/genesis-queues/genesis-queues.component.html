@@ -38,30 +38,30 @@
             </div>
         </div>
         <div class="col-md-2">
-            <app-pagination [records]="DATA_ALL" [current_page]="current_page" [total_pages]="num_pages"(newPage)="newPage($event)"></app-pagination>
+            <app-pagination [records]="DATA_ALL" [current_page]="current_page" [total_pages]="num_pages" (newPage)="newPage($event)"></app-pagination>
         </div>
     </div>
     <div *ngIf="layout != 'Vertical'" class="row mt-2">
         <div class="col-md-12">
             <div class="content-table table-responsive">
-                <table class="table mb-5">
+                <table class="table mb-5" matSort (matSortChange)="sortData($event)">
                     <thead>
                       <tr>
                         <th scope="col">
                             <input class="form-check-input" type="checkbox" (change)="alertCheckbox($event)" value="" #selectAllItems>
                         </th>
-                        <th scope="col">Name</th>
+                        <th scope="col" mat-sort-header="name">Name</th>
                         <th scope="col">Online</th>
                         <th scope="col">Queues</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Agent</th>
-                        <th scope="col">Manager</th>
-                        <th scope="col">Predefined group</th>
+                        <th scope="col" mat-sort-header="department">Department</th>
+                        <th scope="col" mat-sort-header="agent">Agent</th>
+                        <th scope="col" mat-sort-header="manager">Manager</th>
+                        <th scope="col" mat-sort-header="predefinedgroup">Predefined group</th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let item of dataSource">
+                      <tr *ngFor="let item of sortedData">
                         <th scope="row">
                             <input class="form-check-input" type="checkbox" (change)="itemSelect($event,item)" value="{{item.name}}" id="{{item.name}}" [checked]="item.is_checked">
                         </th>
@@ -90,24 +90,24 @@
         <div class="col-md-12 mt-2">
             <div style="width: 100%; overflow-y: auto">
                 <div class="content-table table-responsive d-flex flex-nowrap" style="width: 140%">
-                    <table class="table mt-5" style="width:50%">
+                    <table class="table mt-5" matSort (matSortChange)="sortData($event)" style="width:50%">
                         <thead>
-                        <tr>
-                            <th scope="col">
-                                <input class="form-check-input" type="checkbox" (change)="alertCheckbox($event)" value="" #selectAllItems>
-                            </th>
-                            <th scope="col">Name hola</th>
-                            <th scope="col">Online</th>
-                            <th scope="col">Queues</th>
-                            <th scope="col">Department</th>
-                            <th scope="col">Agent</th>
-                            <th scope="col">Manager</th>
-                            <th scope="col">Predefined group</th>
-                            <th></th>
-                        </tr>
+                            <tr>
+                                <th scope="col">
+                                    <input class="form-check-input" type="checkbox" (change)="alertCheckbox($event)" value="" #selectAllItems>
+                                </th>
+                                <th scope="col" mat-sort-header="name">Name</th>
+                                <th scope="col">Online</th>
+                                <th scope="col">Queues</th>
+                                <th scope="col" mat-sort-header="department">Department</th>
+                                <th scope="col" mat-sort-header="agent">Agent</th>
+                                <th scope="col" mat-sort-header="manager">Manager</th>
+                                <th scope="col" mat-sort-header="predefinedgroup">Predefined group</th>
+                                <th></th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr *ngFor="let item of dataSource">
+                        <tr *ngFor="let item of sortedData">
                             <th scope="row">
                                 <input class="form-check-input" type="checkbox" (change)="itemSelect($event,item)" value="{{item.name}}" id="{{item.name}}" [checked]="item.is_checked">
                             </th>

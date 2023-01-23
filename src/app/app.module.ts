@@ -22,6 +22,7 @@ import { TableAgentsComponent } from './genesis-queues/table-agents/table-agents
 import { TablePredefinedGroupComponent } from './genesis-queues/table-predefined-group/table-predefined-group.component';
 import { TableModifyQueuesComponent } from './genesis-queues/table-modify-queues/table-modify-queues.component';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatIconModule,
     MatExpansionModule,
     HttpClientModule,
-    MatChipsModule,       
+    MatChipsModule,
+    MatSortModule       
   ],
   providers: [
     {

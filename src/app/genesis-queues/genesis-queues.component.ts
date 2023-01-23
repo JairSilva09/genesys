@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
 import { debounceTime, distinctUntilChanged, filter, fromEvent, tap } from 'rxjs';
 import { GenesysService } from '../services/genesys.service';
+import {Sort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-genesis-queues',
@@ -28,7 +29,21 @@ export class GenesisQueuesComponent implements OnInit{
 
   layout: string = "Horizontal"
 
-  constructor(private genesisService: GenesysService) { }
+  sortedData: any[] = [];
+  
+  chosenLevel: string = "select menu";
+  chosenQueue: string = "select menu";
+
+  nameItem: any;
+  levelSelect:boolean = false;
+  queueSelectList: boolean = false;
+
+  data: any= [];
+  DATA_ALL: any[] = [];
+  dataSource: any[] = [];
+  observableSubs: any;
+
+  constructor(private genesisService: GenesysService) {}
 
   user = {
     client_id: "45fe7e80-b705-4f0c-bca8-d98d3f70afa5",
@@ -52,7 +67,6 @@ export class GenesisQueuesComponent implements OnInit{
 
   QUEUE: any[] = [];
 
-  //loadModalQueue:boolean = false;
   loadModalGroups: boolean = false;
   showTableAgents: boolean = true;
   showTableGroupPredenined : boolean = false;
@@ -70,7 +84,6 @@ export class GenesisQueuesComponent implements OnInit{
     this.getDirectory(); 
 
     this.genesisService.getActiveTable$().subscribe((data)=>{
-      console.log(data)
       if(data === "predefined group"){
         this.showTableAgents= false;
         this.showTableGroupPredenined = true;        
@@ -91,7 +104,7 @@ export class GenesisQueuesComponent implements OnInit{
   //------------------------------------------------------------//
   /*Hacemos el login nos debe devolver un token */
 
-   getLogin(){
+  getLogin(){
 
     this.genesisService.getLogin().subscribe((response: any)=>{
       if( response && response.token ){
@@ -131,18 +144,7 @@ export class GenesisQueuesComponent implements OnInit{
       .subscribe();
   }
 
-  chosenLevel: string = "select menu";
-  chosenQueue: string = "select menu";
-
-  nameItem: any;
-  levelSelect:boolean = false;
-  queueSelectList: boolean = false;
-
-  data: any= [];
-  DATA_ALL: any[] = [];
-  dataSource: any[] = [];
-  observableSubs: any;
-
+  
   getDirectory(): void{
     this.genesisService.getDirectory$().subscribe(
       (data: any) => {
@@ -158,7 +160,8 @@ export class GenesisQueuesComponent implements OnInit{
 
         this.current_page = this.DATA_ALL[0].current_page;
         this.num_pages = this.DATA_ALL[0].num_pages;
-        this.dataSource = data.slice(1,this.num_item_page+1)        
+        this.dataSource = data.slice(1,this.num_item_page+1)
+        this.sortedData = this.dataSource.slice();        
       }
     )
   }
@@ -167,7 +170,6 @@ export class GenesisQueuesComponent implements OnInit{
 
     this.genesisService.getAllDirectory$(this.current_page).subscribe(
       (data: any)=>{
-        console.log(data.entities)
         this.DATA_ALL = data
 
         this.DATA_ALL.unshift(
@@ -184,6 +186,7 @@ export class GenesisQueuesComponent implements OnInit{
           element.is_checked = false;
         })
         this.dataSource = this.DATA_ALL.slice(1,this.num_item_page+1)
+        this.sortedData = this.dataSource.slice();
       }
 
     )
@@ -215,72 +218,6 @@ export class GenesisQueuesComponent implements OnInit{
     }
   }
 
-  // selectLevel(event: string){
-
-  //   this.setNameLevel(event)
-  //   this.levelSelect = true;
-  //   this.SELECTED_OBJECTS.level = event
-  //   this.genesisService.addItem(this.SELECTED_OBJECTS);
-
-  // }
-
-  // selectQueue(event: any){
-  //   this.queueSelectList = true;
-  //   this.SELECTED_OBJECTS.nameQueue = event;
-  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
-  // }
-
-  // nameItemSelected(event: any){
-
-  //   if (this.SELECTED_OBJECTS.name.indexOf(event.target.value) === -1) {
-  //     this.SELECTED_OBJECTS.name.push(event.target.value);
-  //   }
-  //   else {
-  //     this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(event.target.value), 1);
-  //   }
-
-  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
-  // }
-
-  // remove_name_selected(item: any){
-  //   this.SELECTED_OBJECTS.name.splice(this.SELECTED_OBJECTS.name.indexOf(item), 1);
-  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
-  // }
-
-  // chequedBoxName(item: any){
-  //   if(this.SELECTED_OBJECTS.name.indexOf(item) === -1){
-  //     return false
-  //   }else{
-  //     return true
-  //   }
-  // }
-
-  // selectedQueue(event: any,item: any){
-
-  //   if (this.SELECTED_OBJECTS.queue.indexOf(item) === -1) {
-  //     this.SELECTED_OBJECTS.queue.push(item);
-  //   }
-  //   else {
-  //     this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
-  //   }
-
-  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
-
-  // }
-
-  // removeQueue(item: any){
-  //   this.SELECTED_OBJECTS.queue.splice(this.SELECTED_OBJECTS.queue.indexOf(item), 1);
-  //   this.genesisService.addItem(this.SELECTED_OBJECTS)
-  // }
-
-  // chequedBoxQueue(item: any){
-  //   if(this.SELECTED_OBJECTS.queue.indexOf(item) === -1){
-  //     return false
-  //   }else{
-  //     return true
-  //   }
-  // }
-
   close_queue_list(){
     this.queueSelectList = false;
   }
@@ -303,6 +240,8 @@ export class GenesisQueuesComponent implements OnInit{
   newPage(event: any){
     let count = 0;
     this.dataSource = event.slice(1);
+    this.sortedData = this.dataSource.slice();
+
     this.current_page = event[0].current_page;
     this.dataSource.forEach((item: any)=>{
 
@@ -437,6 +376,38 @@ export class GenesisQueuesComponent implements OnInit{
     }else{
       this.layout = "Vertical"
     }
+  }
+
+  sortData(sort: Sort){
+    const data = this.dataSource.slice();
+
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'name':
+          return this.compare(a.name, b.name, isAsc);
+        case 'department':
+          return this.compare(a.department, b.department, isAsc);
+        case 'agent':
+          return this.compare(a.agent, b.agent, isAsc);
+        case 'manager':
+          return this.compare(a.manager, b.manager, isAsc);
+        case 'predefinedgroup':
+          return this.compare(a.predefinedgroup, b.predefinedgroup, isAsc);
+        default:
+          return 0;
+      }
+    });
+
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
 }

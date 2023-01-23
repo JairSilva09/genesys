@@ -16,7 +16,7 @@ export class PaginationComponent {
   @Output() newPage = new EventEmitter();
 
   nextPage(){
-    console.log(this.current_page)
+
     let nextPage = Number(this.current_page);  
     this.data = this.records.slice(1);
        
@@ -26,7 +26,6 @@ export class PaginationComponent {
   }
 
   previusPage(){
-    console.log(this.current_page)
     let previusPage = Number(this.current_page);
   
     previusPage = previusPage - 1; 
