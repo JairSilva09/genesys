@@ -67,7 +67,6 @@ export class GenesisQueuesComponent implements OnInit{
 
   QUEUE: any[] = [];
 
-  loadModalGroups: boolean = false;
   showTableAgents: boolean = true;
   showTableGroupPredenined : boolean = false;
 

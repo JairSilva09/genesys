@@ -13,17 +13,14 @@
         </section>
     </div>
     <div class="row justify-content-start px-2">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" #searchBar>
                 <span class="input-group-text" id="basic-addon2">Search</span>
             </div>
         </div>
-        <div class="col-md-5">
-            <div class="dropdown">               
-                <button type="button" class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#ModalGroupPredefined" (click)="loadModalGroups=true">
-                    Add Predefined Group
-                </button>
+        <div class="col-md-4">
+            <div class="dropdown">             
                 <button #buttonLayout type="button" (click)="setLayout(buttonLayout.value)" class="btn btn-secondary ms-3" [value]="layout" >{{layout}}</button>
             </div>
         </div>

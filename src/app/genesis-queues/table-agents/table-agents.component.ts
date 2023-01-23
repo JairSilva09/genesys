@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class TableAgentsComponent {
   
  loadModalQueue:boolean = false;
+ loadModalGroups: boolean = false;
 
   @Input() selected_agents: any[] = [];
  
