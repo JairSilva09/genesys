@@ -25,11 +25,13 @@
         <td>{{item.name}}</td>
         <td style="max-width: 280px" >
           <mat-chip-listbox aria-label="select a shirt size">
-            <mat-chip *ngFor="let queue of item.queues" class="d-flex">
-              <mat-icon (click)="queue.active = !queue.active" style="cursor: pointer" *ngIf="queue.active; else disabledQueue" [ngClass]="{'active':queue.active == true,'inactive':queue.active != true}">check</mat-icon>
-              <ng-template #disabledQueue ><mat-icon (click)="queue.active = !queue.active" style="cursor: pointer" [ngClass]="{'active':queue.active == true,'inactive':queue.active != true}">sentiment_very_dissatisfied</mat-icon></ng-template>
-              <span style="line-height: 2">{{queue.queuename}}</span>
-              <mat-icon (click)="removeQueue(item.queues,queue)" style="color: #ef3131">cancel</mat-icon>
+            <mat-chip *ngFor="let queue of item.queues">
+              <mat-icon (click)="queue.active = !queue.active" style="cursor: pointer;height: 18px;" *ngIf="queue.active; else disabledQueue" [ngClass]="{'active':queue.active == true,'inactive':queue.active != true}">check</mat-icon>
+              <ng-template #disabledQueue ><mat-icon (click)="queue.active = !queue.active" style="cursor: pointer; height: 16px; font-size :20px;z-index:9999;" [ngClass]="{'active':queue.active == true,'inactive':queue.active != true}">clear</mat-icon></ng-template>
+              <span style="line-height: 2; gap: 10px;">{{queue.queuename}}</span>
+              <button (click)="removeQueue(item.queues,queue)" matChipRemove aria-label="'remove ' + keyword">
+                <mat-icon style="color: #ef3131;display: flex;justify-content:center;">cancel</mat-icon>
+              </button>
             </mat-chip>          
           </mat-chip-listbox>
         </td>
