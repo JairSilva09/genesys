@@ -177,8 +177,6 @@ export class GenesysService {
     return this.listPredefinedGroup$.asObservable();
   } 
 
-  
-
   //------------------active table-------------------------//
   setActiveTable(active: string){
     this.activetable$.next(active);
