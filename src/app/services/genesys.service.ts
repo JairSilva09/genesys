@@ -48,12 +48,13 @@ export class GenesysService {
     ]
   ]
 
-  private baseUrl = "https://api.usw2.pure.cloud";
+  // private baseUrl = "https://api.usw2.pure.cloud";
+  private baseUrl = "https://isg-br-uat01/isg-gateways/public/index.php/";
   private loginUrl = "https://login.usw2.pure.cloud/oauth/token";
   token =  ''
 
  /*Hacemos el login */
- 
+
   getLogin(){
 
     const formData: FormData = new FormData();
@@ -63,13 +64,13 @@ export class GenesysService {
     // var myHeaders = new Headers();
     // myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     // myHeaders.append("Accept", "application/json");
-    
+
 
     // var clientId = '45fe7e80-b705-4f0c-bca8-d98d3f70afa5';
     // var clientSecret = '8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU';
     // var encodedData = window.btoa(clientId + ':' + clientSecret);
     // var authorizationHeaderString = 'Authorization: Basic ' + encodedData;
-    
+
     // myHeaders.append("Authorization", 'Basic '+encodedData);
 
     // var urlencoded = new URLSearchParams();
@@ -78,7 +79,7 @@ export class GenesysService {
     // var requestOptions = {
     //   method: 'POST',
     //   headers: myHeaders,
-    //   body: urlencoded          
+    //   body: urlencoded
     // };
 
     // fetch("https://login.usw2.pure.cloud/oauth/token", requestOptions)
@@ -119,12 +120,12 @@ export class GenesysService {
 
   getAllAgents$(page: string) {
 
-    return this.http.get(this.baseUrl+'/api/v2/users')
+    return this.http.get(this.baseUrl+'api/genesys/v1/users')
   }
 
   getAgent$(page: string) {
     let id = "221ce8e4-0481-47ea-94eb-605f99a1805c"
-    return this.http.get(this.baseUrl+'/api/v2/users/'+id)
+    return this.http.get(this.baseUrl+'api/genesys/v1/users/'+id)
   }
 
   //------------------------------------------------------------------------//
@@ -162,9 +163,9 @@ export class GenesysService {
     const groups =  of(this.PREDEFINED_GROUPS)
     return groups;
   }
-  
+
   addPredefinedGroup(group: string){
-    
+
     this.PREDEFINED_GROUPS.push(
       [
         group,[]
@@ -175,7 +176,7 @@ export class GenesysService {
 
   getListPredefinedgroup$(): Observable<any[]>{
     return this.listPredefinedGroup$.asObservable();
-  } 
+  }
 
   //------------------active table-------------------------//
   setActiveTable(active: string){
@@ -184,41 +185,41 @@ export class GenesysService {
 
   getActiveTable$(): Observable<string>{
     return this.activetable$.asObservable();
-  } 
+  }
 
   //----------------data group with agents predefined------//
-   
+
   setGroupData(item: any){
-    this.agentsInGroup = item   
+    this.agentsInGroup = item
     this.agentsInGroup$.next(this.agentsInGroup);
   }
 
-  getPredefinedGroupAgents$(): Observable<any[]>{    
+  getPredefinedGroupAgents$(): Observable<any[]>{
     return this.agentsInGroup$.asObservable();
   }
 
   getPredefinedGroupAgents(): Observable<any[]>{
     const group =  of(this.agentsInGroup)
     return group;
-  } 
-  
+  }
+
    //------------- agent selected--------------//
 
   setAgentSelecteds(item: any){
     let x:any = []
-    
+
     item.forEach((a: any) => {
       let objeto:any = {}
       for(const key of Object.keys(a)){
         objeto[key] = a[key]
-      }      
+      }
       x.push(objeto)
     })
-    
+
     this.SELECTED_AGENTS_SERVICE = x
-    
-  }  
-  
+
+  }
+
   getAgentSelecteds(): Observable<any[]>{
     const agentsSelected= of(this.SELECTED_AGENTS_SERVICE);
     return agentsSelected;
@@ -296,7 +297,13 @@ export class GenesysService {
     this.shortlist$.next(list)
   }
 
+
+
   getAllDirectory$(page: string): Observable<any[]>{
+    this.getAllAgents$(page).subscribe((data: any) => {
+      // this.shortlist$.next(data)
+    })
+
     const directory =  of(DATA)
     return directory;
   }

@@ -19,40 +19,40 @@ export class SideMenuComponent implements OnInit {
     this.genesisService.getPredefinedGroup().subscribe(
       (data: any) =>{
         this.DATA_PREDEFINED_GROUP = data
-        console.log(data)     
-      }      
+        // console.log(data)
+      }
     )
 
   }
 
   getListDefinedGroups(){
     this.genesisService.getListPredefinedgroup().subscribe((data: any)=>{
-      console.log(data)
+      // console.log(data)
       this.PREDEFINED_GROUPS = data
     })
   }
 
   getNewListDefinedGroups$(){
-    this.genesisService.getListPredefinedgroup$().subscribe((data: any)=>{     
+    this.genesisService.getListPredefinedgroup$().subscribe((data: any)=>{
       this.PREDEFINED_GROUPS = data
     })
   }
-  
+
 
   collapse: boolean = false;
 
   NAME: any[] =[];
 
-  NAME_ITEM: any[] =[]; 
+  NAME_ITEM: any[] =[];
 
-  LEVEL: any[] =[    
+  LEVEL: any[] =[
     [
       "Manager",["Manager 1","Manager 2","Manager 3","Manager 4","Manager 5","Manager 6"]
     ],
     [
       "Department",["AT&T","CenturyLink","Cable","Dish","Frontier","HughesNet"]
     ]
-    
+
   ];
 
   PREDEFINED_GROUPS: any[]=[]
@@ -75,7 +75,7 @@ export class SideMenuComponent implements OnInit {
 
   chosenLevel: string = "select menu";
   chosenQueue: string = "select menu";
-  queueSelectList: boolean = false;  
+  queueSelectList: boolean = false;
 
   current_page: string = "1"
 
@@ -95,16 +95,16 @@ export class SideMenuComponent implements OnInit {
     }
     else {
       this.NAME.splice(this.NAME.indexOf(level), 1);
-    } 
-  
+    }
+
   }
 
-  selectLevel(event: any){  
-    this.setNameLevel(event)   
-  } 
+  selectLevel(event: any){
+    this.setNameLevel(event)
+  }
 
   nameItemSelected(event: any, column: string){
-  
+
     let elm  = {
       "column": column,
       "event": event
@@ -115,9 +115,9 @@ export class SideMenuComponent implements OnInit {
     if(column.split(' ').length > 1){
       column =  column.replace(/\s+/g, '')
     }
- 
+
     if (this.NAME_LEVEL_SELECT.indexOf(event.target.value) === -1) {
-      
+
       this.NAME_LEVEL_SELECT.push(event.target.value);
       this.SELECTED_FILTERS.push(elm)
     }
@@ -126,7 +126,7 @@ export class SideMenuComponent implements OnInit {
       if(this.SELECTED_FILTERS.indexOf(elm) == -1){
         console.log("no existe")
       }
-  
+
       this.NAME_LEVEL_SELECT.splice(this.NAME_LEVEL_SELECT.indexOf(event.target.value), 1);
       this.SELECTED_FILTERS.splice(this.SELECTED_FILTERS.indexOf(elm),1)
     }
@@ -134,9 +134,9 @@ export class SideMenuComponent implements OnInit {
     if(this.NAME_LEVEL_SELECT.length > 0){
       this.genesisService.searchByLevelName$(this.NAME_LEVEL_SELECT,column)
     }else{
-      this.genesisService.getAllDirectory()     
+      this.genesisService.getAllDirectory()
     }
-  
+
   }
 
   selectedPredefinedGroup(event: any,item: any){
@@ -153,8 +153,8 @@ export class SideMenuComponent implements OnInit {
       })
 
       this.eventChecked.target.checked = false;
-      confirm("agents added to predefined group "+this.predefinedGroup[0])  
-      
+      confirm("agents added to predefined group "+this.predefinedGroup[0])
+
     })
     this.predefinedGroup[1].push(x)
   }
@@ -172,20 +172,20 @@ export class SideMenuComponent implements OnInit {
       this.DATA_PREDEFINED_GROUP.data[column] == undefined?this.DATA_PREDEFINED_GROUP.data[column] = [event]:this.DATA_PREDEFINED_GROUP.data[column].indexOf(event)=== -1?this.DATA_PREDEFINED_GROUP.data[column].push(event):this.DATA_PREDEFINED_GROUP.data[column].splice(this.DATA_PREDEFINED_GROUP.data[column].indexOf(event),1)
     }
 
-    this.genesisService.addItem(this.DATA_PREDEFINED_GROUP)   
+    this.genesisService.addItem(this.DATA_PREDEFINED_GROUP)
   }
 
   deleteFilter(filter: any){
-   
+
     this.setPredefinedGroup(filter.event.target.value,filter.column);
-    this.SELECTED_FILTERS.splice(this.SELECTED_FILTERS.indexOf(filter), 1);    
+    this.SELECTED_FILTERS.splice(this.SELECTED_FILTERS.indexOf(filter), 1);
     this.NAME_LEVEL_SELECT.splice(this.NAME_LEVEL_SELECT.indexOf(filter.event.target.value), 1);
     filter.event.target.checked = false;
 
     if(this.NAME_LEVEL_SELECT.length > 0){
       this.genesisService.searchByLevelName$(this.NAME_LEVEL_SELECT,"department")
     }else{
-      this.genesisService.getAllDirectory()     
+      this.genesisService.getAllDirectory()
     }
   }
 

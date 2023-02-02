@@ -7,10 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TableModifyQueuesComponent implements OnInit{
 
-  @Input() selected_agents: any[] = []; 
+  @Input() selected_agents: any[] = [];
 
   ngOnInit(): void {
-    console.log(this.selected_agents)
+    // console.log(this.selected_agents) Table
+
   }
 
 }
