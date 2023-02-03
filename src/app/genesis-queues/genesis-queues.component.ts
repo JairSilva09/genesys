@@ -22,14 +22,16 @@ export class GenesisQueuesComponent implements OnInit{
   SELECTED_AGENTS: any[] = [];
   data_table_selected_agents: any[] = [];
   
-  num_pages: string = "";
-  current_page: string = "1";
+  num_pages: number = 0;
+  current_page: number = 0;
+  next_page: number = 1;
   ITEMS_PER_PAGE: number[] = [10,20,30,40,50,60,70,80,90,100]
   num_item_page: number = 10;
 
   layout: string = "Horizontal"
 
   sortedData: any[] = [];
+  spinnerActived: boolean = false;
   
   chosenLevel: string = "select menu";
   chosenQueue: string = "select menu";
@@ -77,10 +79,10 @@ export class GenesisQueuesComponent implements OnInit{
     const token = "KN29zylryyzOUNvv0OQf-HJV7NrwPkfrkZ91ZbKMB8l_wc1YZSHEZWU3_cdOWSXrkva7WNU1qceWFqrvmlppjw"
     localStorage.setItem('token', token);
 
-    //this.getAllAgents();
+    this.getAllAgents();
 
-    this.getAll();
-    this.getDirectory(); 
+    // this.getAll();
+    // this.getDirectory(); 
 
     this.genesisService.getActiveTable$().subscribe((data)=>{
       if(data === "predefined group"){
@@ -119,10 +121,25 @@ export class GenesisQueuesComponent implements OnInit{
     
   }
 
+  /*We call the getAllAgents$ endpoint in the service
+   that will bring us the agebts depending
+    on the configuration */
+
   getAllAgents(){
-    this.genesisService.getAllAgents$("1").subscribe(
+    this.spinnerActived = true
+    //setting
+    let setting = {
+      "pageNumber": this.next_page,
+      "pageSize": this.num_item_page,
+    }
+    
+    this.genesisService.getAllAgents$(setting).subscribe(
       (data: any)=>{
-        console.log(data.entities)
+        this.sortedData = data.entities;        
+        this.num_pages = data.pageCount;
+        this.current_page = data.pageNumber;
+        this.spinnerActived = false
+        console.log(data)
       }
     )
   }
@@ -165,31 +182,31 @@ export class GenesisQueuesComponent implements OnInit{
     )
   }
 
-  getAll(): void{    
+  // getAll(): void{    
 
-    this.genesisService.getAllDirectory$(this.current_page).subscribe(
-      (data: any)=>{
-        this.DATA_ALL = data
+  //   this.genesisService.getAllDirectory$(this.current_page).subscribe(
+  //     (data: any)=>{
+  //       this.DATA_ALL = data
 
-        this.DATA_ALL.unshift(
-          {
-            "total_records": this.DATA_ALL.length,
-            "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
-            "current_page": "1"
-          }
-        )
-        this.current_page = this.DATA_ALL[0].current_page;
-        this.num_pages = this.DATA_ALL[0].num_pages;
+  //       this.DATA_ALL.unshift(
+  //         {
+  //           "total_records": this.DATA_ALL.length,
+  //           "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
+  //           "current_page": "1"
+  //         }
+  //       )
+  //       this.current_page = this.DATA_ALL[0].current_page;
+  //       this.num_pages = this.DATA_ALL[0].num_pages;
 
-        this.DATA_ALL.slice(1,this.num_item_page+1).forEach((element: any)=>{
-          element.is_checked = false;
-        })
-        this.dataSource = this.DATA_ALL.slice(1,this.num_item_page+1)
-        this.sortedData = this.dataSource.slice();
-      }
+  //       this.DATA_ALL.slice(1,this.num_item_page+1).forEach((element: any)=>{
+  //         element.is_checked = false;
+  //       })
+  //       this.dataSource = this.DATA_ALL.slice(1,this.num_item_page+1)
+  //       this.sortedData = this.dataSource.slice();
+  //     }
 
-    )
-  }
+  //   )
+  // }
 
   getTextSetting(obj: any){
     let text = "";
@@ -236,18 +253,23 @@ export class GenesisQueuesComponent implements OnInit{
     }
   }
 
-  newPage(event: any){
-    let count = 0;
-    this.dataSource = event.slice(1);
-    this.sortedData = this.dataSource.slice();
+  newPage(page: string){
 
-    this.current_page = event[0].current_page;
+    if(page === "next"){
+      this.next_page++      
+    }else{
+      this.next_page--
+    }
+    let count = 0;
+    this.getAllAgents()
+  
     this.dataSource.forEach((item: any)=>{
 
       if(item.is_checked == true){
         count++;
       }
 
+      //checkbox
       if(count == this.num_item_page){
         this.selectAllItems.nativeElement.checked = true
       }else{
@@ -322,7 +344,7 @@ export class GenesisQueuesComponent implements OnInit{
 
   number_of_pages(num: number){
     this.num_item_page = num;
-    this.genesisService.getAllDirectory();
+    this.getAllAgents();    
   }
 
   addQueues(event: any){
@@ -367,6 +389,8 @@ export class GenesisQueuesComponent implements OnInit{
     })
 
   }
+
+  /*We configure the layout of the page: horizontal or vertical */
 
   setLayout(value: string){
 

@@ -41,6 +41,11 @@
     <div *ngIf="layout != 'Vertical'" class="row mt-2">
         <div class="col-md-12">
             <div class="content-table table-responsive ">
+                <div *ngIf="spinnerActived" style="position: fixed; left: 50%">
+                    <div class="spinner-border text-primary-genesys" role="status" style="width: 5rem; height: 5rem;">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
                 <table class="table table-hover  mb-5" matSort (matSortChange)="sortData($event)">
                     <thead>
                       <tr>
@@ -51,9 +56,9 @@
                         <th scope="col">Online</th>
                         <th scope="col">Queues</th>
                         <th scope="col" mat-sort-header="department">Department</th>
-                        <th scope="col" mat-sort-header="agent">Agent</th>
+                        <!-- <th scope="col" mat-sort-header="agent">Agent</th>
                         <th scope="col" mat-sort-header="manager">Manager</th>
-                        <th scope="col" mat-sort-header="predefinedgroup">Predefined group</th>
+                        <th scope="col" mat-sort-header="predefinedgroup">Predefined group</th> -->
                         <th></th>
                       </tr>
                     </thead>
@@ -63,14 +68,14 @@
                             <input class="form-check-input" type="checkbox" (change)="itemSelect($event,item)" value="{{item.name}}" id="{{item.name}}" [checked]="item.is_checked">
                         </th>
                         <td>{{item.name}}</td>
-                        <td><mat-icon *ngIf="item.active;  else notActive" style="color: #06F85C">check</mat-icon>
+                        <td><mat-icon *ngIf="item.state;  else notActive" style="color: #06F85C">check</mat-icon>
                             <ng-template #notActive><mat-icon style="color: #ef3131">cancel</mat-icon></ng-template>
                         </td>
                         <td><span *ngFor="let queue of item.queues">{{queue.queuename}}, </span></td>
                         <td>{{item.department}}</td>
-                        <td>{{item.agent}}</td>
+                        <!-- <td>{{item.agent}}</td>
                         <td>{{item.manager}}</td>
-                        <td>{{item.predefinedgroup}}</td>
+                        <td>{{item.predefinedgroup}}</td> -->
                         <td><mat-icon style="cursor: pointer">more_vert</mat-icon></td>
                       </tr>
                     </tbody>
@@ -97,9 +102,9 @@
                                 <th scope="col">Online</th>
                                 <th scope="col">Queues</th>
                                 <th scope="col" mat-sort-header="department">Department</th>
-                                <th scope="col" mat-sort-header="agent">Agent</th>
+                                <!-- <th scope="col" mat-sort-header="agent">Agent</th>
                                 <th scope="col" mat-sort-header="manager">Manager</th>
-                                <th scope="col" mat-sort-header="predefinedgroup">Predefined group</th>
+                                <th scope="col" mat-sort-header="predefinedgroup">Predefined group</th> -->
                                 <th></th>
                             </tr>
                         </thead>
@@ -109,14 +114,14 @@
                                 <input class="form-check-input" type="checkbox" (change)="itemSelect($event,item)" value="{{item.name}}" id="{{item.name}}" [checked]="item.is_checked">
                             </th>
                             <td>{{item.name}}</td>
-                            <td><mat-icon *ngIf="item.active;  else notActive" style="color: #06F85C">check</mat-icon>
+                            <td><mat-icon *ngIf="item.state;  else notActive" style="color: #06F85C">check</mat-icon>
                                 <ng-template #notActive><mat-icon style="color: #ef3131">cancel</mat-icon></ng-template>
                             </td>
                             <td><span *ngFor="let queue of item.queues">{{queue.queuename}}, </span></td>
                             <td>{{item.department}}</td>
-                            <td>{{item.agent}}</td>
+                            <!-- <td>{{item.agent}}</td>
                             <td>{{item.manager}}</td>
-                            <td>{{item.predefinedgroup}}</td>
+                            <td>{{item.predefinedgroup}}</td> -->
                             <td><mat-icon style="cursor: pointer">more_vert</mat-icon></td>
                         </tr>
                         </tbody>
@@ -129,5 +134,5 @@
             </div>
         </div>
     </div>
-    <app-modal (savedQueues)="addQueues($event)"></app-modal>
+    <app-modal (savedQueues)="addQueues($event)"></app-modal>    
 </div>

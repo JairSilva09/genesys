@@ -62,11 +62,6 @@
         overflow-y: scroll;
     }
 
-    .btn-light:hover{
-        background-color: #1a2a5d;
-        color: white;
-    }
-
     .content-table::-webkit-scrollbar {
         width: 6px;
     }
@@ -86,6 +81,11 @@
 
 .mat-sort-header-container {
     align-items: center;
+}
+
+.text-primary-genesys{
+    --bs-text-opacity: 1;
+    color: #1a2a5d
 }
   
 

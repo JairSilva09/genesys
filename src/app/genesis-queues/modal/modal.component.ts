@@ -33,8 +33,8 @@ export class ModalComponent implements OnInit{
   LIST_CALL_TYPE: any[] = ["Call Type",[]]
   LIST_PROVIDER: any[] = ["Provider",[]]
 
-  num_pages: string = "";
-  current_page: string = "1"
+  num_pages: number = 0;
+  current_page: number = 1
 
   panelOpenState = false;
 
@@ -138,7 +138,7 @@ export class ModalComponent implements OnInit{
         this.DATA_ALL_QUEUES.unshift(
           {
             "total_records": this.DATA_ALL_QUEUES.length,
-            "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
+            "num_pages" : Math.ceil(data.length/this.num_item_page),
             "current_page": "1"
           }
         )

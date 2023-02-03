@@ -118,9 +118,8 @@ export class GenesysService {
 
   /*❤️❤️❤️❤️❤️❤️❤️❤️ ENDPOINTS FOR AGENTS QUEUES AND SKILL ❤️❤️❤️❤️❤️❤️❤️❤️❤️*/
 
-  getAllAgents$(page: string) {
-
-    return this.http.get(this.baseUrl+'api/genesys/v1/users')
+  getAllAgents$(setting: any) {
+    return this.http.get(this.baseUrl+'api/genesys/v1/users?pageNumber='+setting.pageNumber+'&pageSize='+setting.pageSize)
   }
 
   getAgent$(page: string) {
@@ -310,21 +309,19 @@ export class GenesysService {
     this.shortlist$.next(list)
   }
 
-
-
-  getAllDirectory$(page: string): Observable<any[]>{
+  getAllDirectory$(page: number): Observable<any[]>{
 
     this.getAllAgents$(page).subscribe((data: any) => {
       // this.shortlist$.next(data)
     })
 
-    this.getAllQueues$(page).subscribe((data: any) => {
-      // this.shortlist$.next(data)
-    })
+    // this.getAllQueues$(page).subscribe((data: any) => {
+    //   // this.shortlist$.next(data)
+    // })
 
-    this.getAllSkills$(page).subscribe((data: any) => {
-      // this.shortlist$.next(data)
-    })
+    // this.getAllSkills$(page).subscribe((data: any) => {
+    //   // this.shortlist$.next(data)
+    // })
 
     // ❤️❤️❤️❤️❤️❤️❤️❤️ NEEDS TO BE DEPRECATED AND REFACTORED WITH THE NEW DATA STRUCTURE ❤️❤️❤️❤️❤️❤️❤️❤️
     const directory =  of(DATA)
