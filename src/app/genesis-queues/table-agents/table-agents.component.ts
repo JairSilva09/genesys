@@ -14,11 +14,20 @@ export class TableAgentsComponent implements OnInit {
 
   constructor(private genesisService: GenesysService) { } 
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.selected_agents.forEach((a)=>{
       this.getQueuesAgent(a);
     })    
     console.log(this.selected_agents)
+    this.genesisService.getSelectedAgents$().subscribe(
+      (data: any) =>{
+        console.log(data)
+        data.forEach((a: any)=>{
+          this.getQueuesAgent(a);
+        })         
+      }
+    )   
+    
   }
   
   getQueuesAgent(user: any){
@@ -52,6 +61,7 @@ export class TableAgentsComponent implements OnInit {
           console.log(data)
           this.genesisService.getQueueToUser$(user.id).subscribe(
             (data: any) =>{
+              console.log(data)
               user.queues = data.entities         
             }      
           )                     

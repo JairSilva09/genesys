@@ -112,6 +112,7 @@ export class GenesisQueuesComponent implements OnInit{
     //     console.log(data)
     //   }
     // )
+    this.genesisService.setSelectedAgents(this.data_table_selected_agents); 
   }
   //------------------------------------------------------------//
   /*Hacemos el login nos debe devolver un token */
@@ -315,7 +316,7 @@ export class GenesisQueuesComponent implements OnInit{
     }
 
     this.genesisService.setAgentSelecteds(this.SELECTED_AGENTS)
-    this.data_table_selected_agents = this.SELECTED_AGENTS
+    this.data_table_selected_agents = this.SELECTED_AGENTS       
     this.showTableAgents = true;
     this.showTableGroupPredenined= false;    
   }

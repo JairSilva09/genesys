@@ -355,11 +355,13 @@ export class ModalComponent implements OnInit{
       members.push(memberId);     
     })
     
-    console.log(this.SELECTED_QUEUES[0].id)
     console.log(this.selected_agents)
     this.genesisService.addUsersToQueue$(this.SELECTED_QUEUES[0].id,members).subscribe(
-      (data: any) =>{
-        console.log(data)         
+      (data: any) =>{        
+        if(data.success==true){
+          console.log(data)
+          this.genesisService.setSelectedAgents(this.selected_agents);
+        }        
       }      
     )    
   }

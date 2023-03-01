@@ -128,6 +128,15 @@ export class GenesysService {
     return this.http.get(this.baseUrl+'api/genesys/v1/users/'+id)
   }
 
+  setSelectedAgents(selectedAgents: any){
+    this.selectedAgents$.next(selectedAgents);
+  }
+  
+  /* creamos el flujo de atos de los agentes seleccionados. Obtener agentes selccionados*/
+  getSelectedAgents$(): Observable<any>{
+    return this.selectedAgents$.asObservable();
+  }
+
   /* get all queues*/
   getAllQueues$(setting: any) {
     return this.http.get(this.baseUrl+'api/genesys/v1/routing/queues?pageNumber='+setting.pageNumber+'&pageSize='+setting.pageSize)
@@ -174,6 +183,7 @@ export class GenesysService {
   };
 
   //---------------------list predefined group-----------------//
+  private selectedAgents$: Subject<any> = new Subject()
 
   private listPredefinedGroup$: Subject<any[]> = new Subject()
 
