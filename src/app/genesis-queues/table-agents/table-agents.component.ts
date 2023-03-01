@@ -9,6 +9,7 @@ import { GenesysService } from 'src/app/services/genesys.service';
 export class TableAgentsComponent implements OnInit {
   loadModalQueue:boolean = false;
   loadModalGroups: boolean = false;
+  spinnerActived: boolean = false;
 
   @Input() selected_agents: any[] = [];
 

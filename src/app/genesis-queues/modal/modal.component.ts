@@ -356,14 +356,14 @@ export class ModalComponent implements OnInit{
     })
     
     console.log(this.selected_agents)
-    this.genesisService.addUsersToQueue$(this.SELECTED_QUEUES[0].id,members).subscribe(
-      (data: any) =>{        
-        if(data.success==true){
+    this.SELECTED_QUEUES.forEach((a:any)=>{
+      this.genesisService.addUsersToQueue$(a.id,members).subscribe(
+        (data: any) =>{        
           console.log(data)
-          this.genesisService.setSelectedAgents(this.selected_agents);
-        }        
-      }      
-    )    
+        }      
+      )   
+    })
+    this.genesisService.setSelectedAgents(this.selected_agents);     
   }
 
   number_of_pages(num: number){

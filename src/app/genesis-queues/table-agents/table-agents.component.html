@@ -1,15 +1,20 @@
 
-  <div class="col-12">
-    <h2 class="m-2" style="display: inline-block">Selected agents</h2>
-    <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#ModalQueue" (click)="loadModalQueue=true">
-      Add Queues
-    </button>
-    <button type="button" class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#ModalGroupPredefined" (click)="loadModalGroups=true">
-      Add Predefined Group
-    </button>
+<div class="col-12">
+  <h2 class="m-2" style="display: inline-block">Selected agents</h2>
+  <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#ModalQueue" (click)="loadModalQueue=true">
+    Add Queues
+  </button>
+  <button type="button" class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#ModalGroupPredefined" (click)="loadModalGroups=true">
+    Add Predefined Group
+  </button>
+</div>
+<div *ngIf="spinnerActived" style="position: fixed; left: 50%">
+  <div class="spinner-border text-primary-genesys" role="status" style="width: 5rem; height: 5rem;">
+    <span class="visually-hidden">Loading...</span>
   </div>
+</div>
 <table class="table table table-hover mt-2">
-    <thead>
+  <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Queues</th>
@@ -18,8 +23,8 @@
         <th scope="col">Manager</th>
         <th scope="col">Predefined group</th>
       </tr>
-    </thead>
-    <tbody>
+  </thead>
+  <tbody>
       <tr *ngFor="let item of selected_agents">
 
         <td>{{item.name}}</td>
@@ -41,6 +46,6 @@
         <td>{{item.manager}}</td>
         <td>{{item.predefinedgroup}}</td>
       </tr>
-    </tbody>
+  </tbody>
 </table>
 
