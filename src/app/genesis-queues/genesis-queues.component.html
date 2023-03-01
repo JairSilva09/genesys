@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="col-md-2">
-            <app-pagination [records]="DATA_ALL" [current_page]="current_page" [total_pages]="num_pages" (newPage)="newPage($event)"></app-pagination>
+            <app-pagination [current_page]="current_page" [total_pages]="num_pages" (newPage)="newPage($event)"></app-pagination>
         </div>
     </div>
     <div *ngIf="layout != 'Vertical'" class="row mt-2">
@@ -134,5 +134,5 @@
             </div>
         </div>
     </div>
-    <app-modal (savedQueues)="addQueues($event)"></app-modal>    
+    <app-modal (savedQueues)="addQueues($event)" [selected_agents]="data_table_selected_agents"></app-modal>    
 </div>

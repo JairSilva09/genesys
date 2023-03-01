@@ -118,6 +118,7 @@ export class GenesysService {
 
   /*❤️❤️❤️❤️❤️❤️❤️❤️ ENDPOINTS FOR AGENTS QUEUES AND SKILL ❤️❤️❤️❤️❤️❤️❤️❤️❤️*/
 
+  /* get all users*/
   getAllAgents$(setting: any) {
     return this.http.get(this.baseUrl+'api/genesys/v1/users?pageNumber='+setting.pageNumber+'&pageSize='+setting.pageSize)
   }
@@ -128,15 +129,40 @@ export class GenesysService {
   }
 
   /* get all queues*/
-
-  getAllQueues$(page: string) {
-    return this.http.get(this.baseUrl+'api/genesys/v1/routing/queues')
+  getAllQueues$(setting: any) {
+    return this.http.get(this.baseUrl+'api/genesys/v1/routing/queues?pageNumber='+setting.pageNumber+'&pageSize='+setting.pageSize)
   }
 
   /* get all skills*/
-
   getAllSkills$(page: string) {
     return this.http.get(this.baseUrl+'api/genesys/v1/routing/skills')
+  }
+
+  /*add users to a queue */
+  addUsersToQueue$(idQueue:string,members: any[]){
+    const body = {
+      "delete": false,
+      "members": members
+    }
+    return this.http.post(this.baseUrl+'api/genesys/v1/routing/queues/'+idQueue+'/members',body)
+  }
+
+  /*get the enqueues assigned to a user */
+  getQueueToUser$(idUser: string){    
+    return this.http.get(this.baseUrl+'api/genesys/v1/users/'+idUser+'/queues')
+  }
+  
+  /*active desactive queue */
+  activeDesactiveQueue$(queue: any,user: string){    
+    const body = {
+      "joined": !queue.joined,
+    }
+    return this.http.patch(this.baseUrl+'api/genesys/v1/users/'+user+'/queues/'+queue.id,body)
+  }
+
+   /* remove queue */
+   removeQueue$(queue: string,user: string){   
+    return this.http.delete(this.baseUrl+'api/genesys/v1/routing/queues/'+queue+'/members/'+user)
   }
 
   /*❤️❤️❤️❤️❤️❤️❤️❤️ END ENDPOINTS FOR AGENTS QUEUES AND SKILL ❤️❤️❤️❤️❤️❤️❤️❤️  */

@@ -20,7 +20,18 @@ export class GenesisQueuesComponent implements OnInit{
   setSelectedItems: any;
 
   SELECTED_AGENTS: any[] = [];
-  data_table_selected_agents: any[] = [];
+  data_table_selected_agents: any[] = [
+    {
+      "id": "c17254c4-4f9b-47c2-b1f7-a58b1a894bf4",
+      "name": "Armani Ahmed",
+      "department": "HughesNet",
+    },
+    {
+      "id": "18c615ba-798e-454f-a87c-50ee1cbe8fed",
+      "name": "Adrian Lara Perez",
+      "department": "AT&T",
+    }
+  ];
   
   num_pages: number = 0;
   current_page: number = 0;
@@ -81,7 +92,7 @@ export class GenesisQueuesComponent implements OnInit{
 
     this.getAllAgents();
 
-    // this.getAll();
+    //this.getAll();
     // this.getDirectory(); 
 
     this.genesisService.getActiveTable$().subscribe((data)=>{
@@ -135,9 +146,9 @@ export class GenesisQueuesComponent implements OnInit{
     
     this.genesisService.getAllAgents$(setting).subscribe(
       (data: any)=>{
-        this.sortedData = data.entities;        
-        this.num_pages = data.pageCount;
-        this.current_page = data.pageNumber;
+        this.sortedData = data.data.entities;        
+        this.num_pages = data.data.pageCount;
+        this.current_page = data.data.pageNumber;
         this.spinnerActived = false
         console.log(data)
       }
@@ -338,6 +349,7 @@ export class GenesisQueuesComponent implements OnInit{
     }
     this.genesisService.setAgentSelecteds(this.SELECTED_AGENTS)
     this.data_table_selected_agents = this.SELECTED_AGENTS
+    console.log(this.SELECTED_AGENTS)
     this.showTableAgents = true;
     this.showTableGroupPredenined= false;
   }

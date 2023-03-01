@@ -51,11 +51,16 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3 pt-2 offset-md-3">
-                                    <app-pagination [records]="DATA_ALL_QUEUES" [current_page]="current_page" [total_pages]="num_pages" (newPage)="newPage($event)"></app-pagination>
+                                    <app-pagination [current_page]="current_page" [total_pages]="num_pages" (newPage)="newPage($event)"></app-pagination>
                                 </div>
                             </div>
 
                             <div class="cont-modal-table ">
+                                <div *ngIf="spinnerActived" style="position: fixed; left: 50%">
+                                    <div class="spinner-border text-primary-genesys" role="status" style="width: 5rem; height: 5rem;">
+                                      <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
                                 <table class="table 7 table-hover">
                                     <thead>
                                         <tr>
@@ -63,10 +68,11 @@
                                                 <input class="form-check-input" type="checkbox" (change)="selectQueues($event)" value="" #selectAllQueues>
                                             </th>
                                             <th scope="col">Queue Name</th>
-                                            <th scope="col">Call Type</th>
+                                            <th scope="col">Division</th>
+                                            <!-- <th scope="col">Call Type</th>
                                             <th scope="col">Language</th>
                                             <th scope="col">Provider</th>
-                                            <th scope="col">Description</th>
+                                            <th scope="col">Description</th> -->
                                             <th scope="col" colspan="2">Temporary</th>
                                             <th scope="col" colspan="3"></th>
                                             <th scope="col"></th>
@@ -77,11 +83,12 @@
                                             <td>
                                                 <input class="form-check-input" type="checkbox" (change)="queueSelect($event,item)" value="{{item.queuename}}" id="{{item.queuename}}" [checked]="item.is_checked">
                                             </td>
-                                            <td>{{item.queuename}}</td>
-                                            <td>{{item.calltype}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.division.name}}</td>
+                                            <!-- <td>{{item.calltype}}</td>
                                             <td>{{item.language}}</td>
                                             <td>{{item.provider}}</td>
-                                            <td>{{item.description}}</td>
+                                            <td>{{item.description}}</td> -->
                                             <td>{{item.hour}}</td>
                                             <td>{{item.days}}</td>
                                             <td><div class="form-check form-switch">
@@ -141,7 +148,7 @@
                                                             <li><button (click)="addDays('8',item)" class="dropdown-item" type="button">8</button></li>
                                                             <li><button (click)="addDays('9',item)" class="dropdown-item" type="button">9</button></li>
                                                             <li><button (click)="addDays('10',item)"class="dropdown-item" type="button">10</button></li>
-                                                          </ul>
+                                                        </ul>
                                                     </div>
                                                 </span>
                                             </td>

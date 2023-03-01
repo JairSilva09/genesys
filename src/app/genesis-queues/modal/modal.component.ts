@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output,Input, ViewChild } from '@angular/core';
 import { debounceTime, distinctUntilChanged, filter, fromEvent, tap } from 'rxjs';
 import { GenesysService } from 'src/app/services/genesys.service';
 
@@ -12,16 +12,17 @@ export class ModalComponent implements OnInit{
   @ViewChild('searchQueues') searchQueues!: ElementRef;
   @ViewChild('selectAllQueues') selectAllQueues!: ElementRef;
 
+  @Input() selected_agents: any[] = [];
   @Output() savedQueues = new EventEmitter();
 
-  constructor(private genesisService: GenesysService) { }
-  
+  constructor(private genesisService: GenesysService) { }  
 
   QUEUE: any[] = [];
   QUEUES_LIST: any[] = [];
   DATA_ALL_QUEUES: any[] = [];
   dataSource_queue: any[] = [];
   COLUMN_QUEUE_SELECT:string[] = [];
+  spinnerActived: boolean = false;
 
   SELECTED_FILTER_QUEUES: any[] = [];
   SELECTED_QUEUES: any[] = [];  
@@ -34,7 +35,8 @@ export class ModalComponent implements OnInit{
   LIST_PROVIDER: any[] = ["Provider",[]]
 
   num_pages: number = 0;
-  current_page: number = 1
+  current_page: number = 0
+  next_page: number = 1
 
   panelOpenState = false;
 
@@ -101,12 +103,9 @@ export class ModalComponent implements OnInit{
   ]
   nameQueueOpen: string = ""
 
-
-  
-
   ngOnInit(): void {
     this.getAllDataQueues(); 
-    this.getDataQueues();
+    //this.getDataQueues();
     this.genesisService.getPredefinedGroup().subscribe(
       (data: any) =>{
         this.DATA_PREDEFINED_GROUP = data          
@@ -131,45 +130,58 @@ export class ModalComponent implements OnInit{
   }
 
   getAllDataQueues(){
-    this.genesisService.getAllDataModal$().subscribe(
+    this.spinnerActived = true
+    //setting
+    let setting = {
+      "pageNumber": this.next_page,
+      "pageSize": this.num_item_page,
+    }
+    this.genesisService.getAllQueues$(setting).subscribe(
       (data: any)=>{
-        this.DATA_ALL_QUEUES = data
+        console.log(data)
+        this.dataSource_queue = data.entities
+        this.num_pages = data.pageCount;
+        this.current_page = data.pageNumber;
+        this.spinnerActived = false
+      }
+      // (data: any)=>{
+      //   this.DATA_ALL_QUEUES = data
   
-        this.DATA_ALL_QUEUES.unshift(
-          {
-            "total_records": this.DATA_ALL_QUEUES.length,
-            "num_pages" : Math.ceil(data.length/this.num_item_page),
-            "current_page": "1"
-          }
-        )
+      //   this.DATA_ALL_QUEUES.unshift(
+      //     {
+      //       "total_records": this.DATA_ALL_QUEUES.length,
+      //       "num_pages" : Math.ceil(data.length/this.num_item_page),
+      //       "current_page": "1"
+      //     }
+      //   )
         
-        this.current_page = this.DATA_ALL_QUEUES[0].current_page;
-        this.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
+      //   this.current_page = this.DATA_ALL_QUEUES[0].current_page;
+      //   this.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
 
-        this.DATA_ALL_QUEUES.slice(1,this.num_item_page+1).forEach((element: any)=>{
-          element.is_checked = false;
-        })
+      //   this.DATA_ALL_QUEUES.slice(1,this.num_item_page+1).forEach((element: any)=>{
+      //     element.is_checked = false;
+      //   })
 
-        this.dataSource_queue = this.DATA_ALL_QUEUES.slice(1,this.num_item_page+1)
+      //   this.dataSource_queue = this.DATA_ALL_QUEUES.slice(1,this.num_item_page+1)
 
-        this.DATA_ALL_QUEUES.slice(1).forEach((a:any)=>{
+      //   this.DATA_ALL_QUEUES.slice(1).forEach((a:any)=>{
 
-          if(a.language != undefined){
+      //     if(a.language != undefined){
             
-            if(this.LIST_LANGUAGE[1].indexOf(a.language) === -1){
-              this.LIST_LANGUAGE[1].push(a.language)            
-            }
-          }
+      //       if(this.LIST_LANGUAGE[1].indexOf(a.language) === -1){
+      //         this.LIST_LANGUAGE[1].push(a.language)            
+      //       }
+      //     }
           
-          if(this.LIST_CALL_TYPE[1].indexOf(a.calltype) === -1){
-            this.LIST_CALL_TYPE[1].push(a.calltype)            
-          }
-          if(this.LIST_PROVIDER[1].indexOf(a.provider) === -1){
-            this.LIST_PROVIDER[1].push(a.provider)            
-          }
+      //     if(this.LIST_CALL_TYPE[1].indexOf(a.calltype) === -1){
+      //       this.LIST_CALL_TYPE[1].push(a.calltype)            
+      //     }
+      //     if(this.LIST_PROVIDER[1].indexOf(a.provider) === -1){
+      //       this.LIST_PROVIDER[1].push(a.provider)            
+      //     }
           
-        })
-      }    
+      //   })
+      // }    
     )
     this.QUEUE = [
       this.fillList(this.LIST_LANGUAGE),
@@ -192,24 +204,24 @@ export class ModalComponent implements OnInit{
     return list_queue;    
   }
 
-  getDataQueues(){
-    this.genesisService.getDataModal$().subscribe(
-      (data: any) => {    
-        this.DATA_ALL_QUEUES = data        
-        this.DATA_ALL_QUEUES.unshift(
-          {
-            "total_records": this.DATA_ALL_QUEUES.length,
-            "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
-            "current_page": "1"
-          }
-        )
+  // getDataQueues(){
+  //   this.genesisService.getDataModal$().subscribe(
+  //     (data: any) => {    
+  //       this.DATA_ALL_QUEUES = data        
+  //       this.DATA_ALL_QUEUES.unshift(
+  //         {
+  //           "total_records": this.DATA_ALL_QUEUES.length,
+  //           "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
+  //           "current_page": "1"
+  //         }
+  //       )
 
-        this.current_page = this.DATA_ALL_QUEUES[0].current_page;
-        this.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
-        this.dataSource_queue = data.slice(1,this.num_item_page+1)
-      }
-    )
-  }
+  //       this.current_page = this.DATA_ALL_QUEUES[0].current_page;
+  //       this.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
+  //       this.dataSource_queue = data.slice(1,this.num_item_page+1)
+  //     }
+  //   )
+  // }
 
   setColumnQueue(item: any){    
     this.setQueues(item)
@@ -333,12 +345,23 @@ export class ModalComponent implements OnInit{
     this.selectAllQueues.nativeElement.checked = false;
   }
 
-  saved(){    
-    this.savedQueues.emit(this.SELECTED_QUEUES)
-    this.SELECTED_QUEUES.forEach((element)=>{
-      element.is_checked = false;
+  saved(){ 
+    let members: any = [];
+    let memberId = {};
+    this.selected_agents.forEach((a)=>{
+      memberId = {
+        "id": a.id
+      } 
+      members.push(memberId);     
     })
-    this.SELECTED_QUEUES = []
+    
+    console.log(this.SELECTED_QUEUES[0].id)
+    console.log(this.selected_agents)
+    this.genesisService.addUsersToQueue$(this.SELECTED_QUEUES[0].id,members).subscribe(
+      (data: any) =>{
+        console.log(data)         
+      }      
+    )    
   }
 
   number_of_pages(num: number){
@@ -347,11 +370,16 @@ export class ModalComponent implements OnInit{
   }
 
   newPage(event: any){ 
-    let count = 0; 
-    this.dataSource_queue = event.slice(1);
-    this.current_page = event[0].current_page;
-    this.dataSource_queue.forEach((item: any)=>{
+    
+    if(event === "next"){
+      this.next_page++      
+    }else{
+      this.next_page--
+    }
 
+    let count = 0; 
+    this.getAllDataQueues();
+    this.dataSource_queue.forEach((item: any)=>{
       if(item.is_checked == true){
         count++;
       }
@@ -360,8 +388,7 @@ export class ModalComponent implements OnInit{
         this.selectAllQueues.nativeElement.checked = true
       }else{
         this.selectAllQueues.nativeElement.checked = false
-      }
-      
+      }      
     })
   }
 
