@@ -95,7 +95,7 @@
                                                  <input class="form-check-input" type="checkbox" role="switch" (change)="activeTemporary($event,item)" value="{{item}}" id="{{item.name}}">
                                                 </div>
                                             </td>
-                                                <td><button type="button" (click)="nameQueueOpen = item.queuename" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalOpenQueue">Agents</button></td>
+                                                <td><button type="button" (click)="showUsers(item)" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalOpenQueue">Agents</button></td>
                                                 <td><button type="button"  class="btn btn-primary btn-sm" >Queue</button></td>
                                             <td>
                                                 <span *ngIf="item.temporary">
@@ -180,9 +180,35 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="text-center my-5">
+                            <h2 class="text-center my-2">
                                 {{nameQueueOpen}}
                             </h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 offset-md-10">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                  <li class="page-item">
+                                    <a class="page-link"  aria-label="Next" [ngStyle]="{'pointer-events': current_page == 1 ? 'none' : 'auto','cursor':current_page == 1?'auto':'pointer'}">
+                                      <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                  
+                                  </li>
+                                  <li class="page-item"><a class="page-link" href="#">{{current_page_modal_user_queue}}</a></li>  
+                                  <li class="page-item">
+                                    <a class="page-link" *ngIf="!morePages; else normal" aria-label="Next">
+                                      <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                    <ng-template #normal>
+                                      <a class="page-link" (click)="newPageshowUsers('next')" aria-label="Next" style="cursor: pointer">
+                                        <span aria-hidden="true">&raquo;</span>
+                                      </a>        
+                                    </ng-template>                                    
+                                  </li>
+                                </ul>
+                              </nav>
+                            <!-- <app-pagination [current_page]="current_page" [total_pages]="num_pages" (newPage)="newPageshowUsers($event)"></app-pagination> -->
                         </div>
                     </div>
                     <div class="row">
@@ -200,9 +226,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of LIST_FALSE" >
+                                        <tr *ngFor="let item of LIST_USERS.entities" >
                                             <td>{{item.name}}</td>
-                                            <td>{{item.department}}</td>
+                                            <td>{{item.user.department}}</td>
                                             <td>{{item.agent}}</td>
                                             <td>{{item.manager}}</td>
                                             <td>{{item.predefinedgroup}}</td>
@@ -217,7 +243,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="z-index:999; background-color: white">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Remove all</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>

@@ -119,7 +119,7 @@ export class GenesysService {
   /*❤️❤️❤️❤️❤️❤️❤️❤️ ENDPOINTS FOR AGENTS QUEUES AND SKILL ❤️❤️❤️❤️❤️❤️❤️❤️❤️*/
 
   /* get all users*/
-  getAllAgents$(setting: any) {
+  getAllAgents$(setting: any) {    
     return this.http.get(this.baseUrl+'api/genesys/v1/users?pageNumber='+setting.pageNumber+'&pageSize='+setting.pageSize)
   }
 
@@ -132,7 +132,7 @@ export class GenesysService {
     this.selectedAgents$.next(selectedAgents);
   }
   
-  /* creamos el flujo de atos de los agentes seleccionados. Obtener agentes selccionados*/
+  /* we create the data flow of the selected agents. Get selected agents*/
   getSelectedAgents$(): Observable<any>{
     return this.selectedAgents$.asObservable();
   }
@@ -170,8 +170,13 @@ export class GenesysService {
   }
 
    /* remove queue */
-   removeQueue$(queue: string,user: string){   
+  removeQueue$(queue: string,user: string){   
     return this.http.delete(this.baseUrl+'api/genesys/v1/routing/queues/'+queue+'/members/'+user)
+  }
+
+  /*get users by queue */
+  getUsersByQueue$(setting: any){   
+    return this.http.get(this.baseUrl+'api/genesys/v1/routing/queues/'+setting.id+'/members?pageSize='+setting.pageSize+'&pageNumber='+setting.pageNumber)
   }
 
   /*❤️❤️❤️❤️❤️❤️❤️❤️ END ENDPOINTS FOR AGENTS QUEUES AND SKILL ❤️❤️❤️❤️❤️❤️❤️❤️  */

@@ -34,6 +34,13 @@ export class ModalComponent implements OnInit{
   LIST_CALL_TYPE: any[] = ["Call Type",[]]
   LIST_PROVIDER: any[] = ["Provider",[]]
 
+  //-----------MODAL USERS QUEUE------------//
+  queueId: string = ""
+  num_pages_user_queue: number = 0;
+  current_page_modal_user_queue: number = 0;
+  morePages: boolean = false;
+  //-------------------------------------//
+
   num_pages: number = 0;
   current_page: number = 0
   next_page: number = 1
@@ -46,66 +53,12 @@ export class ModalComponent implements OnInit{
 
   teporaryHour: string = "";
 
-  LIST_FALSE: any[] = [
-    {
-      "name": "Marve Mingardo",
-      "active": false,
-      "email": "mmingardo4@issuu.com",
-      "queues": [],
-      "skill": "provider",
-      "license": "Cloud CX 3,*",
-      "department": "Dish",
-      "agent": "Agent 6",
-      "manager": "Manager 4",
-      "predefinedgroup": "Example Y"
-    }, {
-      "name": "Lillis Bursnell",
-      "active": false,
-      "email": "lbursnell5@woothemes.com",
-      "queues": [],
-      "skill": "provider",
-      "license": "Cloud CX 3,*",
-      "department": "AT&T",
-      "agent": "Agent 5",
-      "manager": "Manager 5",
-      "predefinedgroup": "Example Y"
-    }, {
-      "name": "Loutitia Fritche",
-      "active": false,
-      "email": "lfritche6@ehow.com",
-      "queues": [],
-      "skill": "provider",
-      "license": "Collaborate",
-      "department": "CenturyLink",
-      "agent": "Agent 1",
-      "manager": "Manager 4",
-      "predefinedgroup": "ATT P1 Cooper Overflow"
-    }, {
-      "name": "Reena Nettleship",
-      "active": false,
-      "email": "rnettleship7@shop-pro.jp",
-      "queues": [],
-      "skill": "queuename",
-      "license": "Cloud CX 3,*",
-      "department": "CenturyLink",
-      "agent": "Agent 5",
-      "manager": "Manager 5",
-      "predefinedgroup": "Example Y"
-    }, {
-      "name": "Rance Exley",
-      "skill": "calltypes",
-      "license": "Cloud CX 3,*",
-      "department": "AT&T",
-      "agent": "Agent 1",
-      "manager": "Manager 5",
-      "predefinedgroup": "Example Y"
-    }
-  ]
+  LIST_USERS: any={};
   nameQueueOpen: string = ""
 
   ngOnInit(): void {
     this.getAllDataQueues(); 
-    //this.getDataQueues();
+
     this.genesisService.getPredefinedGroup().subscribe(
       (data: any) =>{
         this.DATA_PREDEFINED_GROUP = data          
@@ -144,50 +97,36 @@ export class ModalComponent implements OnInit{
         this.current_page = data.pageNumber;
         this.spinnerActived = false
       }
-      // (data: any)=>{
-      //   this.DATA_ALL_QUEUES = data
-  
-      //   this.DATA_ALL_QUEUES.unshift(
-      //     {
-      //       "total_records": this.DATA_ALL_QUEUES.length,
-      //       "num_pages" : Math.ceil(data.length/this.num_item_page),
-      //       "current_page": "1"
-      //     }
-      //   )
-        
-      //   this.current_page = this.DATA_ALL_QUEUES[0].current_page;
-      //   this.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
-
-      //   this.DATA_ALL_QUEUES.slice(1,this.num_item_page+1).forEach((element: any)=>{
-      //     element.is_checked = false;
-      //   })
-
-      //   this.dataSource_queue = this.DATA_ALL_QUEUES.slice(1,this.num_item_page+1)
-
-      //   this.DATA_ALL_QUEUES.slice(1).forEach((a:any)=>{
-
-      //     if(a.language != undefined){
-            
-      //       if(this.LIST_LANGUAGE[1].indexOf(a.language) === -1){
-      //         this.LIST_LANGUAGE[1].push(a.language)            
-      //       }
-      //     }
-          
-      //     if(this.LIST_CALL_TYPE[1].indexOf(a.calltype) === -1){
-      //       this.LIST_CALL_TYPE[1].push(a.calltype)            
-      //     }
-      //     if(this.LIST_PROVIDER[1].indexOf(a.provider) === -1){
-      //       this.LIST_PROVIDER[1].push(a.provider)            
-      //     }
-          
-      //   })
-      // }    
     )
     this.QUEUE = [
       this.fillList(this.LIST_LANGUAGE),
       this.fillList(this.LIST_CALL_TYPE),
       this.fillList(this.LIST_PROVIDER)
     ]
+  }
+
+  /**get the users agents of a queue**/ 
+  showUsers(queue: any){
+    this.queueId = queue.id;
+    let setting = {
+      "pageSize": "25",
+      "pageNumber": "1",
+      "id": this.queueId 
+    }
+    
+    this.nameQueueOpen = queue.name
+    this.genesisService.getUsersByQueue$(setting).subscribe(
+      (data: any)=>{
+        console.log(data)
+        this.LIST_USERS = data.data;
+        this.current_page_modal_user_queue = 1
+        if("nextUri" in this.LIST_USERS){
+          this.morePages = true;            
+        }else{
+          this.morePages = false; 
+        }
+      }
+    )
   }
 
   fillList(list: any): any{
@@ -203,25 +142,6 @@ export class ModalComponent implements OnInit{
     })
     return list_queue;    
   }
-
-  // getDataQueues(){
-  //   this.genesisService.getDataModal$().subscribe(
-  //     (data: any) => {    
-  //       this.DATA_ALL_QUEUES = data        
-  //       this.DATA_ALL_QUEUES.unshift(
-  //         {
-  //           "total_records": this.DATA_ALL_QUEUES.length,
-  //           "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
-  //           "current_page": "1"
-  //         }
-  //       )
-
-  //       this.current_page = this.DATA_ALL_QUEUES[0].current_page;
-  //       this.num_pages = this.DATA_ALL_QUEUES[0].num_pages;
-  //       this.dataSource_queue = data.slice(1,this.num_item_page+1)
-  //     }
-  //   )
-  // }
 
   setColumnQueue(item: any){    
     this.setQueues(item)
@@ -394,6 +314,38 @@ export class ModalComponent implements OnInit{
     })
   }
 
+  /**
+   * paginator for modal users by queue
+   * @param event 
+   */
+
+  newPageshowUsers(event: string){ 
+    
+    if(event === "next"){
+      this.next_page++        
+    }else{
+      this.next_page--
+    }
+
+    let setting = {
+      "pageSize": "25",
+      "pageNumber":this.next_page,
+      "id": this.queueId 
+    } 
+    this.genesisService.getUsersByQueue$(setting).subscribe(
+      (data: any)=>{
+        console.log(data)
+        this.LIST_USERS = data.data;
+        this.current_page_modal_user_queue = this.next_page;
+        if("nextUri" in this.LIST_USERS){
+          this.morePages = true;            
+        }else{
+          this.morePages = false; 
+        }
+      }
+    )    
+  }
+
   deleteFilter(filter: any){
     this.setPredefinedGroup(filter.target.value,filter.column);
     this.SELECTED_FILTER_QUEUES.splice(this.SELECTED_FILTER_QUEUES.indexOf(filter), 1);    
@@ -429,10 +381,10 @@ export class ModalComponent implements OnInit{
 
   removeAgent(item: any){
     let text = "Are you sure to remove the agent from the queue?";
-    if (confirm(text) == true) {
-      this.LIST_FALSE.splice(this.LIST_FALSE.indexOf(item), 1);    
-    } else {
-      text = "Canceled!";
-    }
+    // if (confirm(text) == true) {
+    //   this.LIST_FALSE.splice(this.LIST_FALSE.indexOf(item), 1);    
+    // } else {
+    //   text = "Canceled!";
+    // }
   }
 }

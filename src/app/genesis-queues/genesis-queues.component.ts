@@ -85,15 +85,12 @@ export class GenesisQueuesComponent implements OnInit{
 
   ngOnInit(): void {
 
-    /*llamamos la funcion para hecer el login*/
+    /*we call the method to do the login*/
     //this.getLogin();
     const token = "KN29zylryyzOUNvv0OQf-HJV7NrwPkfrkZ91ZbKMB8l_wc1YZSHEZWU3_cdOWSXrkva7WNU1qceWFqrvmlppjw"
     localStorage.setItem('token', token);
 
     this.getAllAgents();
-
-    //this.getAll();
-    // this.getDirectory(); 
 
     this.genesisService.getActiveTable$().subscribe((data)=>{
       if(data === "predefined group"){
@@ -104,18 +101,11 @@ export class GenesisQueuesComponent implements OnInit{
         this.showTableGroupPredenined= false;
       }
     })
-
-
-    
-    // this.genesisService.getAgent$("1").subscribe(
-    //   (data: any)=>{
-    //     console.log(data)
-    //   }
-    // )
+   
     this.genesisService.setSelectedAgents(this.data_table_selected_agents); 
   }
   //------------------------------------------------------------//
-  /*Hacemos el login nos debe devolver un token */
+  /*We do the login, it must return a token*/
 
   getLogin(){
 
@@ -140,9 +130,16 @@ export class GenesisQueuesComponent implements OnInit{
   getAllAgents(){
     this.spinnerActived = true
     //setting
+    // let setting = {
+    //   "pageNumber": this.next_page,
+    //   "pageSize": this.num_item_page,
+    //   "keyword": "Burke"
+    // }
+
     let setting = {
-      "pageNumber": this.next_page,
-      "pageSize": this.num_item_page,
+      "pageNumber": "",
+      "pageSize": 0,
+      "keyword": "Burke"
     }
     
     this.genesisService.getAllAgents$(setting).subscribe(
@@ -159,67 +156,18 @@ export class GenesisQueuesComponent implements OnInit{
   ngAfterViewInit(){
 
     fromEvent(this.searchBar.nativeElement, 'keyup')
-      .pipe(
-        filter(Boolean),
-        debounceTime(800),
-        distinctUntilChanged(),
-        tap((text: any) => {
-          let term = this.searchBar.nativeElement.value;
-          this.genesisService.search$(term)
-
-        })
-      )
-      .subscribe();
-  }
-
-  
-  getDirectory(): void{
-    this.genesisService.getDirectory$().subscribe(
-      (data: any) => {
-
-        this.DATA_ALL = data
-        this.DATA_ALL.unshift(
-          {
-            "total_records": this.DATA_ALL.length,
-            "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
-            "current_page": "1"
-          }
-        )
-
-        this.current_page = this.DATA_ALL[0].current_page;
-        this.num_pages = this.DATA_ALL[0].num_pages;
-        this.dataSource = data.slice(1,this.num_item_page+1)
-        this.sortedData = this.dataSource.slice();        
-      }
+    .pipe(
+      filter(Boolean),
+      debounceTime(800),
+      distinctUntilChanged(),
+      tap((text: any) => {
+        let term = this.searchBar.nativeElement.value;
+        this.genesisService.search$(term)
+      })
     )
-  }
-
-  // getAll(): void{    
-
-  //   this.genesisService.getAllDirectory$(this.current_page).subscribe(
-  //     (data: any)=>{
-  //       this.DATA_ALL = data
-
-  //       this.DATA_ALL.unshift(
-  //         {
-  //           "total_records": this.DATA_ALL.length,
-  //           "num_pages" : Math.ceil(data.length/this.num_item_page).toString(),
-  //           "current_page": "1"
-  //         }
-  //       )
-  //       this.current_page = this.DATA_ALL[0].current_page;
-  //       this.num_pages = this.DATA_ALL[0].num_pages;
-
-  //       this.DATA_ALL.slice(1,this.num_item_page+1).forEach((element: any)=>{
-  //         element.is_checked = false;
-  //       })
-  //       this.dataSource = this.DATA_ALL.slice(1,this.num_item_page+1)
-  //       this.sortedData = this.dataSource.slice();
-  //     }
-
-  //   )
-  // }
-
+    .subscribe();
+  } 
+  
   getTextSetting(obj: any){
     let text = "";
       for (const key in obj) {
@@ -265,6 +213,7 @@ export class GenesisQueuesComponent implements OnInit{
     }
   }
 
+  /*This method is called when clicking on any of the pager buttons*/
   newPage(page: string){
 
     if(page === "next"){
@@ -272,7 +221,10 @@ export class GenesisQueuesComponent implements OnInit{
     }else{
       this.next_page--
     }
+
+    /*we initialize the counter of selected agents in the new page */
     let count = 0;
+
     this.getAllAgents()
   
     this.dataSource.forEach((item: any)=>{
@@ -400,7 +352,6 @@ export class GenesisQueuesComponent implements OnInit{
         console.log("no agents selected")
       }      
     })
-
   }
 
   /*We configure the layout of the page: horizontal or vertical */
@@ -439,11 +390,9 @@ export class GenesisQueuesComponent implements OnInit{
           return 0;
       }
     });
-
   }
 
   compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
-
 }
