@@ -295,12 +295,12 @@ export class GenesysService {
   }
 
   search$(term: string){
-
+    
     let list:any[] = [];
+
     let paginatedList:any[] = DATA.slice(1);
-
+    
     paginatedList.forEach((item: any) => {
-
       if(item.name.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.email.toLowerCase().indexOf(term.toLowerCase()) >= 0
         || item.queues.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.license.toLowerCase().indexOf(term.toLowerCase()) >= 0
         || item.skill.toLowerCase().indexOf(term.toLowerCase()) >= 0 || item.department.toLowerCase().indexOf(term.toLowerCase()) >= 0
