@@ -5,6 +5,7 @@ import { DATA,DATA_QUEUE } from './mock-data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import {Buffer} from 'buffer';
+import { DATA_SOURCE, dataSource } from '../models/data';
 
 let clientId = '45fe7e80-b705-4f0c-bca8-d98d3f70afa5';
 let clientSecret = '8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU';
@@ -88,6 +89,11 @@ export class GenesysService {
     //   .catch(error => console.log('error', error));
 
   //-----------------------------------------------------------------//
+
+  //---------------------------behavour-------------------------------//
+    const dataSourceSubject$ = new BehaviorSubject<DATA_SOURCE>(dataSource);
+
+  //--------------------------end behavoir-------------------------//
 
     let clientId = '45fe7e80-b705-4f0c-bca8-d98d3f70afa5';
     let clientSecret = '8MF2n5JccmAqRVSZ7NSVJl18z6PZfbZunB5nac-vOaU';
