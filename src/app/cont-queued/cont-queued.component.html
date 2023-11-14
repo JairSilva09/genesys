@@ -1,1 +1,22 @@
-<p>cont-queued works!</p>
+ <!-- Button trigger modal -->
+
+<!-- Modal -->
+
+
+                    <table class="table table-hover table-sm " style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">Skill</th>
+                                <th scope="col">Queue</th>
+                                <th scope="col">Await</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of LIST_FALSE">
+                                <td>{{item.skill}}</td>
+                                <td>{{item.queue}}</td>
+                                <td>{{item.wait}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+               

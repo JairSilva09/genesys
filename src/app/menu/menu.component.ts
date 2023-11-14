@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
-
   LIST_FALSE: any[] = [
     {
       skill : "Clink Agency Ext Res",
@@ -34,6 +33,5 @@ export class MenuComponent {
       wait: "00:01:53"
     }
   ]
-
 
 }
