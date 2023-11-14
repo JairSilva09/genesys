@@ -6,5 +6,7 @@ import { Component, ViewChild } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  collapseMenu: boolean = false; 
+  collapseMenu: boolean = false;
+  
+
 }
