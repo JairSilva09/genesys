@@ -24,6 +24,7 @@ import { TableModifyQueuesComponent } from './genesis-queues/table-modify-queues
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSortModule} from '@angular/material/sort';
 import { LoginComponent } from './login/login.component';
+import { ContQueuedComponent } from './cont-queued/cont-queued.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LoginComponent } from './login/login.component';
     TableAgentsComponent,
     TablePredefinedGroupComponent,
     TableModifyQueuesComponent,
-    LoginComponent
+    LoginComponent,
+    ContQueuedComponent
   ],
   imports: [
     BrowserModule,
