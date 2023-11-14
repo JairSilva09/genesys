@@ -23,6 +23,7 @@ import { TablePredefinedGroupComponent } from './genesis-queues/table-predefined
 import { TableModifyQueuesComponent } from './genesis-queues/table-modify-queues/table-modify-queues.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSortModule} from '@angular/material/sort';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatSortModule} from '@angular/material/sort';
     ModalPredefinedGroupComponent,
     TableAgentsComponent,
     TablePredefinedGroupComponent,
-    TableModifyQueuesComponent
+    TableModifyQueuesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,27 @@
+.mt-5 {
+    position: relative;
+    margin-top: 0rem!important;
+    top: 20%;
+}
+.btn{
+    border-radius: 3px !important;
+}
+.container-logo{
+    width: 25%;
+    min-width: 120px;
+    margin-left: calc(75%/2);
+    margin-right: calc(75%/2);
+    img{
+        width:100%;
+    }
+}
+.submit-button{
+    background-color: #1a2a5d;
+}
+.btn-primary{
+    background-color: #1a2a5d;
+    border-color: #1a2a5d;
+}
+.btn:hover{
+    border-color: #1a2a5d !important;
+}
